@@ -3,7 +3,8 @@ function twitterService($http) {
     const getTweets = () => {
         return $http({
             method: "GET",
-            url: `https://api.twitter.com/1.1/search/tweets.json?q=%40twitterapi`
+            url: `https://api.twitter.com/oauth/authenticate?oauth_token=`
+
         }).then((response) => {
             console.log(response);
             console.log("hi")
