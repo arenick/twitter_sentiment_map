@@ -1,10 +1,13 @@
 "use strict";
+
+const twitAPI = require("../.env");
+
 var Twit = require("twit")
 var T = new Twit({
-    consumer_key:"sXog1WOrtuXuXwVscXZAuF1je",
-   consumer_secret:"3Eloweb4qIuTYVNzkN9oEd48oVEOYRyGiwaQ7CZtGPIVfDd3JO",
-   access_token: "98767917-QoSIeOafCk7CzkH1bn91c7Abs1NCrlxDlEqcA6Vt9",
-   access_token_secret: "SP8pVezpLVA6i6oRfUR4MbPsNrd5I6G4IkWviRP8eOr4h",
+   consumer_key: twitAPI.consumer_key,
+   consumer_secret:twitAPI.consumer_secret,
+   access_token: twitAPI.access_token,
+   access_token_secret: twitAPI.access_token_secret,
     strictSSL: true,
 });
 
