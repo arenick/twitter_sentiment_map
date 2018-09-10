@@ -13,7 +13,7 @@ var T = new Twit({
 
 var tList = null;
 
-var sanFransico = [ '-122.75', '36.8', '-121.75', '37.8']
+v ar sanFransico = [ '-122.75', '36.8', '-121.75', '37.8']
 
 // T.get('geo/seach', {query: "USA", granularity: "admin"}, (err, data, response) => {
 //     console.log(response);
@@ -26,4 +26,4 @@ T.get('search/tweets', {q: 'since:2017-04-04', geocode: '37.781157 -122.398720 1
     console.log(response);
     console.log(data);
     console.log(err);
-  }); 
+  });
