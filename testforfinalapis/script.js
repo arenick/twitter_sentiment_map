@@ -1,25 +1,16 @@
 "use strict"
 
-// Certainly, let me give you ajax script
-// var settings = {
-// "async": true,
-// "crossDomain": true,
-// "url": "https://apis.paralleldots.com/v3/emotion",
-// "method": "POST",
-// "headers": {
-// "Content-Type": "application/x-www-form-urlencoded",
-// "Cache-Control": "no-cache",
-// "Postman-Token": "809b1a64-cff1-41eb-a7dd-f0003a2e5d69"
-// },
-// "data": {
-// "text": "It was great talking to Anand Prabhu Subramanian. Many congratulations to Anand Prabhu Subramanian and Vijay Gabale on winning the KDD 2018 Startup Research Award.",
-// "api_key": <insert-api-key>
-// }
-// }
 
-// $.ajax(settings).done(function (response) {
-// console.log(response);
-// });
+
+let deStringify = function(obj) {
+    console.log(obj);
+    var str = [];
+    for(var p in obj)
+    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+    console.log(str); 
+    return str.join("&");
+}
+
 
 
 const com = {
@@ -83,7 +74,7 @@ function service($http, $sce){
             //},
             "data": {
             "text": "It was great talking to Anand Prabhu Subramanian. Many congratulations to Anand Prabhu Subramanian and Vijay Gabale on winning the KDD 2018 Startup Research Award.",
-            "api_key": "DZEgFpGj5tlOGYaIYZ2hQAjDy2ARxY98tLs2Gsepptw"
+            "api_key": 
             }
             }
 
@@ -92,7 +83,7 @@ function service($http, $sce){
             let angdata = {"text": "It was great talking to Anand Prabhu Subramanian. Many congratulations to Anand Prabhu Subramanian and Vijay Gabale on winning the KDD 2018 Startup Research Award.",
             "api_key": "DZEgFpGj5tlOGYaIYZ2hQAjDy2ARxY98tLs2Gsepptw"}; 
 
-
+     
             return $http({
                 // "async": true,
                 // "crossDomain": true,
@@ -105,13 +96,7 @@ function service($http, $sce){
                     'text': 'It was great talking to Anand Prabhu Subramanian. Many congratulations to Anand Prabhu Subramanian and Vijay Gabale on winning the KDD 2018 Startup Research Award.',
                     'api_key': 'DZEgFpGj5tlOGYaIYZ2hQAjDy2ARxY98tLs2Gsepptw'
                 }, 
-                transformRequest: function(obj) {
-                    console.log(obj);
-                    var str = [];
-                    for(var p in obj)
-                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-                    console.log(str); 
-                    return str.join("&");}
+                transformRequest: deStringify
                 }).then((response) => {
             console.log(response);
             }).catch((error) => {
@@ -121,32 +106,15 @@ function service($http, $sce){
 
     vm.pdots = () => {
         // let purl = "https://apis.paralleldots.com/v3/emotion";
-
-        var settings = {
-            "async": true,
-            "crossDomain": true,
-            "url": "https://apis.paralleldots.com/v3/emotion",
-            "method": "POST",
-            "headers": {
-            "Content-Type": "application/x-www-form-urlencoded",
-            // "Cache-Control": "no-cache",
-            // "Postman-Token": "809b1a64-cff1-41eb-a7dd-f0003a2e5d69"
-            },
-            "data": {
-            "text": "It was great talking to Anand Prabhu Subramanian. Many congratulations to Anand Prabhu Subramanian and Vijay Gabale on winning the KDD 2018 Startup Research Award.",
-            "api_key": "DZEgFpGj5tlOGYaIYZ2hQAjDy2ARxY98tLs2Gsepptw"
-            }
-            }
-            
-            jQuery.ajax(settings).done(function (response, el, em, iop){
-            console.log(response);
-            console.log(el); 
-            console.log(em); 
-            console.log(iop); 
-            });
-    }
+        const params = "this+is+a+good";
+        let url = `http://www.datasciencetoolkit.org/text2sentiment/${params}`;
+        let trust = $sce.trustAsResourceUrl(url); 
+        
+        return $http.jsonp(trust, {params : params}).then((rep) => {
+            console.log(rep); 
+    });
 }
-
+}
 
 
 angular.module("app", ["ngRoute"]).config(function($routeProvider){
@@ -155,4 +123,3 @@ angular.module("app", ["ngRoute"]).config(function($routeProvider){
 
 angular.module("app").service("service", service);
 angular.module("app").component("com", com); 
-
