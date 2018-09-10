@@ -4,10 +4,10 @@ const twitterMap = {
     template:`
     <p>This is a test</p>
     `,
-    controller: ["twitterService", function(twitterService) {
+    controller: ["TwitterService", function(TwitterService) {
         const vm = this;
-        vm.getTweets = (tweet) => {
-            twitterService.getTweets(tweet).then((response) => {
+        vm.getTweets = () => {
+            TwitterService.getAllTweets().then((response) => {
                 console.log(response);
                 console.log(tweet);
             })

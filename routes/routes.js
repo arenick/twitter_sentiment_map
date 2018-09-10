@@ -1,6 +1,9 @@
 "use strict";
-
+const express = require("express");
+const router = express.Router();
 const twitAPI = require("../.env");
+
+
 
 var Twit = require("twit")
 var T = new Twit({
@@ -15,7 +18,17 @@ var tList
 
 var sanFransico = [ '-122.75', '36.8', '-121.75', '37.8']
 
+
 var houston = [ '-95.37', '29.7', '-94.37', '30.7']
-T.get('search/tweets', { q: sanFransico, count: 2 }, function(err, data, response) {
-    console.log(data)
-  })
+router.get("/search", (req,res)=>{
+
+T.get('search/tweets', { q: 'locations: Detroit', count: 10 }, function(err, data, response) {
+   console.log(data)
+   res.send(data);
+ })
+})
+
+module.exports = router;
+
+
+
