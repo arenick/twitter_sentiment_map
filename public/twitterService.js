@@ -8,8 +8,10 @@ function TwitterService ($http) {
            url: "/search",
                  
         }).then((response) => {
-            console.log(response.data);
-           return vm.tweets = response;         
+            for (let i=0; i<40; i++) {
+            console.log(response.data.statuses[i].text);
+        //    return vm.tweets = response; 
+            }        
         })
         }
         vm.getAllTweets();
