@@ -11,12 +11,11 @@ var T = new Twit({
     strictSSL: true,
 });
 
-var sanFrancisco = ['-122.75', '36.8', '121.75', '37.8']
+var tList
 
-var stream = T.stream('statuses/filter', {
-    locations: sanFrancisco
-})
+var sanFransico = [ '-122.75', '36.8', '-121.75', '37.8']
 
-stream.on('tweet', function(tweet){
-    console.log(tweet)
-})
+var houston = [ '-95.37', '29.7', '-94.37', '30.7']
+T.get('search/tweets', { q: sanFransico, count: 2 }, function(err, data, response) {
+    console.log(data)
+  })
