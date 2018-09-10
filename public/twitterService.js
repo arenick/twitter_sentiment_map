@@ -1,23 +1,19 @@
-const vm = this;
-function twitterService($http) {
-    const getTweets = () => {
+"use strict";
+function TwitterService ($http) {
+    const vm = this;
+    vm.getAllTweets = () => {
         return $http({
             method: "GET",
-            url: `https://api.twitter.com/oauth/authenticate?oauth_token=`
-
+           url: "/search",
+                 
         }).then((response) => {
-            console.log(response);
-            console.log("hi")
-            return response.data;
-        });
-    }
-    getTweets();
-    return {
-        getTweets: getTweets
-    }
+            console.log(response.data);
+           return vm.tweets = response;         
+        })
+        }
+        vm.getAllTweets();
 }
 
-
 angular
-    .module("App")
-    .service("twitterService", twitterService)
+.module("App")
+.service("TwitterService", TwitterService)
