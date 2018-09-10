@@ -4,17 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styles.css">
     <title>Twitter Sentiments App</title>
 </head>
 <body>
-    <twitter-map></twitter-map>
+    <a href="#!/landing">Landing</a>
+    <a href="#!/twitter-map">Tweets</a>
+    <ng-view></ng-view>
+
+    <!-- <div class="us_map" id="map"></div> -->
     <script src="https://code.angularjs.org/1.6.5/angular.min.js"></script>
     <script src="https://code.angularjs.org/1.6.5/angular-route.min.js"></script>
     <script src="module.js"></script>
-
     <script src="config.js"></script>
     <script src="twitterMap.js"></script>
     <script src="twitterService.js"></script>
+    <script src="map/mapdata.js"></script>
+    <script src="map/usmap.js"></script>
+    <script type="text/javascript" src="http://yoursite.com/mapdata.js"></script>
+    <script type="text/javascript" src="http://yoursite.com/worldmap.js"></script>
 
 </body>
 </html>
