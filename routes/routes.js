@@ -11,11 +11,19 @@ var T = new Twit({
     strictSSL: true,
 });
 
-var tList
+var tList = null;
 
 var sanFransico = [ '-122.75', '36.8', '-121.75', '37.8']
 
-var houston = [ '-95.37', '29.7', '-94.37', '30.7']
-T.get('search/tweets', { q: sanFransico, count: 2 }, function(err, data, response) {
-    console.log(data)
-  })
+// T.get('geo/seach', {query: "USA", granularity: "admin"}, (err, data, response) => {
+//     console.log(response);
+//     console.log(data);
+//     console.log(err);
+// });
+
+var houston = '-95.37 29.7';
+T.get('search/tweets', {q: 'since:2017-04-04', geocode: '37.781157 -122.398720 1mi'},  (err, data, response) => {
+    console.log(response);
+    console.log(data);
+    console.log(err);
+  }); 
