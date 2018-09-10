@@ -22,7 +22,7 @@ var sanFransico = [ '-122.75', '36.8', '-121.75', '37.8']
 var houston = [ '-95.37', '29.7', '-94.37', '30.7']
 router.get("/search", (req,res)=>{
 
-T.get('search/tweets', { q: 'locations: Detroit', count: 10 }, function(err, data, response) {
+T.get('search/tweets', { q: 'locations: Michigan', count: 40 }, function(err, data, response) {
    console.log(data)
    res.send(data);
  })
