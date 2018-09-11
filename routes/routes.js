@@ -1,16 +1,17 @@
 "use strict";
 const express = require("express");
 const router = express.Router();
-const twitAPI = require("../env");
+require("dotenv").config();
 
 
+console.log(process.env.consumer_key);
 
 var Twit = require("twit")
 var T = new Twit({
-   consumer_key: twitAPI.consumer_key,
-   consumer_secret:twitAPI.consumer_secret,
-   access_token: twitAPI.access_token,
-   access_token_secret: twitAPI.access_token_secret,
+   consumer_key: process.env.consumer_key,
+   consumer_secret:process.env.consumer_secret,
+   access_token: process.env.access_token,
+   access_token_secret: process.env.access_token_secret,
     strictSSL: true,
 });
 
