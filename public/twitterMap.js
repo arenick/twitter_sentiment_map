@@ -1,9 +1,10 @@
 "use strict";
 
 const twitterMap = {
-    template:`
-    <div  class="us_map" id="map"></div>
-    `,
+    templateUrl: "twitterMap.html"
+    
+    
+    ,
     controller: ["TwitterService", "$location", function(TwitterService, $location) {
         simplemaps_usmap.load();
         const vm = this;
