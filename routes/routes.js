@@ -32,27 +32,27 @@ var sanFransico = [ '-122.75', '36.8', '-121.75', '37.8']
 var houston = [ '-95.37', '29.7', '-94.37', '30.7']
 router.get("/search/all", (req,res)=>{
 
-    T.get('geo/search', {query: "Midwest"}, (err, data, response) => {
-        console.log(response);
-        console.log(data);
-        console.log(err);
-        res.send(data);
-    });
+    // T.get('geo/search', {query: "Midwest"}, (err, data, response) => {
+    //     console.log(response);
+    //     console.log(data);
+    //     console.log(err);
+    //     res.send(data);
+    // });
 
-// T.get('search/tweets', { q: 'place:dd9c503d6c35364b', count: 20, result_type: "popular"}, function(err, data, response) {
+T.get('search/tweets', { q: 'place:dd9c503d6c35364b', count: 20, result_type: "popular"}, function(err, data, response) {
    
-//   console.log(data.statuses.length);
-//   let textArr = [];
-//   let obj = {};
-//   for(let i = 0; i < data.statuses.length; i++){
-//     textArr.push(data.statuses[i].text);
-//   }
+  console.log(data.statuses.length);
+  let textArr = [];
+  let obj = {};
+  for(let i = 0; i < data.statuses.length; i++){
+    textArr.push(data.statuses[i].text);
+  }
 
-//   obj.data = data; 
-//   obj.statuses = data.statuses;
-//   obj.text = textArr; 
-//   res.send(obj); 
-//  });
+  obj.data = data; 
+  obj.statuses = data.statuses;
+  obj.text = textArr; 
+  res.send(obj); 
+ });
 
 });
 

@@ -1,15 +1,18 @@
 "use strict";
 
 const twitterMap = {
-    template:`
-    <p>This is a test</p>
-    `,
-    controller: ["TwitterService", function(TwitterService) {
+    templateUrl: "twitterMap.html"
+    
+    
+    ,
+    controller: ["TwitterService", "$location", function(TwitterService, $location) {
+        simplemaps_usmap.load();
         const vm = this;
+        
         vm.getTweets = () => {
             TwitterService.getAllTweets().then((response) => {
                 console.log(response);
-                console.log(tweet);
+                // console.log(tweet);
             })
         }
     }] 

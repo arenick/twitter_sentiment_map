@@ -31,7 +31,7 @@ function TwitterService ($http, $sce) {
             for(let i = 0; i < response.data.text.length; i++){
                 loop(response.data.text[i]); 
             }
-           return vm.tweets = response;         
+           return vm.tweets = response;                
         })
         }
         vm.getAllTweets();
