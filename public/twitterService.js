@@ -9,7 +9,7 @@ function TwitterService ($http) {
                  
         }).then((response) => {
             for (let i=0; i<40; i++) {
-            console.log(response.data.statuses[i].text);
+            console.log(response.data.statuses[i]);
         //    return vm.tweets = response; 
             }        
         })
