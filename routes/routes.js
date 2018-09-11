@@ -5,16 +5,14 @@ require("dotenv").config();
 var Twit = require("twit");
 
 console.log(process.env.consumer_key);
-setTimeout(() => {
+
   var T = new Twit({
-    consumer_key: process.env.consumer_key,
-    consumer_secret:process.env.consumer_secret,
-    access_token: process.env.access_token,
-    access_token_secret: process.env.access_token_secret,
+    consumer_key: "sXog1WOrtuXuXwVscXZAuF1je",
+    consumer_secret: "3Eloweb4qIuTYVNzkN9oEd48oVEOYRyGiwaQ7CZtGPIVfDd3JO",
+    access_token: "98767917-QoSIeOafCk7CzkH1bn91c7Abs1NCrlxDlEqcA6Vt9",
+    access_token_secret: "SP8pVezpLVA6i6oRfUR4MbPsNrd5I6G4IkWviRP8eOr4h",
      strictSSL: true,
  });
-}, 2000);
-
 
 var tList = null;
 
