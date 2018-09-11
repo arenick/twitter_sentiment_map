@@ -1,7 +1,7 @@
 "use strict";
 const express = require("express");
 const router = express.Router();
-const twitAPI = require("../.env");
+const twitAPI = require("../env");
 
 
 
