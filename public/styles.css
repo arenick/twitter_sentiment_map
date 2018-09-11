@@ -1,0 +1,3 @@
+#map_inner > div:nth-child(2) {
+    visibility: hidden !important;
+}

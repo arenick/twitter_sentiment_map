@@ -1,5 +1,5 @@
 "use strict";
-// simplemaps_usmap.load();
+
 const twitterMap = {
     template:`
     <div  class="us_map" id="map"></div>
@@ -7,7 +7,7 @@ const twitterMap = {
     controller: ["TwitterService", "$location", function(TwitterService, $location) {
         simplemaps_usmap.load();
         const vm = this;
-        simplemaps_usmap.load();
+        
         vm.getTweets = () => {
             TwitterService.getAllTweets().then((response) => {
                 console.log(response);
