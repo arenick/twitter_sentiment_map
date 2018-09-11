@@ -2,14 +2,14 @@ var simplemaps_usmap_mapdata={
   main_settings: {
    //General settings
     width: "responsive", //'700' or 'responsive'
-    background_color: "red",
+    background_color: "#6158A6",
     background_transparent: "yes",
     border_color: "#ffffff",
     popups: "detect",
     
     //State defaults
     state_description: "State Description",
-    state_color: "blue",
+    state_color: "#F6F7F8",
     state_hover_color: "#DFE0E2",
     state_url: "",
     border_size: 1.5,

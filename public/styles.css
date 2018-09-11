@@ -1,3 +1,37 @@
 #map_inner > div:nth-child(2) {
     visibility: hidden !important;
 }
+
+#map{
+    background: #6940ef;
+}
+
+.emo{
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    
+    border-radius: 50%;
+}
+
+#sad{
+    background: blue;
+}
+#fear{
+    background: lightgreen;
+}
+#bored{
+   background:  green;
+}
+#happy{
+    background: yellow;
+}
+#excited{
+    background: orange;
+}
+#sarcasm{
+    background: #ff471b;
+}
+#angry{
+    background: #ff3351;
+}
