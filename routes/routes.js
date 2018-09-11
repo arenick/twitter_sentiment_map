@@ -2,7 +2,8 @@
 const express = require("express");
 const router = express.Router();
 var Twit = require("twit");
-require("dotenv").config();
+const dotenv = require("dotenv");
+dotenv.config();
 
 var T = new Twit({
    consumer_key: process.env.consumer_key,
