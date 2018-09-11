@@ -3,11 +3,14 @@
 const landing = {
     template:`
     <p>Welcome to our page</p>
+    <button ng-click="$ctrl.redirect();">Click Me</button>
     `,
     controller: ["$location", function($location) {
         const vm = this;
-        //create function that directs you to map page
-        $location.path("/map");
+        vm.redirect = () => {
+        console.log("hi");
+        $location.path("/twitter-map");
+        }
     }]
 }
 angular
