@@ -5,14 +5,16 @@ require("dotenv").config();
 var Twit = require("twit");
 
 console.log(process.env.consumer_key);
+setTimeout(() => {
+  var T = new Twit({
+    consumer_key: process.env.consumer_key,
+    consumer_secret:process.env.consumer_secret,
+    access_token: process.env.access_token,
+    access_token_secret: process.env.access_token_secret,
+     strictSSL: true,
+ });
+}, 2000);
 
-var T = new Twit({
-   consumer_key: process.env.consumer_key,
-   consumer_secret:process.env.consumer_secret,
-   access_token: process.env.access_token,
-   access_token_secret: process.env.access_token_secret,
-    strictSSL: true,
-});
 
 var tList = null;
 
