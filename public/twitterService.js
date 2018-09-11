@@ -8,7 +8,7 @@ function TwitterService ($http) {
            url: "/search",
                  
         }).then((response) => {
-            console.log(response.data);
+            console.log(response);
            return vm.tweets = response;         
         })
         }
