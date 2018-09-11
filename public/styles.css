@@ -1,33 +1,64 @@
 #map_inner > div:nth-child(2) {
     visibility: hidden !important;
 }
-
-#map{
+tspan{
+    display: none;
+}
+body{
     background: #6940ef;
+}
+/* 
+#map{
+    margin: 0 auto;
+    width: 90%;
+} */
+
+.colorGuide{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /* align-content: space-between; */
+}
+
+.guideItem{
+    display: flex;
+    flex-direction: column;
+    margin: 2.5%;
+    text-align: center;
+    font-size: 6px;
+    color: white;
+    
+}
+
+.discover{
+    color: white;
+    text-align: center;
+    border-top: 3px solid white;
+    /* border-radius: 5px; */
 }
 
 .emo{
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    
+    display: flex;
+    width: 15px;
+    height: 15px;
+    flex-direction: column;
     border-radius: 50%;
 }
 
 #sad{
-    background: blue;
+    background: #5d91e3;
 }
 #fear{
-    background: lightgreen;
+    background: #52e0bb;
 }
 #bored{
-   background:  green;
+   background:  #52b05d;
 }
 #happy{
-    background: yellow;
+    background: #ffd21b;
 }
 #excited{
-    background: orange;
+    background: #ff951a;
 }
 #sarcasm{
     background: #ff471b;
