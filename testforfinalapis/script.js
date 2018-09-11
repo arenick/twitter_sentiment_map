@@ -74,7 +74,7 @@ function service($http, $sce){
             //},
             "data": {
             "text": "It was great talking to Anand Prabhu Subramanian. Many congratulations to Anand Prabhu Subramanian and Vijay Gabale on winning the KDD 2018 Startup Research Award.",
-            "api_key": 
+            "api_key": "DZEgFpGj5tlOGYaIYZ2hQAjDy2ARxY98tLs2Gsepptw" 
             }
             }
 
@@ -106,13 +106,28 @@ function service($http, $sce){
 
     vm.pdots = () => {
         // let purl = "https://apis.paralleldots.com/v3/emotion";
-        const params = "this+is+a+good";
+        const word = "good";
+        const bword = "bad";
+    let loop = (entry) => {
+        let params = "";
+        console.log(entry)
+        if(entry % 2 == 0){
+            params = `this+is+a+${word}`;
+        }
+        else{
+            console.log("s");
+            params = `this+is+a+${bword}`;
+        }
         let url = `http://www.datasciencetoolkit.org/text2sentiment/${params}`;
         let trust = $sce.trustAsResourceUrl(url); 
-        
         return $http.jsonp(trust, {params : params}).then((rep) => {
             console.log(rep); 
-    });
+        });
+    }
+    for(let i = 0; i < 500; i++){
+        loop(i); 
+    }
+
 }
 }
 
