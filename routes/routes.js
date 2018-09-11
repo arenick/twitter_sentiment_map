@@ -1,7 +1,7 @@
 "use strict";
 const express = require("express");
 const router = express.Router();
-var Twit = require("twit")
+var Twit = require("twit");
 require("dotenv").config();
 
 var T = new Twit({
