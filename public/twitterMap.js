@@ -8,10 +8,11 @@ const twitterMap = {
     `,
     controller: ["TwitterService", "$location", function(TwitterService, $location) {
         const vm = this;
+        simplemaps_usmap.load();
         vm.getTweets = () => {
             TwitterService.getAllTweets().then((response) => {
                 console.log(response);
-                console.log(tweet);
+                // console.log(tweet);
             })
         }
     }] 
