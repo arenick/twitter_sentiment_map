@@ -1,8 +1,10 @@
 "use strict";
 const express = require("express");
 const router = express.Router();
-var Twit = require("twit");
 require("dotenv").config();
+var Twit = require("twit");
+
+console.log(process.env);
 
 var T = new Twit({
    consumer_key: process.env.consumer_key,
