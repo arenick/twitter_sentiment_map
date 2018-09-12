@@ -96,16 +96,21 @@ function TwitterService ($http, $sce) {
             }
 
             let collector = () => {
-                let collection = []; 
+                let collection = [];
+                let stateEm = null; 
                 for(let i = 0; i < response.data.text.length; i++){
-                    let stateEm =  loop(response.data.text[i]); 
+                    stateEm =  loop(response.data.text[i]); 
                     console.log(stateEm); 
                 }
                 return stateEm; 
             } 
 
-            let emCollection = collector(); 
-            console.log(emCollection); 
+            let emCollection = null;
+            collector().then((response) => {
+                emCollection = response;  
+                console.log(emCollection);
+            }); 
+            
 
             // for(let i = 0; i < response.data.text.length; i++){
             // let stateEm =  loop(response.data.text[i]); 
