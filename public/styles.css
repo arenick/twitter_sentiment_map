@@ -73,93 +73,83 @@ body {
 
 /* This is the Styling for the Landing Page */
 .landingContainer {
-    position: fixed;
+    /* position: fixed;
     top: 50%;
     left: 50%;
+    margin-left: -50px;
+    margin-top: -100px; */
+    /* position: relative; */
+    display: flex;
+    align-items: center;
+    height: 600px;
+    margin: 0 auto;
 }
 .whiteCircle {
+    /* position: absolute;
+    left: 28%;
+    top: 30%; */
     display: flex;
+    justify-content: center;
     flex-direction: column;
     text-align: center;
     background-color: white;
     border-radius: 50%;
-    height: 500px;
-    width: 500px;
-    margin: 0 auto;
-    justify-content: center;
+    height: 275px;
+    width: 275px;
+    margin: auto;
     z-index: 999999;
 }
 .landingP {
-    padding: 10px;
+    /* padding: 10px; */
 }
 .landingBtn{
-    position: relative;
-    top: 22%;
+    margin: 0 auto;
     border-radius: 10px;
     height: 50px;
-    width: 300px;
-    left: 20%;
+    width: 60%;
+    display: flex;
     background-color: blue;
     color: white;
+    padding: 25px;
     border-style: none;
 }
 .colorSize{
     border-radius:50%;
     display: flex;
-    width: 750px;
+    margin: 0 auto;
+    justify-content: center;
+    width: 90%;
     height: 150px;
     position: absolute;
-    left: 25%;
+    left: 5%;
     top: 225px;
-    opacity: .4;
+    opacity: .65;
     z-index: -99;
-}
-.landingGreen{
-    background-color:  #52b05d;
-}
-.landingBlue {
-    background-color: #5d91e3;
-    transform: rotate(90deg)
 }
 .landingRed {
     background-color:  #ff3351;
-    transform: rotate(45deg)
-}
-.landingAqua {
-    background-color:  #52e0bb;
-    transform: rotate(60deg)
-}
-
-.landingOrange {
-    background-color:  #ff951a;
-    transform: rotate(75deg)
 }
 .landingRedOrange {
     background-color:  #ff471b;
-    transform: rotate(30deg)
+    transform: rotate(25.7deg)
+}
+.landingOrange {
+    background-color:  #ff951a;
+    transform: rotate(51.4deg)
 }
 .landingYellow {
     background-color:  #ffd21b;
-    transform: rotate(15deg)
+    transform: rotate(77.1deg)
 }
-.landingRed2 {
-    background-color:  #ff3351;
-    transform: rotate(135deg)
+.landingGreen{
+    background-color:  #52b05d;
+    transform: rotate(102.8deg)
 }
-.landingAqua2 {
+.landingAqua {
     background-color:  #52e0bb;
-    transform: rotate(150deg)
+    transform: rotate(128.5deg)
 }
-
-.landingOrange2 {
-    background-color:  #ff951a;
-    transform: rotate(165deg)
-}
-.landingRedOrange2 {
-    background-color:  #ff471b;
-    transform: rotate(120deg)
-}
-.landingYellow2 {
-    background-color:  #ffd21b;
-    transform: rotate(105deg)
+.landingBlue {
+    background-color: #5d91e3;
+    transform: rotate(154.2deg)
 }
