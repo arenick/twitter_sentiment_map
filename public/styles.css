@@ -72,7 +72,11 @@ body {
 }
 
 /* This is the Styling for the Landing Page */
-
+.landingContainer {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+}
 .whiteCircle {
     display: flex;
     flex-direction: column;
@@ -99,160 +103,63 @@ body {
     color: white;
     border-style: none;
 }
-.landingGreen{
+.colorSize{
     border-radius:50%;
     display: flex;
     width: 750px;
-    height: 100px;
-    background-color:  #52b05d;
+    height: 150px;
     position: absolute;
     left: 25%;
     top: 225px;
-    opacity: .2;
+    opacity: .4;
     z-index: -99;
 }
+.landingGreen{
+    background-color:  #52b05d;
+}
 .landingBlue {
-    border-radius:50%;
-    display: flex;
-    width: 750px;
-    height: 100px;
     background-color: #5d91e3;
-    position: absolute;
-    left: 25%;
-    top: 225px;
-    opacity: .2;
-    z-index: -99;
     transform: rotate(90deg)
 }
 .landingRed {
-    border-radius:50%;
-    display: flex;
-    width: 750px;
-    height: 100px;
     background-color:  #ff3351;
-    position: absolute;
-    left: 25%;
-    top: 225px;
-    opacity: .2;
-    z-index: -99;
     transform: rotate(45deg)
 }
 .landingAqua {
-    border-radius:50%;
-    display: flex;
-    width: 750px;
-    height: 100px;
     background-color:  #52e0bb;
-    position: absolute;
-    left: 25%;
-    top: 225px;
-    opacity: .2;
-    z-index: -99;
     transform: rotate(60deg)
 }
 
 .landingOrange {
-    border-radius:50%;
-    display: flex;
-    width: 750px;
-    height: 100px;
     background-color:  #ff951a;
-    position: absolute;
-    left: 25%;
-    top: 225px;
-    opacity: .2;
-    z-index: -99;
     transform: rotate(75deg)
 }
 .landingRedOrange {
-    border-radius:50%;
-    display: flex;
-    width: 750px;
-    height: 100px;
     background-color:  #ff471b;
-    position: absolute;
-    left: 25%;
-    top: 225px;
-    opacity: .2;
-    z-index: -99;
     transform: rotate(30deg)
 }
 .landingYellow {
-    border-radius:50%;
-    display: flex;
-    width: 750px;
-    height: 100px;
     background-color:  #ffd21b;
-    position: absolute;
-    left: 25%;
-    top: 225px;
-    opacity: .2;
-    z-index: -99;
     transform: rotate(15deg)
 }
 .landingRed2 {
-    border-radius:50%;
-    display: flex;
-    width: 750px;
-    height: 100px;
     background-color:  #ff3351;
-    position: absolute;
-    left: 25%;
-    top: 225px;
-    opacity: .2;
-    z-index: -99;
     transform: rotate(135deg)
 }
 .landingAqua2 {
-    border-radius:50%;
-    display: flex;
-    width: 750px;
-    height: 100px;
     background-color:  #52e0bb;
-    position: absolute;
-    left: 25%;
-    top: 225px;
-    opacity: .2;
-    z-index: -99;
     transform: rotate(150deg)
 }
 
 .landingOrange2 {
-    border-radius:50%;
-    display: flex;
-    width: 750px;
-    height: 100px;
     background-color:  #ff951a;
-    position: absolute;
-    left: 25%;
-    top: 225px;
-    opacity: .2;
-    z-index: -99;
     transform: rotate(165deg)
 }
 .landingRedOrange2 {
-    border-radius:50%;
-    display: flex;
-    width: 750px;
-    height: 100px;
     background-color:  #ff471b;
-    position: absolute;
-    left: 25%;
-    top: 225px;
-    opacity: .2;
-    z-index: -99;
     transform: rotate(120deg)
 }
 .landingYellow2 {
-    border-radius:50%;
-    display: flex;
-    width: 750px;
-    height: 100px;
     background-color:  #ffd21b;
-    position: absolute;
-    left: 25%;
-    top: 225px;
-    opacity: .2;
-    z-index: -99;
     transform: rotate(105deg)
 }
