@@ -16,7 +16,8 @@ console.log(process.env.consumer_key);
 
 var tList = null;
 
-var sanFransico = [ '-122.75', '36.8', '-121.75', '37.8']
+var sanFransico = [ '-122.75', '36.8', '-121.75', '37.8'];
+
 
 const states =  {
     "Alabama": "288de3df481163e8", 
@@ -47,26 +48,26 @@ const states =  {
     "Montana": "d2ddff69682ae534",
     "Nebraska": "ac9b9070f6d17a9a",
     "Nevada": "d374fb61a20fb74f",
-    "New Hampshire": "226b21641df42460",
-    "New Jersey": "65b4760a2b411e11", 
-    "New Mexico": "71d65c0e6d94efab",
-    "New York": "27485069891a7938",
+    "New-Hampshire": "226b21641df42460",
+    "New-Jersey": "65b4760a2b411e11", 
+    "New-Mexico": "71d65c0e6d94efab",
+    "New-York": "27485069891a7938",
     "North Carolina": "3b98b02fba3f9753",
     "North Dakota": "7d893ca2441b0c21",
     "Ohio": "de599025180e2ee7",
     "Oklahoma": "bd3d2074a33fbd06",
     "Oregon": "df7fd3a3b9eff7ee",
     "Pennsylvania": "dd9c503d6c35364b",
-    "Rhode Island": "6d50765616ee2e60",
-    "South Carolina": "6057f1e35bcc6c20",
-    "South Dakota": "d06e595eb3733f42",
+    "Rhode-Island": "6d50765616ee2e60",
+    "South-Carolina": "6057f1e35bcc6c20",
+    "South-Dakota": "d06e595eb3733f42",
     "Tennessee": "7f7d58e5229c6b6c",
     "Texas": "e0060cda70f5f341",
     "Utah": "1879ace9e02ace61",
     "Vermont": "9aa25269f04766ab",
     "Virginia": "5635c19c2b5078d1",
     "Washingston": "bc3a38d3d5999b4b",
-    "West Virginia": "2d83c71ce16cd187",
+    "West-Virginia": "2d83c71ce16cd187",
     "Wisconsin": "7dc5c6d3bfb10ccc"
 }
 
@@ -104,18 +105,22 @@ router.get("/state", (req, res) => {
 
 
 var houston = [ '-95.37', '29.7', '-94.37', '30.7']
-router.get("/search/all", (req,res)=>{
-
+router.get("/search/all/:usState", (req,res) => {
     // T.get('geo/search', {query: "Midwest"}, (err, data, response) => {
     //     console.log(response);
     //     console.log(data);
     //     console.log(err);
     //     res.send(data);
-    // });
+    // }); 
 
-T.get('search/tweets', { q: 'place:dd9c503d6c35364b', count: 20, result_type: "popular"}, function(err, data, response) {
+
+    console.log(req.params.usState);
+
+    let state = req.params.usState; 
+    
+
+T.get('search/tweets', { q: `place:${state}`, count: 10, result_type: "popular"}, function(err, data, response) {
    
-  console.log(data.statuses.length);
   let textArr = [];
   let obj = {};
   for(let i = 0; i < data.statuses.length; i++){
