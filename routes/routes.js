@@ -104,16 +104,16 @@ router.get("/state", (req, res) => {
 
 
 var houston = [ '-95.37', '29.7', '-94.37', '30.7']
-router.get("/search/all", (req,res)=>{
-
-    // T.get('geo/search', {query: "Midwest"}, (err, data, response) => {
+router.get("/search/all/:state", (req,res)=>{
+console.log(state); 
+    // T.get('geo/search', {query: "Maine"}, (err, data, response) => {
     //     console.log(response);
     //     console.log(data);
     //     console.log(err);
     //     res.send(data);
     // });
 
-T.get('search/tweets', { q: 'place:dd9c503d6c35364b', count: 20, result_type: "popular"}, function(err, data, response) {
+T.get('search/tweets', { q: 'place:dd9c503d6c35364b', count: 10, result_type: "popular"}, function(err, data, response) {
    
   console.log(data.statuses.length);
   let textArr = [];
