@@ -1,6 +1,4 @@
-
 "use strict";
-
 
 function TwitterService ($http, $sce) {
     const vm = this;
@@ -23,6 +21,7 @@ function TwitterService ($http, $sce) {
             let data = {}; 
             let sentimentArray = [];
             let loop = (entry) => {
+                console.log(entry);
                 let urlReplace = entry.replace(/(?:https?|ftp):\/\/[\n\S]+/g, '');
                 let specialReplace = urlReplace.replace(/[^a-zA-Z0-9]+\s/g, "+");
                 let hashReplace = specialReplace.replace(/#/g, "+")
@@ -64,36 +63,35 @@ function TwitterService ($http, $sce) {
                     },
                     transformRequest: deStringify
                     }).then((response) => {
-                console.log(response);
                 stateEmotion.push(response.data.emotion);
-                console.log(stateEmotion);
                 }).catch((error) => {
                     console.log(error);
                 });
             }
             for(let i = 0; i < response.data.text.length; i++){
-                loop(response.data.text[i]); 
+             loop(response.data.text[i]); 
             }
             console.log(stateEmotion);
-            const counts = {};
-            const compare = 0;
-            const mostFrequent = 0;
-            (function(array){
-                console.log(array);
+            // vm.stateEmotion = ["apple","pear","grapes","apple","apple"];
+            let counts = {};
+            let compare = 0;
+            let mostFrequent = 0;
+            console.log(stateEmotion.length);
                 for(let i = 0, len = stateEmotion.length; i < len; i++){
-                    let word = stateEmotion[i];
+                    let word = vm.stateEmotion[i];
                     if (counts[word] === undefined){
-                        count[word] = 1;
+                        counts[word] = 1;
                     } else {
-                        counts[word] = count[word] + 1;
+                        counts[word] = counts[word] + 1;
                     }
                     if (counts[word] > compare){
                         compare = counts[word];
-                        mostFrequent = stateEmotion[i];
+                        mostFrequent =  stateEmotion[i];
                     }
-                } 
+                }
+                console.log(stateEmotion);
+                console.log(mostFrequent);
                 return mostFrequent;
-            })(stateEmotion);
             
            return vm.tweets = response;            
            }).catch((error) => { 

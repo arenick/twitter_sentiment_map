@@ -79,7 +79,7 @@ const cities = {
 
 router.get("/state", (req, res) => {
     console.log(req); 
-    T.get('search/tweets', {q: 'place:5635c19c2b5078d1', count: 20, reult_type: "popular"}, function(err, data, response) {
+    T.get('search/tweets', {q: 'place:9aa25269f04766ab', count: 5, reult_type: "popular"}, function(err, data, response) {
         console.log(data.statuses.length);
         let textArr = []; 
         let obj = {}; 
