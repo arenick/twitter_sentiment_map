@@ -114,19 +114,19 @@ router.get("/search/all/:usState", (req,res) => {
     // }); 
 
 
-    console.log(req.params.usState);
+   console.log(req.data.stateName);
 
     let state = req.params.usState; 
     
 
 T.get('search/tweets', { q: `place:${state}`, count: 10, result_type: "popular"}, function(err, data, response) {
-   
+   //console.log(data);
   let textArr = [];
   let obj = {};
   for(let i = 0; i < data.statuses.length; i++){
     textArr.push(data.statuses[i].text);
   }
-
+//   obj.current_state = req.params;
   obj.data = data; 
   obj.statuses = data.statuses;
   obj.text = textArr; 

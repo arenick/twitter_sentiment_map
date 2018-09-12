@@ -4,11 +4,11 @@ function TwitterService ($http, $sce) {
     const vm = this;
 
     let deStringify = function(obj) {
-        console.log(obj);
+        //console.log(obj);
         var str = [];
         for(var p in obj)
         str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-        console.log(str); 
+        //console.log(str); 
         return str.join("&");
     }
 
@@ -91,16 +91,17 @@ function TwitterService ($http, $sce) {
 
     vm.getAllTweets = () => {
 
-        let textSentimentApi = (usState) => {  
+        let textSentimentApi = (usState, stateName) => {  
             return $http({
             method: "GET",
-            url: "/search/all/" + usState
+            url: "/search/all/" + usState, 
+            data: {stateName: stateName}
          }).then((response) => {
              console.log(response.data);
              let data = {}; 
              let sentimentArray = [];
              let loop = (entry) => {
-                 console.log(entry);
+                 //console.log(entry);
                  let urlReplace = entry.replace(/(?:https?|ftp):\/\/[\n\S]+/g, '');
                  let specialReplace = urlReplace.replace(/[^a-zA-Z0-9]+\s/g, "+");
                  let hashReplace = specialReplace.replace(/#/g, "+")
@@ -110,7 +111,7 @@ function TwitterService ($http, $sce) {
                  
                  let trust = $sce.trustAsResourceUrl(url); 
                  return $http.jsonp(trust, {params : params}).then((rep) => {
-                     console.log(rep); 
+                    // console.log(rep); 
                  });
              }
              for(let i = 0; i < response.data.text.length; i++){
@@ -123,12 +124,11 @@ function TwitterService ($http, $sce) {
         
 
         let stateKeys = Object.keys(states); 
-        console.log(stateKeys + "  " + stateKeys.length);
+        
         for(let i = 0; i < stateKeys.length; i++){
             // let state = states.stateKeys[i]; 
-            console.log(typeof stateKeys[i]); 
-            console.log(states[stateKeys[i]]);
-            textSentimentApi(states[stateKeys[i]]); 
+           
+            textSentimentApi(states[stateKeys[i]], stateKeys[i]); 
         }
 
         
@@ -175,11 +175,11 @@ function TwitterService ($http, $sce) {
                     transformRequest: deStringify
                     }).then((response) => {
                 stateEmotion.push(response.data.emotion);
-                console.log(stateEmotion);
+                //console.log(stateEmotion);
                 let counts = {};
                 let compare = 0;
                 let mostFrequent = 0;
-                console.log(stateEmotion.length);
+                //console.log(stateEmotion.length);
                 for(let i = 0, len = stateEmotion.length; i < len; i++){
                     let word = stateEmotion[i];
                     if (counts[word] === undefined){
@@ -192,26 +192,26 @@ function TwitterService ($http, $sce) {
                         mostFrequent =  stateEmotion[i];
                     }
             }
-            console.log(stateEmotion);
-            console.log(mostFrequent);
+            //console.log(stateEmotion);
+            //console.log(mostFrequent);
             return mostFrequent;
 
                 return stateEmotion;
                 }).catch((error) => {
-                    console.log(error);
+                    //console.log(error);
                 });
             }
 
             for(let i = 0; i < response.data.text.length; i++){
             let stateEm =  loop(response.data.text[i]); 
-            console.log(stateEm); 
+            //console.log(stateEm); 
             }
             return stateEmotion;
                        
            }).then((ret) => {
-            console.log(ret); 
+           // console.log(ret); 
            }).catch((error) => { 
-               console.log(error);
+             //  console.log(error);
            });  
         }
        
