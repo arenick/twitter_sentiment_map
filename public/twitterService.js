@@ -88,6 +88,27 @@ function TwitterService ($http, $sce) {
                     transformRequest: deStringify
                     }).then((response) => {
                 stateEmotion.push(response.data.emotion);
+                console.log(stateEmotion);
+                let counts = {};
+                let compare = 0;
+                let mostFrequent = 0;
+                console.log(stateEmotion.length);
+                for(let i = 0, len = stateEmotion.length; i < len; i++){
+                    let word = stateEmotion[i];
+                    if (counts[word] === undefined){
+                        counts[word] = 1;
+                    } else {
+                        counts[word] = counts[word] + 1;
+                    }
+                    if (counts[word] > compare){
+                        compare = counts[word];
+                        mostFrequent =  stateEmotion[i];
+                    }
+            }
+            console.log(stateEmotion);
+            console.log(mostFrequent);
+            return mostFrequent;
+
                 return stateEmotion;
                 }).catch((error) => {
                     console.log(error);
@@ -98,7 +119,6 @@ function TwitterService ($http, $sce) {
             let stateEm =  loop(response.data.text[i]); 
             console.log(stateEm); 
             }
-
             return stateEmotion;
                        
            }).then((ret) => {
