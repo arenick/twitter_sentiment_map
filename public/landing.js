@@ -1,10 +1,7 @@
 "use strict";
 
 const landing = {
-    template:`
-    <p>Welcome to our page</p>
-    <button ng-click="$ctrl.redirect();">Click Me</button>
-    `,
+    templateUrl:"landing.html",
     controller: ["$location", function($location) {
         const vm = this;
         vm.redirect = () => {

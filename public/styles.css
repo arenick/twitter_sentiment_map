@@ -4,7 +4,11 @@
 /* tspan{
     display: none;
 } */
-body{
+body {
+    margin: 0;
+    padding: 0;
+}
+.mapContainer{
     background: #6940ef;
 }
 /* 
@@ -65,4 +69,190 @@ body{
 }
 #angry{
     background: #ff3351;
+}
+
+/* This is the Styling for the Landing Page */
+
+.whiteCircle {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: white;
+    border-radius: 50%;
+    height: 500px;
+    width: 500px;
+    margin: 0 auto;
+    justify-content: center;
+    z-index: 999999;
+}
+.landingP {
+    padding: 10px;
+}
+.landingBtn{
+    position: relative;
+    top: 22%;
+    border-radius: 10px;
+    height: 50px;
+    width: 300px;
+    left: 20%;
+    background-color: blue;
+    color: white;
+    border-style: none;
+}
+.landingGreen{
+    border-radius:50%;
+    display: flex;
+    width: 750px;
+    height: 100px;
+    background-color:  #52b05d;
+    position: absolute;
+    left: 25%;
+    top: 225px;
+    opacity: .2;
+    z-index: -99;
+}
+.landingBlue {
+    border-radius:50%;
+    display: flex;
+    width: 750px;
+    height: 100px;
+    background-color: #5d91e3;
+    position: absolute;
+    left: 25%;
+    top: 225px;
+    opacity: .2;
+    z-index: -99;
+    transform: rotate(90deg)
+}
+.landingRed {
+    border-radius:50%;
+    display: flex;
+    width: 750px;
+    height: 100px;
+    background-color:  #ff3351;
+    position: absolute;
+    left: 25%;
+    top: 225px;
+    opacity: .2;
+    z-index: -99;
+    transform: rotate(45deg)
+}
+.landingAqua {
+    border-radius:50%;
+    display: flex;
+    width: 750px;
+    height: 100px;
+    background-color:  #52e0bb;
+    position: absolute;
+    left: 25%;
+    top: 225px;
+    opacity: .2;
+    z-index: -99;
+    transform: rotate(60deg)
+}
+
+.landingOrange {
+    border-radius:50%;
+    display: flex;
+    width: 750px;
+    height: 100px;
+    background-color:  #ff951a;
+    position: absolute;
+    left: 25%;
+    top: 225px;
+    opacity: .2;
+    z-index: -99;
+    transform: rotate(75deg)
+}
+.landingRedOrange {
+    border-radius:50%;
+    display: flex;
+    width: 750px;
+    height: 100px;
+    background-color:  #ff471b;
+    position: absolute;
+    left: 25%;
+    top: 225px;
+    opacity: .2;
+    z-index: -99;
+    transform: rotate(30deg)
+}
+.landingYellow {
+    border-radius:50%;
+    display: flex;
+    width: 750px;
+    height: 100px;
+    background-color:  #ffd21b;
+    position: absolute;
+    left: 25%;
+    top: 225px;
+    opacity: .2;
+    z-index: -99;
+    transform: rotate(15deg)
+}
+.landingRed2 {
+    border-radius:50%;
+    display: flex;
+    width: 750px;
+    height: 100px;
+    background-color:  #ff3351;
+    position: absolute;
+    left: 25%;
+    top: 225px;
+    opacity: .2;
+    z-index: -99;
+    transform: rotate(135deg)
+}
+.landingAqua2 {
+    border-radius:50%;
+    display: flex;
+    width: 750px;
+    height: 100px;
+    background-color:  #52e0bb;
+    position: absolute;
+    left: 25%;
+    top: 225px;
+    opacity: .2;
+    z-index: -99;
+    transform: rotate(150deg)
+}
+
+.landingOrange2 {
+    border-radius:50%;
+    display: flex;
+    width: 750px;
+    height: 100px;
+    background-color:  #ff951a;
+    position: absolute;
+    left: 25%;
+    top: 225px;
+    opacity: .2;
+    z-index: -99;
+    transform: rotate(165deg)
+}
+.landingRedOrange2 {
+    border-radius:50%;
+    display: flex;
+    width: 750px;
+    height: 100px;
+    background-color:  #ff471b;
+    position: absolute;
+    left: 25%;
+    top: 225px;
+    opacity: .2;
+    z-index: -99;
+    transform: rotate(120deg)
+}
+.landingYellow2 {
+    border-radius:50%;
+    display: flex;
+    width: 750px;
+    height: 100px;
+    background-color:  #ffd21b;
+    position: absolute;
+    left: 25%;
+    top: 225px;
+    opacity: .2;
+    z-index: -99;
+    transform: rotate(105deg)
 }
