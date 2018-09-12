@@ -88,22 +88,21 @@ function TwitterService ($http, $sce) {
                     transformRequest: deStringify
                     }).then((response) => {
                 stateEmotion.push(response.data.emotion);
-                return stateEmotion; 
+                return stateEmotion;
                 }).catch((error) => {
                     console.log(error);
                 });
             }
-            let emotes = null;
-            for(let i = 0; i < response.data.text.length; i++){
-             console.log(emotes); 
-             emotes = loop(response.data.text[i]); 
-             console.log(emotes); 
-            }
-            console.log(emotes.$$state.value); 
-            // vm.stateEmotion = ["apple","pear","grapes","apple","apple"];
 
-            
-           return vm.tweets = response;            
+            for(let i = 0; i < response.data.text.length; i++){
+            let stateEm =  loop(response.data.text[i]); 
+            console.log(stateEm); 
+            }
+
+            return stateEmotion;
+                       
+           }).then((ret) => {
+            console.log(ret); 
            }).catch((error) => { 
                console.log(error);
            });  
@@ -136,8 +135,32 @@ function TwitterService ($http, $sce) {
 //         console.log(mostFrequent);
 //         return mostFrequent;
 // }
+    // vm.store = () => {
+    //     console.log(stateEmotion);
+    //     // vm.stateEmotion = ["apple","pear","grapes","apple","apple"];
+    //     let counts = {};
+    //     let compare = 0;
+    //     let mostFrequent = 0;
+    //     console.log(stateEmotion.length);
+    //         for(let i = 0, len = stateEmotion.length; i < len; i++){
+    //             let word = vm.stateEmotion[i];
+    //             if (counts[word] === undefined){
+    //                 counts[word] = 1;
+    //             } else {
+    //                 counts[word] = counts[word] + 1;
+    //             }
+    //             if (counts[word] > compare){
+    //                 compare = counts[word];
+    //                 mostFrequent =  stateEmotion[i];
+    //             }
+    //         }
+    //         console.log(stateEmotion);
+    //         console.log(mostFrequent);
+    //         return mostFrequent;
+    // }
 
 angular
 .module("App")
 .service("TwitterService", TwitterService)
+
 
