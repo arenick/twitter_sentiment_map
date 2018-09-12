@@ -71,6 +71,7 @@ function TwitterService ($http, $sce) {
            url: "/state", 
         }).then((response) => {
             let stateEmotion = []; 
+            let stateEm = null; 
             let sentimentArray = [];
             let loop = (entry) => {
                 return $http({
@@ -94,10 +95,22 @@ function TwitterService ($http, $sce) {
                 });
             }
 
-            for(let i = 0; i < response.data.text.length; i++){
-            let stateEm =  loop(response.data.text[i]); 
-            console.log(stateEm); 
-            }
+            let collector = () => {
+                let collection = []; 
+                for(let i = 0; i < response.data.text.length; i++){
+                    let stateEm =  loop(response.data.text[i]); 
+                    console.log(stateEm); 
+                }
+                return stateEm; 
+            } 
+
+            let emCollection = collector(); 
+            console.log(emCollection); 
+
+            // for(let i = 0; i < response.data.text.length; i++){
+            // let stateEm =  loop(response.data.text[i]); 
+            // console.log(stateEm); 
+            // }
 
             return stateEmotion;
                        
