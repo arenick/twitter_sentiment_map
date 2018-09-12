@@ -1,0 +1,5 @@
+{
+    "name": "Sentiment Map",
+    "description": "Color-Coded Map That Displays Sentiment",
+    "image": "heroku/node.js"
+}

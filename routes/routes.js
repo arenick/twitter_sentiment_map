@@ -1,16 +1,18 @@
 "use strict";
 const express = require("express");
 const router = express.Router();
-const twitAPI = require("../.env");
 
-var Twit = require("twit")
-var T = new Twit({
-   consumer_key: twitAPI.consumer_key,
-   consumer_secret:twitAPI.consumer_secret,
-   access_token: twitAPI.access_token,
-   access_token_secret: twitAPI.access_token_secret,
-    strictSSL: true,
-});
+var Twit = require("twit");
+
+console.log(process.env.consumer_key);
+
+  var T = new Twit({
+    consumer_key: process.env.consumer_key,
+    consumer_secret: process.env.consumer_secret,
+    access_token: process.env.access_token,
+    access_token_secret: process.env.access_token_secret,
+     strictSSL: true,
+ });
 
 var tList = null;
 
@@ -103,18 +105,22 @@ router.get("/state", (req, res) => {
 
 
 var houston = [ '-95.37', '29.7', '-94.37', '30.7']
-router.get("/search/all", (req,res) => {
-
+router.get("/search/all/:usState", (req,res) => {
     // T.get('geo/search', {query: "Midwest"}, (err, data, response) => {
     //     console.log(response);
     //     console.log(data);
     //     console.log(err);
     //     res.send(data);
-    // });
+    // }); 
 
-let allStates = T.get('search/tweets', { q: 'place:dd9c503d6c35364b', count: 20, result_type: "popular"}, (err, data, response) => {
-   console.log(Object.keys(states));
-  console.log(data.statuses.length);
+
+    console.log(req.params.usState);
+
+    let state = req.params.usState; 
+    
+
+T.get('search/tweets', { q: `place:${state}`, count: 10, result_type: "popular"}, function(err, data, response) {
+   
   let textArr = [];
   let obj = {};
   for(let i = 0; i < data.statuses.length; i++){
