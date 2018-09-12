@@ -12,6 +12,29 @@ function TwitterService ($http, $sce) {
         return str.join("&");
     }
 
+    vm.topEmotion = (emotionArr) => {
+        let counts = {};
+        let compare = 0;
+        let mostFrequent = 0;
+        console.log(emotionArr.length);
+        for(let i = 0, len = stateEmotion.length; i < len; i++){
+            console.log("running");
+            let word = vm.stateEmotion[i];
+            if (counts[word] === undefined){
+                counts[word] = 1;
+            } else {
+                counts[word] = counts[word] + 1;
+            }
+            if (counts[word] > compare){
+                compare = counts[word];
+                mostFrequent =  stateEmotion[i];
+            }
+        }
+            console.log(stateEmotion);
+            console.log(mostFrequent);
+            return mostFrequent;
+    }
+
     vm.getAllTweets = () => {
         return $http({
            method: "GET",
@@ -36,12 +59,13 @@ function TwitterService ($http, $sce) {
             }
             for(let i = 0; i < response.data.text.length; i++){
                 loop(response.data.text[i]); 
+                
             }
            return vm.tweets = response;                
         })
         }
     
-    vm.getMichigan = () => {
+    vm.getMichigan = ($scope) => {
         return $http({
            method: "GET",
            url: "/state", 
@@ -64,34 +88,20 @@ function TwitterService ($http, $sce) {
                     transformRequest: deStringify
                     }).then((response) => {
                 stateEmotion.push(response.data.emotion);
+                return stateEmotion; 
                 }).catch((error) => {
                     console.log(error);
                 });
             }
+            let emotes = null;
             for(let i = 0; i < response.data.text.length; i++){
-             loop(response.data.text[i]); 
+             console.log(emotes); 
+             emotes = loop(response.data.text[i]); 
+             console.log(emotes); 
             }
-            console.log(stateEmotion);
+            console.log(emotes.$$state.value); 
             // vm.stateEmotion = ["apple","pear","grapes","apple","apple"];
-            let counts = {};
-            let compare = 0;
-            let mostFrequent = 0;
-            console.log(stateEmotion.length);
-                for(let i = 0, len = stateEmotion.length; i < len; i++){
-                    let word = vm.stateEmotion[i];
-                    if (counts[word] === undefined){
-                        counts[word] = 1;
-                    } else {
-                        counts[word] = counts[word] + 1;
-                    }
-                    if (counts[word] > compare){
-                        compare = counts[word];
-                        mostFrequent =  stateEmotion[i];
-                    }
-                }
-                console.log(stateEmotion);
-                console.log(mostFrequent);
-                return mostFrequent;
+
             
            return vm.tweets = response;            
            }).catch((error) => { 
@@ -99,7 +109,33 @@ function TwitterService ($http, $sce) {
            });  
         }
         vm.getAllTweets();
+
+
+
 }
+
+// vm.store = () => {
+//     let counts = {};
+//     let compare = 0;
+//     let mostFrequent = 0;
+//     console.log(stateEmotion.length);
+//         for(let i = 0, len = stateEmotion.length; i < len; i++){
+//             console.log("running");
+//             let word = vm.stateEmotion[i];
+//             if (counts[word] === undefined){
+//                 counts[word] = 1;
+//             } else {
+//                 counts[word] = counts[word] + 1;
+//             }
+//             if (counts[word] > compare){
+//                 compare = counts[word];
+//                 mostFrequent =  stateEmotion[i];
+//             }
+//         }
+//         console.log(stateEmotion);
+//         console.log(mostFrequent);
+//         return mostFrequent;
+// }
 
 angular
 .module("App")
