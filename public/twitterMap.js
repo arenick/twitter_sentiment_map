@@ -21,7 +21,7 @@ const twitterMap = {
             simplemaps_usmap_mapdata.state_specific[stateName].color = "yellow";
             simplemaps_usmap.refresh();
             TwitterService.getState(stateName).then((response) => {
-                console.log(response.text);
+                console.log(response.emotion);
                 vm.tweetStuff = response.text;
             });
         });
