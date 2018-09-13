@@ -21,9 +21,11 @@ const twitterMap = {
             simplemaps_usmap_mapdata.state_specific[stateName].color = "yellow";
             simplemaps_usmap.refresh()
             TwitterService.getMichigan().then((response) => {
-            // console.log(response);
+
+                console.log(response);
         });
-    })
+    });
+
     }] 
 }
 
