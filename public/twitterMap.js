@@ -23,6 +23,7 @@ const twitterMap = {
             TwitterService.getMichigan().then((response) => {
             console.log(response);
         });
+    })
     }] 
 }
 
