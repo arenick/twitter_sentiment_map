@@ -30,8 +30,8 @@ function TwitterService ($http, $sce) {
                 mostFrequent =  stateEmotion[i];
             }
         }
-            console.log(stateEmotion);
-            console.log(mostFrequent);
+            // console.log(stateEmotion);
+            // console.log(mostFrequent);
             return mostFrequent;
     }
 
@@ -116,6 +116,7 @@ function TwitterService ($http, $sce) {
               }, 
             data: {'test': stateName}
          }).then((response) => {
+
              console.log(response.data);
              
              let sentimentCollector = [response.data.stateName];
@@ -209,61 +210,52 @@ function TwitterService ($http, $sce) {
 
 
 
+   
+    vm.getMichigan = ($scope) => {
+        return $http({
+           method: "GET",
+           url: "/state", 
+        }).then((response) => {
+            let stateEmotion = []; 
+            let stateEm = null; 
+            let sentimentArray = [];
+            let loop = (entry) => {
+                return $http({
+                    // "async": true,
+                    // "crossDomain": true,
+                    url: "https://apis.paralleldots.com/v3/emotion",
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    data: {
+                        'text': entry,
+                        'api_key': 'DZEgFpGj5tlOGYaIYZ2hQAjDy2ARxY98tLs2Gsepptw'
+                    },
+                    transformRequest: deStringify
+                    }).then((response) => {
+                stateEmotion.push(response.data.emotion);
+                //console.log(stateEmotion);
+                let counts = {};
+                let compare = 0;
+                let mostFrequent = 0;
+                //console.log(stateEmotion.length);
+                for(let i = 0, len = stateEmotion.length; i < len; i++){
+                    let word = stateEmotion[i];
+                    if (counts[word] === undefined){
+                        counts[word] = 1;
+                    } else {
+                        counts[word] = counts[word] + 1;
+                    }
+                    if (counts[word] > compare){
+                        compare = counts[word];
+                        mostFrequent =  stateEmotion[i];
+                    }
+            }
+            //console.log(stateEmotion);
+            //console.log(mostFrequent);
+            return mostFrequent;
 
-
-
-
-
-
-
-
-
-
-    
-    // vm.getMichigan = ($scope) => {
-    //     return $http({
-    //        method: "GET",
-    //        url: "/state", 
-    //     }).then((response) => {
-    //         let stateEmotion = []; 
-    //         let stateEm = null; 
-    //         let sentimentArray = [];
-    //         let loop = (entry) => {
-    //             return $http({
-    //                 // "async": true,
-    //                 // "crossDomain": true,
-    //                 url: //"https://apis.paralleldots.com/v3/emotion",
-    //                 method: "POST",
-    //                 headers: {
-    //                     "Content-Type": "application/x-www-form-urlencoded"
-    //                 },
-    //                 data: {
-    //                     'text': entry,
-    //                     'api_key': 'DZEgFpGj5tlOGYaIYZ2hQAjDy2ARxY98tLs2Gsepptw'
-    //                 },
-    //                 transformRequest: deStringify
-    //                 }).then((response) => {
-    //             stateEmotion.push(response.data.emotion);
-    //             //console.log(stateEmotion);
-    //             let counts = {};
-    //             let compare = 0;
-    //             let mostFrequent = 0;
-    //             //console.log(stateEmotion.length);
-    //             for(let i = 0, len = stateEmotion.length; i < len; i++){
-    //                 let word = stateEmotion[i];
-    //                 if (counts[word] === undefined){
-    //                     counts[word] = 1;
-    //                 } else {
-    //                     counts[word] = counts[word] + 1;
-    //                 }
-    //                 if (counts[word] > compare){
-    //                     compare = counts[word];
-    //                     mostFrequent =  stateEmotion[i];
-    //                 }
-    //         }
-    //         //console.log(stateEmotion);
-    //         //console.log(mostFrequent);
-    //         return mostFrequent;
 
     //             return stateEmotion;
     //             }).catch((error) => {
