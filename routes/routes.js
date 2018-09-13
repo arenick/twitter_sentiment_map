@@ -81,7 +81,6 @@ const cities = {
 router.get("/state", (req, res) => {
     console.log(req); 
     T.get('search/tweets', {q: 'place:9aa25269f04766ab', count: 5, reult_type: "popular"}, function(err, data, response) {
-        console.log(data.statuses.length);
         let textArr = []; 
         let obj = {}; 
         for(let i = 0; i < data.statuses.length; i++){

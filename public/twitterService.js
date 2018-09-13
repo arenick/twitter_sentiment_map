@@ -144,6 +144,10 @@ function TwitterService ($http, $sce) {
              for(let i = 0; i < response.data.text.length; i++){
                averageArr = loop(response.data.text[i]);  
              }
+
+            console.log(response);
+            return vm.tweets = response;        
+
              //console.log(averageArr); 
              resolve(averageArr);  
              }).then((ret) => {
@@ -190,6 +194,7 @@ function TwitterService ($http, $sce) {
 
             // console.log(promise);
             return vm.tweets = response;                
+
          });
         }
         
@@ -197,26 +202,22 @@ function TwitterService ($http, $sce) {
         let stateKeys = Object.keys(states); 
         console.log(smallStateKeys.length);
         for(let i = 0; i < smallStateKeys.length; i++){
-            //let state = states.stateKeys[i]; 
-           textSentimentApi(smallStates[smallStateKeys[i]], smallStateKeys[i]); 
+
+            // let state = states.stateKeys[i]; 
+            textSentimentApi(states[smallStateKeys[i]], smallStateKeys[i]); 
+
         }
-
-        
         }
-
-
         vm.getAllTweets();
 
-
-
-
-   
     vm.getMichigan = ($scope) => {
+        let obj = {}; 
         return $http({
            method: "GET",
            url: "/state", 
         }).then((response) => {
             let stateEmotion = []; 
+            let stateTweets = [];
             let stateEm = null; 
             let sentimentArray = [];
             let loop = (entry) => {
@@ -230,23 +231,53 @@ function TwitterService ($http, $sce) {
                     },
                     data: {
                         'text': entry,
-                        'api_key': 'DZEgFpGj5tlOGYaIYZ2hQAjDy2ARxY98tLs2Gsepptw'
+                        'api_key': 'tS1eyB0dc50cFmtNbr5o5YjMDyxMdlCW7FKwuBaOzAo'
                     },
                     transformRequest: deStringify
-                    }).then((response) => {
-                stateEmotion.push(response.data.emotion);
-                //console.log(stateEmotion);
-                let counts = {};
-                let compare = 0;
-                let mostFrequent = 0;
-                //console.log(stateEmotion.length);
-                for(let i = 0, len = stateEmotion.length; i < len; i++){
-                    let word = stateEmotion[i];
-                    if (counts[word] === undefined){
-                        counts[word] = 1;
-                    } else {
-                        counts[word] = counts[word] + 1;
+                }).then((response) => {
+                    stateEmotion.push(response.data.emotion);
+                    stateTweets.push(response.config.data.text);
+                    console.log(stateTweets);
+                    // console.log(stateEmotion);
+                    let counts = {};
+                    let compare = 0;
+                    let mostFrequent = 0;
+                    //console.log(stateEmotion.length);
+                    for(let i = 0, len = stateEmotion.length; i < len; i++){
+                        let word = stateEmotion[i];
+                        if (counts[word] === undefined){
+                            counts[word] = 1;
+                        } else {
+                            counts[word] = counts[word] + 1;
+                        }
+                        if (counts[word] > compare){
+                            compare = counts[word];
+                            mostFrequent =  stateEmotion[i];
+                        }
                     }
+
+                    //console.log(stateEmotion);
+                    //console.log(mostFrequent);
+                    obj.mostFrequent = mostFrequent;
+                    obj.text = stateTweets; 
+                    console.log(obj);
+                    return obj;
+                }).catch((error) => {
+                    //console.log(error);
+                });
+            }
+
+            for(let i = 0; i < response.data.text.length; i++){
+                let stateEm =  loop(response.data.text[i]); 
+                //console.log(stateEm); 
+            }
+            return obj;
+            // return stateEmotion;
+        }).catch((error) => { 
+            //  console.log(error);
+        });  
+    }
+
                     if (counts[word] > compare){
                         compare = counts[word];
                         mostFrequent =  stateEmotion[i];
@@ -277,9 +308,6 @@ function TwitterService ($http, $sce) {
     //          throw error; 
     //        });  
     //     }
-       
-
-
 
 }
 
