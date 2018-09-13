@@ -4,8 +4,6 @@ const router = express.Router();
 
 var Twit = require("twit");
 
-console.log(process.env.consumer_key);
-
   var T = new Twit({
     consumer_key: process.env.consumer_key,
     consumer_secret: process.env.consumer_secret,
@@ -79,7 +77,7 @@ const cities = {
 }
 
 router.get("/state", (req, res) => {
-    console.log(req); 
+    // console.log(req); 
     T.get('search/tweets', {q: 'place:9aa25269f04766ab', count: 5, reult_type: "popular"}, function(err, data, response) {
         let textArr = []; 
         let obj = {}; 
@@ -113,18 +111,19 @@ router.post("/search/all/:usState/:stateName", (req,res) => {
     // }); 
 
 
- 
+//    console.log(req.params.stateName + "  Pay Attention Pay");
+
 
     let state = req.params.usState; 
     let stateName = req.params.stateName;
 
 T.get('search/tweets', { q: `place:${state}`, count: 10, result_type: "popular"}, function(err, data, response) {
    //console.log(data);
-   console.log(stateName);
+//    console.log(stateName);
   let textArr = [];
   let obj = {};
   if(!data){
-    console.log("error:      " + data)
+    // console.log("error:      " + data)
   }
   else{
     for(let i = 0; i < data.statuses.length; i++){

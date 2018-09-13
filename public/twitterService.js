@@ -4,21 +4,22 @@ function TwitterService ($http, $sce) {
     const vm = this;
 
     let deStringify = function(obj) {
-        //console.log(obj);
+        // console.log(obj);
         var str = [];
         for(var p in obj)
         str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-        //console.log(str); 
+        // console.log(p); 
         return str.join("&");
     }
+    deStringify();
 
     vm.topEmotion = (emotionArr) => {
         let counts = {};
         let compare = 0;
         let mostFrequent = 0;
-        console.log(emotionArr.length);
+        // console.log(emotionArr.length);
         for(let i = 0, len = stateEmotion.length; i < len; i++){
-            console.log("running");
+            // console.log("running");
             let word = vm.stateEmotion[i];
             if (counts[word] === undefined){
                 counts[word] = 1;
@@ -117,7 +118,7 @@ function TwitterService ($http, $sce) {
             data: {'test': stateName}
          }).then((response) => {
 
-             console.log(response.data);
+            //  console.log(response.data);
              
              let sentimentCollector = [response.data.stateName];
              let loop = (entry) => {
@@ -148,10 +149,11 @@ function TwitterService ($http, $sce) {
              }
 
             console.log(response);
+
              //console.log(averageArr); 
              resolve(averageArr);  
              }).then((ret) => {
-                 console.log(ret); 
+                //  console.log(ret); 
                 //  console.log(ret.length); 
                  let avgCol = 0
                  let i = 1
@@ -170,10 +172,10 @@ function TwitterService ($http, $sce) {
                         }
                      
                  }
-                 console.log(avgCol);
-                 console.log(notZero); 
+                //  console.log(avgCol);
+                //  console.log(notZero); 
                  let avg = avgCol / notZero; 
-                 console.log(avg + "   average"); 
+                //  console.log(avg + "   average"); 
                  if(avg > 0){
                     let color = "rgba(82, 176, 93, 1)";  
                     console.log(simplemaps_usmap_mapdata);
@@ -203,7 +205,7 @@ function TwitterService ($http, $sce) {
         
         let smallStateKeys = Object.keys(smallStates);//for testing 
         let stateKeys = Object.keys(states); 
-        console.log(smallStateKeys.length);
+        // console.log(smallStateKeys.length);
         for(let i = 0; i < smallStateKeys.length; i++){
 
             // let state = states.stateKeys[i]; 
@@ -240,8 +242,10 @@ function TwitterService ($http, $sce) {
                 }).then((response) => {
                     stateEmotion.push(response.data.emotion);
                     stateTweets.push(response.config.data.text);
+
                     console.log(stateTweets);
                     console.log(stateEmotion);
+
                     let counts = {};
                     let compare = 0;
                     let mostFrequent = 0;
@@ -263,7 +267,7 @@ function TwitterService ($http, $sce) {
                     //console.log(mostFrequent);
                     obj.mostFrequent = mostFrequent;
                     obj.text = stateTweets; 
-                    console.log(obj);
+                    // console.log(obj);
                     return obj;
                 }).catch((error) => {
                     console.log(error);
@@ -276,8 +280,9 @@ function TwitterService ($http, $sce) {
                 //console.log(stateEm); 
             }
             return obj;
-            // return stateEmotion;
+
         }).catch((error) => { 
+
             console.log(error);
             throw errror; 
         });  
