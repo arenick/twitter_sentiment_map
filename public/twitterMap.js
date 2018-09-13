@@ -7,7 +7,7 @@ const twitterMap = {
         simplemaps_usmap.load();
         const vm = this;
         vm.tweets=TwitterService.obj;
-        console.log(vm.tweets);
+        // console.log(vm.tweets);
 
         vm.getTweets = () => {
             TwitterService.getAllTweets().then((response) => {
@@ -21,8 +21,9 @@ const twitterMap = {
             simplemaps_usmap_mapdata.state_specific[stateName].color = "yellow";
             simplemaps_usmap.refresh()
             TwitterService.getMichigan().then((response) => {
-            console.log(response);
+            // console.log(response);
         });
+    })
     }] 
 }
 
