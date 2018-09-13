@@ -14,9 +14,10 @@ const twitterMap = {
             }); 
         }
         
-        document.getElementById('map').addEventListener("click", (e) => {
-            console.log(e.target) 
-            TwitterService.getMichigan(); 
+        document.getElementById("map").addEventListener("click", (e) => {
+            let stateName = e.target.className.animVal.charAt(9) + e.target.className.animVal.charAt(10);
+            simplemaps_usmap_mapdata.state_specific[stateName].color = "yellow";
+            simplemaps_usmap.refresh()
         });
     }] 
 }

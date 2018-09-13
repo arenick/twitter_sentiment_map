@@ -30,8 +30,8 @@ function TwitterService ($http, $sce) {
                 mostFrequent =  stateEmotion[i];
             }
         }
-            console.log(stateEmotion);
-            console.log(mostFrequent);
+            // console.log(stateEmotion);
+            // console.log(mostFrequent);
             return mostFrequent;
     }
 
@@ -108,7 +108,7 @@ function TwitterService ($http, $sce) {
               }, 
             data: {'test': stateName}
          }).then((response) => {
-             console.log(response.data);
+            //  console.log(response.data);
              let data = {}; 
              let sentimentArray = [];
              let loop = (entry) => {
@@ -150,18 +150,7 @@ function TwitterService ($http, $sce) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-    
+   
     vm.getMichigan = ($scope) => {
         return $http({
            method: "GET",
