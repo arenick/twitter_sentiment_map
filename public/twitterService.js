@@ -3,39 +3,6 @@
 function TwitterService ($http, $sce) {
     const vm = this;
 
-    let deStringify = function(obj) {
-        // console.log(obj);
-        var str = [];
-        for(var p in obj)
-        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-        // console.log(p); 
-        return str.join("&");
-    }
-    deStringify();
-
-    vm.topEmotion = (emotionArr) => {
-        let counts = {};
-        let compare = 0;
-        let mostFrequent = 0;
-        // console.log(emotionArr.length);
-        for(let i = 0, len = stateEmotion.length; i < len; i++){
-            // console.log("running");
-            let word = vm.stateEmotion[i];
-            if (counts[word] === undefined){
-                counts[word] = 1;
-            } else {
-                counts[word] = counts[word] + 1;
-            }
-            if (counts[word] > compare){
-                compare = counts[word];
-                mostFrequent =  stateEmotion[i];
-            }
-        }
-            // console.log(stateEmotion);
-            // console.log(mostFrequent);
-            return mostFrequent;
-    }
-
     const states =  {
         "AL": "288de3df481163e8", 
         "AK": "07179f4fe0500a32",
@@ -99,6 +66,111 @@ function TwitterService ($http, $sce) {
     }
     
 
+    let deStringify = function(obj) {
+        // console.log(obj);
+        var str = [];
+        for(var p in obj)
+        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+        // console.log(p); 
+        return str.join("&");
+    }
+
+
+    vm.topEmotion = (emotionArr) => {
+        let counts = {};
+        let compare = 0;
+        let mostFrequent = 0;
+        // console.log(emotionArr.length);
+        for(let i = 0, len = stateEmotion.length; i < len; i++){
+            // console.log("running");
+            let word = vm.stateEmotion[i];
+            if (counts[word] === undefined){
+                counts[word] = 1;
+            } else {
+                counts[word] = counts[word] + 1;
+            }
+            if (counts[word] > compare){
+                compare = counts[word];
+                mostFrequent =  stateEmotion[i];
+            }
+        }
+            // console.log(stateEmotion);
+            // console.log(mostFrequent);
+            return mostFrequent;
+    }
+
+    vm.loop = (entry, aggregator) => {
+    
+        let sentimentCollector = aggregator;                   
+        let urlReplace = entry.replace(/(?:https?|ftp):\/\/[\n\S]+/gi, '');
+        let specialReplace = urlReplace.replace(/[^a-zA-Z0-9]/gi, "+");
+        let params = specialReplace.replace(/\s/gi , "+");            
+ 
+        let url = `http://www.datasciencetoolkit.org/text2sentiment/${params}`;
+        
+        let trust = $sce.trustAsResourceUrl(url); 
+        return $http.jsonp(trust, {params : params}).then((rep) => {
+           //console.log(rep); 
+           sentimentCollector.push(rep.data.score);
+           //console.log(sentimentCollector);
+           return sentimentCollector;
+       
+        });
+    }
+
+    vm.averager = (arr) => {
+           //  console.log(ret); 
+                //  console.log(ret.length); 
+                let ret = arr; 
+                let avgCol = 0
+                let i = 1
+                let notZero = 0
+
+                for(i; i < ret.length; i++){
+                   //  console.log(i + "   i");
+                   //  console.log(ret[i] + "  ret[i]");
+                   //  console.log(avgCol + "   avgCol"); 
+                    if(ret[i] === 0){
+
+                    }
+                    else{
+                        avgCol  += ret[i];
+                        notZero++
+                       }
+                    
+                }
+               //  console.log(avgCol);
+               //  console.log(notZero); 
+                let avg = avgCol / notZero; 
+                return avg; 
+               //  console.log(avg + "   average"); 
+    }
+
+    vm.averageSorter = (num, returned) => {
+        let avg = num; 
+        let ret = returned; 
+        if(avg > 0){
+            let color = "rgba(82, 176, 93, 1)";  
+            console.log(simplemaps_usmap_mapdata);
+            simplemaps_usmap_mapdata.state_specific[ret[0]].color = color; 
+            simplemaps_usmap.refresh(); 
+        }
+         else if(avg < 0){
+            let color = "rgba(255, 51, 81, 1)";
+            simplemaps_usmap_mapdata.state_specific[ret[0]].color = color; 
+            simplemaps_usmap.refresh(); 
+         }
+         else if(avg === 0){
+             let color = "rgba(255, 210, 27, 1)";
+             simplemaps_usmap_mapdata.state_specific[ret[0]].color = color; 
+             simplemaps_usmap.refresh(); 
+         }
+    }
+
+ 
+
+  
+
     vm.getAllTweets = () => {
         
         let processT2S = () => {
@@ -121,31 +193,12 @@ function TwitterService ($http, $sce) {
             //  console.log(response.data);
              
              let sentimentCollector = [response.data.stateName];
-             let loop = (entry) => {
-    
-                 
-                 let urlReplace = entry.replace(/(?:https?|ftp):\/\/[\n\S]+/gi, '');
-                 let specialReplace = urlReplace.replace(/[^a-zA-Z0-9]/gi, "+");
-                
-           
-                 let params = specialReplace.replace(/\s/gi , "+");            
-          
-                 let url = `http://www.datasciencetoolkit.org/text2sentiment/${params}`;
-                 
-                 let trust = $sce.trustAsResourceUrl(url); 
-                 return $http.jsonp(trust, {params : params}).then((rep) => {
-                    //console.log(rep); 
-                    sentimentCollector.push(rep.data.score);
-                    //console.log(sentimentCollector);
-                    return sentimentCollector;
-                
-                 });
-             }
+       
              let averageArr = [];
              
              let promise = new Promise((resolve, reject) => {
              for(let i = 0; i < response.data.text.length; i++){
-               averageArr = loop(response.data.text[i]);  
+               averageArr = vm.loop(response.data.text[i], sentimentCollector);  
              }
 
             console.log(response);
@@ -153,45 +206,9 @@ function TwitterService ($http, $sce) {
              //console.log(averageArr); 
              resolve(averageArr);  
              }).then((ret) => {
-                //  console.log(ret); 
-                //  console.log(ret.length); 
-                 let avgCol = 0
-                 let i = 1
-                 let notZero = 0
+                let avg = vm.averager(ret); 
+                vm.averageSorter(avg, ret);
 
-                 for(i; i < ret.length; i++){
-                    //  console.log(i + "   i");
-                    //  console.log(ret[i] + "  ret[i]");
-                    //  console.log(avgCol + "   avgCol"); 
-                     if(ret[i] === 0){
-
-                     }
-                     else{
-                         avgCol  += ret[i];
-                         notZero++
-                        }
-                     
-                 }
-                //  console.log(avgCol);
-                //  console.log(notZero); 
-                 let avg = avgCol / notZero; 
-                //  console.log(avg + "   average"); 
-                 if(avg > 0){
-                    let color = "rgba(82, 176, 93, 1)";  
-                    console.log(simplemaps_usmap_mapdata);
-                    simplemaps_usmap_mapdata.state_specific[ret[0]].color = color; 
-                    simplemaps_usmap.refresh(); 
-                }
-                 else if(avg < 0){
-                    let color = "rgba(255, 51, 81, 1)";
-                    simplemaps_usmap_mapdata.state_specific[ret[0]].color = color; 
-                    simplemaps_usmap.refresh(); 
-                 }
-                 else if(avg === 0){
-                     let color = "rgba(255, 210, 27, 1)";
-                     simplemaps_usmap_mapdata.state_specific[ret[0]].color = color; 
-                     simplemaps_usmap.refresh(); 
-                 }
              }).catch((error) => {
                  console.log(error); 
                 throw error; 
@@ -275,10 +292,16 @@ function TwitterService ($http, $sce) {
                 });
             }
 
+        let promise = new Promise((resolve, reject) => {
             for(let i = 0; i < response.data.text.length; i++){
-                let stateEm =  loop(response.data.text[i]); 
+                stateEm = loop(response.data.text[i]); 
                 //console.log(stateEm); 
             }
+            resolve(stateEm); 
+        }).then((ret) => {
+            console.log(ret); 
+        })
+         
             return obj;
 
         }).catch((error) => { 
