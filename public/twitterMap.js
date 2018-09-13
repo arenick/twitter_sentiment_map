@@ -6,6 +6,8 @@ const twitterMap = {
     controller: ["TwitterService", "$location", function(TwitterService, $location) {
         simplemaps_usmap.load();
         const vm = this;
+        vm.tweets=TwitterService.obj;
+        console.log(vm.tweets);
 
         vm.getTweets = () => {
             TwitterService.getAllTweets().then((response) => {
@@ -16,8 +18,11 @@ const twitterMap = {
         
         document.getElementById('map').addEventListener("click", (e) => {
             console.log(e.target) 
-            TwitterService.getMichigan(); 
-        });
+        //    vm.tweets = TwitterService.getMichigan();
+        TwitterService.getMichigan().then((response) => {
+            console.log(response);
+        })
+    })
     }] 
 }
 

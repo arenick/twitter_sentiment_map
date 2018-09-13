@@ -1,47 +1,48 @@
-<section class="mapContainer">
+<section class="twitterPage">
+    <section class="mapContainer">
+        <div class="us_map" id="map"></div>
+        <div class="colorGuide">
+            <div class="guideItem">
+                <div class="emo" id="sad"></div>
+                <p>Sad</p>
+            </div>
 
-    <div class="us_map" id="map"></div>
-    <div class="colorGuide">
+            <div class="guideItem">
+                    <div class="emo" id="fear"></div>
+                <p>Fear</p>
+            </div>
+
+            <div class="guideItem">
+                    <div class="emo" id="bored"></div>
+                <p>Bored</p>
+            </div>
+
+            <div class="guideItem">
+                    <div class="emo" id="happy"></div>
+                <p>Happy</p>
+            </div>
+
+            <div class="guideItem">
+                    <div class="emo" id="excited"></div>
+                <p>Excited</p>
+            </div>
+
+            <div class="guideItem">
+                    <div class="emo" id="sarcasm"></div>
+                <p>Sarcasm</p>
+            </div>
+
+            <div class="guideItem">
+                    <div class="emo" id="angry"></div>
+                <p>Angry</p>
+            </div>
+        </div>
         
-
-        <div class="guideItem">
-            <div class="emo" id="sad"></div>
-            <p>Sad</p>
+    </section>
+    <section class="incomingTweets">
+        <div class="discover">
+            <p>Click on state to discover trending emotions and tweets in each area</p>
         </div>
-
-        <div class="guideItem">
-                <div class="emo" id="fear"></div>
-            <p>Fear</p>
-        </div>
-
-        <div class="guideItem">
-                <div class="emo" id="bored"></div>
-            <p>Bored</p>
-        </div>
-
-        <div class="guideItem">
-                <div class="emo" id="happy"></div>
-            <p>Happy</p>
-        </div>
-
-        <div class="guideItem">
-                <div class="emo" id="excited"></div>
-            <p>Excited</p>
-        </div>
-
-        <div class="guideItem">
-                <div class="emo" id="sarcasm"></div>
-            <p>Sarcasm</p>
-        </div>
-
-        <div class="guideItem">
-                <div class="emo" id="angry"></div>
-            <p>Angry</p>
-        </div>
-    </div>
-    <div class="discover">
-        <p>Click on state to discover trending emotions and tweets in each area</p>
-    </div>
-
-
+        <p ng-repeat="tweet in $ctrl.tweets.data.text"></p>
+    </section>
 </section>
