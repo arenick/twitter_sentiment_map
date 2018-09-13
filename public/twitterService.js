@@ -191,11 +191,15 @@ function TwitterService($http, $sce) {
         }
     }
     vm.getAllTweets();
-
+  
+   
     vm.getState = (state) => {
+        let theState = states[state]; 
+        console.log(theState);
+   
         const twitterCall = $http({
             method: "GET",
-            url: "/state"
+            url: "/state/" + theState
         }).then((response) => {
             const p = new Promise((resolve, reject) => {
                 for (let i = 0; i < response.data.text.length; i++) {
