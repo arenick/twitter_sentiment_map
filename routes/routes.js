@@ -105,7 +105,7 @@ router.get("/state", (req, res) => {
 
 
 var houston = [ '-95.37', '29.7', '-94.37', '30.7']
-router.get("/search/all/:usState", (req,res) => {
+router.post("/search/all/:usState/:stateName", (req,res) => {
     // T.get('geo/search', {query: "Midwest"}, (err, data, response) => {
     //     console.log(response);
     //     console.log(data);
@@ -114,22 +114,33 @@ router.get("/search/all/:usState", (req,res) => {
     // }); 
 
 
-    console.log(req.params.usState);
+   console.log(req.params.stateName + "  Pay Attention Pay");
 
     let state = req.params.usState; 
-    
+    let stateName = req.params.stateName;
 
 T.get('search/tweets', { q: `place:${state}`, count: 10, result_type: "popular"}, function(err, data, response) {
-   
+   //console.log(data);
+   console.log(stateName);
   let textArr = [];
   let obj = {};
-  for(let i = 0; i < data.statuses.length; i++){
-    textArr.push(data.statuses[i].text);
+  if(!data){
+    console.log("error:      " + data)
   }
+  else{
+    for(let i = 0; i < data.statuses.length; i++){
+        textArr.push(data.statuses[i].text);
+    
+}
+}
 
+//   obj.current_state = req.params;
+  
+  obj.stateName = stateName; 
   obj.data = data; 
   obj.statuses = data.statuses;
   obj.text = textArr; 
+ // console.log(obj);
   res.send(obj); 
  });
 
