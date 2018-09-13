@@ -173,13 +173,6 @@ function TwitterService ($http, $sce) {
 
     vm.getAllTweets = () => {
         
-        let processT2S = () => {
-            // ```this.setDataForState = (state, colorLevel, populationData) => {
-            //     simplemaps_usmap_mapdata.state_specific[state].color = colorLevel;
-            //     simplemaps_usmap_mapdata.state_specific[state].description = `Population: ${populationData}`;
-            // } 
-        }
-        
         let textSentimentApi = (usState, stateName) => {  
             return $http({
             method: "POST",
@@ -231,90 +224,75 @@ function TwitterService ($http, $sce) {
         }
         }
         vm.getAllTweets();
-
-    vm.getMichigan = ($scope) => {
-        let obj = {}; 
-        return $http({
-           method: "GET",
-           url: "/state", 
+  
+   
+    vm.getState = (state) => {
+        let theState = states[state]; 
+        console.log(theState);
+   
+        const twitterCall = $http({
+            method: "GET",
+            url: "/state/" + theState
         }).then((response) => {
-            let stateEmotion = []; 
-            let stateTweets = [];
-            let stateEm = null; 
-            let sentimentArray = [];
-            let loop = (entry) => {
-                return $http({
-                    // "async": true,
-                    // "crossDomain": true,
-                    url: "https://apis.paralleldots.com/v3/emotion",
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/x-www-form-urlencoded"
-                    },
-                    data: {
-                        'text': entry,
-                        'api_key': 'tS1eyB0dc50cFmtNbr5o5YjMDyxMdlCW7FKwuBaOzAo'
-                    },
-                    transformRequest: deStringify
-                }).then((response) => {
-                    stateEmotion.push(response.data.emotion);
-                    stateTweets.push(response.config.data.text);
+            const p = new Promise((resolve, reject) => {
+                for (let i = 0; i < response.data.text.length; i++) {
+                    vm.loopThroughTweets(response.data.text[i]);
+                }
+                resolve(vm.stateData);
+            });
+            p.then((response) => {
+                return response;
+            });
+            return p;
+            // vm.topEmotion(vm.stateEm);
+        });
+        return twitterCall;
+    };
+    // vm.stateEm = [];
+    vm.stateData = { emotion: [], text: []};
+    vm.loopThroughTweets = (tweet) => {
+        return $http({
+            // "async": true,
+            // "crossDomain": true,
+            url: "https://apis.paralleldots.com/v3/emotion",
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            data: {
+                'text': tweet,
+                'api_key': 'tS1eyB0dc50cFmtNbr5o5YjMDyxMdlCW7FKwuBaOzAo'
+            },
+            transformRequest: deStringify
+        }).then((response) => {
 
-                    console.log(stateTweets);
-                    console.log(stateEmotion);
+            vm.stateData.emotion.push(response.data.emotion);
+            vm.stateData.text.push(response.config.data.text);
+        });
+    };
 
-                    let counts = {};
-                    let compare = 0;
-                    let mostFrequent = 0;
-                    //console.log(stateEmotion.length);
-                    for(let i = 0, len = stateEmotion.length; i < len; i++){
-                        let word = stateEmotion[i];
-                        if (counts[word] === undefined){
-                            counts[word] = 1;
-                        } else {
-                            counts[word] = counts[word] + 1;
-                        }
-                        if (counts[word] > compare){
-                            compare = counts[word];
-                            mostFrequent =  stateEmotion[i];
-                        }
-                    }
-
-                    //console.log(stateEmotion);
-                    //console.log(mostFrequent);
-                    obj.mostFrequent = mostFrequent;
-                    obj.text = stateTweets; 
-                    // console.log(obj);
-                    return obj;
-                }).catch((error) => {
-                    console.log(error);
-                    throw error; 
-                });
-            }
-
-        let promise = new Promise((resolve, reject) => {
-            for(let i = 0; i < response.data.text.length; i++){
-                stateEm = loop(response.data.text[i]); 
-                //console.log(stateEm); 
-            }
-            resolve(stateEm); 
-        }).then((ret) => {
-            console.log(ret); 
-        })
-         
-            return obj;
-
-        }).catch((error) => { 
-
-            console.log(error);
-            throw errror; 
-        });  
-    }
-
+    // vm.topEmotion = (emotionArr) => {
+    //     let counts = {};
+    //     let compare = 0;
+    //     let mostFrequent = 0;
+    //     for (let i = 0, len = stateEmotion.length; i < len; i++) {
+    //         let word = vm.stateEmotion[i];
+    //         if (counts[word] === undefined) {
+    //             counts[word] = 1;
+    //         } else {
+    //             counts[word] = counts[word] + 1;
+    //         }
+    //         if (counts[word] > compare) {
+    //             compare = counts[word];
+    //             mostFrequent = stateEmotion[i];
+    //         }
+    //     }
+    //     return mostFrequent;
+    // }
 }
+    angular
+        .module("App")
+        .service("TwitterService", TwitterService)
 
-angular
-.module("App")
-.service("TwitterService", TwitterService)
 
 
