@@ -87,15 +87,26 @@ function TwitterService ($http, $sce) {
         "Wisconsin": "7dc5c6d3bfb10ccc",
         "Wyoming": "5669366953047e51"
     }
+
+    const smallStates = {
+        "Alabama": "288de3df481163e8", 
+        "Michigan": "67d92742f1ebf307",
+        "Arizona": "a612c69b44b2e5da",
+        "Arkansas": "e8ad2641c1cb666c",
+        "California": "fbd6d2f5a4e4a15e"
+    }
     
 
     vm.getAllTweets = () => {
 
         let textSentimentApi = (usState, stateName) => {  
             return $http({
-            method: "GET",
-            url: "/search/all/" + usState, 
-            data: {stateName: stateName}
+            method: "POST",
+            url: "/search/all/" + usState + "/" + stateName,
+            headers: {
+                'Content-Type': undefined
+              }, 
+            data: {'test': stateName}
          }).then((response) => {
              console.log(response.data);
              let data = {}; 
@@ -122,13 +133,13 @@ function TwitterService ($http, $sce) {
          });
         }
         
-
+        let smallStateKeys = Object.keys(smallStates);
         let stateKeys = Object.keys(states); 
         
-        for(let i = 0; i < stateKeys.length; i++){
+        for(let i = 0; i < smallStateKeys.length; i++){
             // let state = states.stateKeys[i]; 
            
-            textSentimentApi(states[stateKeys[i]], stateKeys[i]); 
+            textSentimentApi(states[smallStateKeys[i]], smallStateKeys[i]); 
         }
 
         
