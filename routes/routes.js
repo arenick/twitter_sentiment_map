@@ -113,7 +113,7 @@ router.post("/search/all/:usState/:stateName", (req,res) => {
     // }); 
 
 
-   console.log(req.params.stateName + "  Pay Attention Pay");
+ 
 
     let state = req.params.usState; 
     let stateName = req.params.stateName;
