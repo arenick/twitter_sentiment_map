@@ -25,6 +25,7 @@ const twitterMap = {
                 vm.tweetStuff = response.text;
             });
         });
+
     }] 
 }
 

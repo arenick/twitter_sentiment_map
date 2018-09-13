@@ -67,12 +67,13 @@ function TwitterService($http, $sce) {
     }
 
     const smallStates = {
-        "AL": "288de3df481163e8",
-        "MI": "67d92742f1ebf307",
+
+        "AL": "288de3df481163e8", 
         "AZ": "a612c69b44b2e5da",
         "AR": "e8ad2641c1cb666c",
         "WA": "bc3a38d3d5999b4b",
-        "CA": "fbd6d2f5a4e4a15e"
+        "CA": "fbd6d2f5a4e4a15e",
+        "MI": "67d92742f1ebf307",
     }
 
 
@@ -118,6 +119,7 @@ function TwitterService($http, $sce) {
                 }
                 let averageArr = [];
 
+
                 let promise = new Promise((resolve, reject) => {
                     for (let i = 0; i < response.data.text.length; i++) {
                         averageArr = loop(response.data.text[i]);
@@ -125,6 +127,7 @@ function TwitterService($http, $sce) {
 
                     // console.log(response);
                     // return vm.tweets = response;        
+
 
                     //console.log(averageArr); 
                     resolve(averageArr);
@@ -142,6 +145,7 @@ function TwitterService($http, $sce) {
                         if (ret[i] === 0) {
 
                         }
+
                         else {
                             avgCol += ret[i];
                             notZero++
@@ -224,6 +228,7 @@ function TwitterService($http, $sce) {
             },
             transformRequest: deStringify
         }).then((response) => {
+
             vm.stateData.emotion.push(response.data.emotion);
             vm.stateData.text.push(response.config.data.text);
         });
@@ -251,5 +256,6 @@ function TwitterService($http, $sce) {
     angular
         .module("App")
         .service("TwitterService", TwitterService)
+
 
 
