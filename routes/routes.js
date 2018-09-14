@@ -75,10 +75,10 @@ var sanFransico = [ '-122.75', '36.8', '-121.75', '37.8'];
 //     "DEN": "b49b3053b5c25bf5",
 //     "SF": "5a110d312052166f"
 // }
-
-router.get("/state", (req, res) => {
+router.get("/state/:theState", (req, res) => {
     // console.log(req); 
-    T.get('search/tweets', {q: 'place:9aa25269f04766ab', count: 5, result_type: "popular"}, function(err, data, response) {
+    let code = req.params.theState
+    T.get('search/tweets', {q: `place:${code}`, count: 5, result_type: "popular"}, function(err, data, response) {
         let textArr = []; 
         let obj = {}; 
         for(let i = 0; i < data.statuses.length; i++){

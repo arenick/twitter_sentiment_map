@@ -133,7 +133,8 @@ var simplemaps_usmap_mapdata={
       name: "North Carolina"
     },
     DC: {
-      name: "District of Columbia"
+      name: "District of Columbia", 
+      hide: "yes"
     },
     MA: {
       name: "Massachusetts"
