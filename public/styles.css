@@ -41,7 +41,7 @@ body {
     /* border-radius: 5px; */
 }
 
-.emo{
+.emotion-circles{
     display: flex;
     width: 15px;
     height: 15px;
@@ -79,31 +79,30 @@ body {
     margin-left: -50px;
     margin-top: -100px; */
     /* position: relative; */
-    display: flex;
-    align-items: center;
-    height: 100vh;
-    margin: 0 auto;
+    /* display: flex;
+    align-items: center; */
+    /* height: 100vh; */
+    /* margin: 0 auto; */
+    /* position: relative; */
 }
 .whiteCircle {
-    /* position: absolute;
-    left: 28%;
-    top: 30%; */
-    display: flex;
+    position: absolute;
+    /* display: flex;
     justify-content: center;
     flex-direction: column;
     text-align: center;
     background-color: white;
     border-radius: 50%;
-    height: 275px;
-    width: 275px;
+    height: 300px;
+    width: 300px;
     margin: auto;
-    z-index: 999999;
+    z-index: 999999; */
 }
 .landingP {
     /* padding: 10px; */
 }
 .landingBtn{
-    margin: 0 auto;
+    /* margin: 0 auto;
     border-radius: 10px;
     height: 50px;
     width: 60%;
@@ -111,45 +110,82 @@ body {
     background-color: blue;
     color: white;
     padding: 25px;
-    border-style: none;
+    border-style: none; */
 }
+
+.colorWheel {
+    /* position: relative;
+    height: 100vh; */
+    /* top: 50%;
+    left: 50%; */
+    /* position: fixed; */
+    /* top: 50%;
+    left: 50%; */
+}
+
 .colorSize{
-    border-radius:50%;
-    display: flex;
-    margin: 0 auto;
-    justify-content: center;
-    width: 90%;
-    height: 150px;
-    position: absolute;
+    /* border-radius:50%; */
+    /* display: flex; */
+    /* margin: 0 auto; */
+    /* justify-content: center; */
+    /* width: 90%;
+    height: 150px; */
+    position: fixed;
+    /* transform: translate(-50%, -50%); */
     left: 5%;
-    top: 225px;
-    opacity: .65;
-    z-index: -99;
+    top: 40%;
+    /* opacity: .65;
+    z-index: -99; */
 }
 .landingRed {
     background-color:  #ff3351;
+    width: 90%;
+    height: 150px;
+    border-radius:50%;
 }
 .landingRedOrange {
     background-color:  #ff471b;
-    transform: rotate(25.7deg)
+    transform: rotate(25.7deg);
+    width: 90%;
+    height: 150px;
+    border-radius:50%;
 }
 .landingOrange {
     background-color:  #ff951a;
-    transform: rotate(51.4deg)
+    transform: rotate(51.4deg);
+    width: 90%;
+    height: 150px;
+    border-radius:50%;
 }
 .landingYellow {
     background-color:  #ffd21b;
-    transform: rotate(77.1deg)
+    transform: rotate(77.1deg);
+    width: 90%;
+    height: 150px;
+    border-radius:50%;
 }
 .landingGreen{
     background-color:  #52b05d;
-    transform: rotate(102.8deg)
+    transform: rotate(102.8deg);
+    width: 90%;
+    height: 150px;
+    border-radius:50%;
 }
 .landingAqua {
     background-color:  #52e0bb;
-    transform: rotate(128.5deg)
+    transform: rotate(128.5deg);
+    width: 90%;
+    height: 150px;
+    border-radius:50%;
 }
 .landingBlue {
     background-color: #5d91e3;
-    transform: rotate(154.2deg)
+    transform: rotate(154.2deg);
+    width: 90%;
+    height: 150px;
+    border-radius:50%;
+}
+
+@media only screen and (min-width: 769px) {
+
 }
