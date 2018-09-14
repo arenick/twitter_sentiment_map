@@ -25,25 +25,60 @@ const twitterMap = {
             // simplemaps_usmap_mapdata.state_specific[stateName].color = "yellow";
             simplemaps_usmap.refresh();
             TwitterService.getState(stateName).then((response) => {
-                let f = function(){
+                let delayPull = function(){
                     console.log(response.emotion[0].emotion)
-                //     switch(response.emotion[0].emotion){
-                //         case 'Angry': 
-                //             console.log("switch angry"); 
-                //             simplemaps_usmap_mapdata.state_specific[stateName].color = '#ff3351'; 
-                //         case 'Bored': 
-                //             simplemaps_usmap_mapdata.state_specific[stateName].color = '#52b05d';
-                //         case 'Excited': 
-                //             simplemaps_usmap_mapdata.state_specific[stateName].color = '#ff951a';
-                //         case 'Fear': 
-                //             simplemaps_usmap_mapdata.state_specific[stateName].color = '#52e0bb';
-                //         case 'Happy': 
-                //             simplemaps_usmap_mapdata.state_specific[stateName].color = '#ffd21b';
-                //         case 'Sad': 
-                //             simplemaps_usmap_mapdata.state_specific[stateName].color = '#ffd21b';
-                //     }
+                    switch(response.emotion[0].emotion){
+                        case 'Angry': 
+                            console.log(stateName); 
+                            console.log("switch angry"); 
+                            simplemaps_usmap_mapdata.state_specific[stateName].color = 'rgba(255,51,81,1)';
+                            simplemaps_usmap.refresh();  
+                            break;
+                        case 'Bored': 
+                            console.log(stateName); 
+                            console.log("switch bored"); 
+                            simplemaps_usmap_mapdata.state_specific[stateName].color = 'rgba(82,176,93,1)';
+                            simplemaps_usmap.refresh(); 
+                            break; 
+                        case 'Excited': 
+                            console.log(stateName); 
+                            console.log("switch excited"); 
+                            simplemaps_usmap_mapdata.state_specific[stateName].color = 'rgba(255,149,26,1)';
+                            simplemaps_usmap.refresh(); 
+                            break;
+                        case 'Fear': 
+                            console.log(stateName); 
+                            console.log("switch fear"); 
+                            simplemaps_usmap_mapdata.state_specific[stateName].color = 'rgba(82,224,187,1)';
+                            simplemaps_usmap.refresh(); 
+                            break;
+                        case 'Happy': 
+                            console.log(stateName); 
+                            console.log("switch happy");    
+                            simplemaps_usmap_mapdata.state_specific[stateName].color = 'rgba(255,210,27,1)';
+                            simplemaps_usmap.refresh(); 
+                            break; 
+                        case 'Sad': 
+                            console.log(stateName); 
+                            console.log("switch sad"); 
+                            simplemaps_usmap_mapdata.state_specific[stateName].color = 'rgba(93,145,227,1)';
+                            simplemaps_usmap.refresh(); 
+                            break; 
+                        case 'Sarcasm': 
+                            console.log(stateName); 
+                            console.log("switch sarcasm"); 
+                            simplemaps_usmap_mapdata.state_specific[stateName].color =  'rgba(255,71,27,1)';
+                            simplemaps_usmap.refresh(); 
+                            break; 
+                        defualt: 
+                            console.log(stateName); 
+                            console.log("switch defualt error"); 
+                            simplemaps_usmap_mapdata.state_specific[stateName].color = 'rgba(0,0,0,1)';
+                            simplemaps_usmap.refresh(); 
+                            break; 
+                    }
                 }
-                $timeout(f, 1000);
+                $timeout(delayPull, 250);
                 vm.tweetStuff = response.text;
             });
         });
