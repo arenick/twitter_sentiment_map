@@ -12,6 +12,27 @@ var Twit = require("twit");
      strictSSL: true,
  });
 
+var globalStore = {}
+
+ let iterator = 0; 
+
+ function intervalFunc() { 
+     iterator++; 
+    console.log(`Hello!!!!   ${iterator}`);
+    T.get('search/tweets', {q: 'place:288de3df481163e8', count: 1, result_type: "popular"}, function(err, data, response) {
+        let textArr = []; 
+        for(let i = 0; i < data.statuses.length; i++){
+            textArr.push(data.statuses[i].text); 
+        }
+
+        globalStore.data = data; 
+        globalStore.statuses = data.statuses;
+        globalStore.text = textArr;
+        console.log(globalStore);   
+    })
+     }
+    setInterval(intervalFunc,1500);
+
 var tList = null;
 
 var sanFransico = [ '-122.75', '36.8', '-121.75', '37.8'];
