@@ -3,12 +3,12 @@ const express = require("express");
 const router = express.Router();
 
 var Twit = require("twit");
-const consumer = process.env;
+
 var T = new Twit({
-    consumer_key: consumer.Consumer_Key,
-    consumer_secret: consumer.Consumer_Secret,
-    access_token: consumer.Access_Token,
-    access_token_secret: consumer.Access_Token_Secret,
+    consumer_key: process.env.Consumer_Key,
+    consumer_secret: process.env.Consumer_Secret,
+    access_token: process.env.Access_Token,
+    access_token_secret: process.env.Access_Token_Secret,
     strictSSL: true,
 });
 
