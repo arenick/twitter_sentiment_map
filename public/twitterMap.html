@@ -1,30 +1,29 @@
 <section class="twitterPage">
-    <section class="mapContainer">
-        <h1>WHAT UPPPPPPPPPPPPPPPP</h1>
-        <p ng-repeat="shit in $ctrl.tweetStuff">{{shit}}</p>
+    <section id="mapContainer">
         <div class="us_map" id="map"></div>
+    </section>
         <div class="colorGuide">
-            <div class="guideItem">
+            <!-- <div class="guideItem">
                     <div class="emotion-circles" id="sad"></div>
                 <p>Sad</p>
-            </div>
-
+            </div> -->
+<!-- 
             <div class="guideItem">
                     <div class="emotion-circles" id="fear"></div>
                 <p>Fear</p>
-            </div>
+            </div> -->
 
             <div class="guideItem">
                     <div class="emotion-circles" id="bored"></div>
-                <p>Bored</p>
+                <p class="guideText">Positive</p>
             </div>
 
             <div class="guideItem">
                     <div class="emotion-circles" id="happy"></div>
-                <p>Happy</p>
+                <p class="guideText">Neutral</p>
             </div>
 
-            <div class="guideItem">
+            <!-- <div class="guideItem">
                     <div class="emotion-circles" id="excited"></div>
                 <p>Excited</p>
             </div>
@@ -32,19 +31,17 @@
             <div class="guideItem">
                     <div class="emotion-circles" id="sarcasm"></div>
                 <p>Sarcasm</p>
-            </div>
+            </div> -->
 
             <div class="guideItem">
                     <div class="emotion-circles" id="angry"></div>
-                <p>Angry</p>
+                <p class="guideText">Negative</p>
             </div>
         </div>
-        
-    </section>
     <section class="incomingTweets">
         <div class="discover">
-            <p>Click on state to discover trending emotions and tweets in each area</p>
+            <p class="discover_text">Click on state to see various tweets</p>
         </div>
-        <p ng-repeat="tweet in $ctrl.tweets.data.text"></p>
+        <p class="tweets" ng-repeat="tweets in $ctrl.tweetStuff">{{tweets}}</p>
     </section>
 </section>
