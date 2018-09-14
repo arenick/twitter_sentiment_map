@@ -17,15 +17,36 @@ const twitterMap = {
         }
 
         document.getElementById("map").addEventListener("click", (e) => {
-            let stateName = e.target.className.animVal.charAt(9) + e.target.className.animVal.charAt(10);
-            simplemaps_usmap_mapdata.state_specific[stateName].color = "yellow";
+            vm.tweetStuff = {};
+            vm.stateName = e.target.className.animVal.charAt(9) + e.target.className.animVal.charAt(10);
+            // simplemaps_usmap_mapdata.state_specific[stateName].color = "yellow";
             simplemaps_usmap.refresh();
-            TwitterService.getState(stateName).then((response) => {
-                console.log(response.emotion);
+            TwitterService.getState(vm.stateName).then((response) => {
+                console.log(response)
+                console.log(response.emotion[0].emotion);
                 vm.tweetStuff = response.text;
+                vm.emotion = response.emotion[0].emotion
+                vm.changeColor(vm.stateName);
+
             });
         });
-
+        vm.changeColor = (stateName) => {
+                if (vm.emotion == "sad") {
+                    simplemaps_usmap_mapdata.state_specific[stateName].color = "red";
+                } else if (vm.emotion == "fear") {
+                    simplemaps_usmap_mapdata.state_specific[stateName].color = "orange";
+                } else if (vm.emotion == "bored") {
+                    simplemaps_usmap_mapdata.state_specific[stateName].color = "yellow";
+                } else if (vm.emotion == "happy") {
+                    simplemaps_usmap_mapdata.state_specific[stateName].color = "green";
+                } else if (vm.emotion == "excited") {
+                    simplemaps_usmap_mapdata.state_specific[stateName].color = "blue";
+                } else if (vm.emotion == "sarcasm") {
+                    simplemaps_usmap_mapdata.state_specific[stateName].color = "brown";
+                } else if (vm.emotion == "angry") {
+                    simplemaps_usmap_mapdata.state_specific[stateName].color = "black";
+                }
+            }
     }] 
 }
 

@@ -1,8 +1,6 @@
 <section class="twitterPage">
     <section class="mapContainer">
-        <h1>WHAT UPPPPPPPPPPPPPPPP</h1>
-        <p ng-repeat="shit in $ctrl.tweetStuff">{{shit}}</p>
-        <div class="us_map" id="map"></div>
+         <div class="us_map" id="map"></div>
         <div class="colorGuide">
             <div class="guideItem">
                 <div class="emo" id="sad"></div>
@@ -45,6 +43,6 @@
         <div class="discover">
             <p>Click on state to discover trending emotions and tweets in each area</p>
         </div>
-        <p ng-repeat="tweet in $ctrl.tweets.data.text"></p>
+        <p ng-repeat="tweet in $ctrl.tweetStuff">{{tweet}}</p>
     </section>
 </section>
