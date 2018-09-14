@@ -5,10 +5,10 @@ const router = express.Router();
 var Twit = require("twit");
 
   var T = new Twit({
-    consumer_key: process.env.consumer_key,
-    consumer_secret: process.env.consumer_secret,
-    access_token: process.env.access_token,
-    access_token_secret: process.env.access_token_secret,
+    consumer_key: process.env.Consumer_Key,
+    consumer_secret: process.env.Consumer_Secret,
+    access_token: process.env.Access_Token,
+    access_token_secret: process.env.Access_Token_Secret,
      strictSSL: true,
  });
 
