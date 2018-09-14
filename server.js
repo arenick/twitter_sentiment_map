@@ -1,5 +1,6 @@
 "use strict";
-require("dotenv").config();
+const dotenv = require("dotenv");
+dotenv.config();
 const express = require("express");
 const app = express();
 const twit = require("./routes/routes");
