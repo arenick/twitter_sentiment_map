@@ -22,14 +22,13 @@ const twitterMap = {
             if(!stateName){
                 return; 
             }
-            simplemaps_usmap_mapdata.state_specific[stateName].color = "yellow";
+            // simplemaps_usmap_mapdata.state_specific[stateName].color = "yellow";
             simplemaps_usmap.refresh();
             TwitterService.getState(stateName).then((response) => {
                 $timeout([console.log(response)], [10000]);
                 vm.tweetStuff = response.text;
             });
         });
-    })
 
     }] 
 }
