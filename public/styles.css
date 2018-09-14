@@ -112,9 +112,11 @@ body {
 .landingH {
     font-size: 20px;
     font-weight: 800;
+    color: black;
 }
 .landingP {
     font-size: 12px;
+    color: black;
 }
 .landingBtn{
     position: absolute;
