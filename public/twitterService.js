@@ -221,10 +221,10 @@ function TwitterService ($http, $sce, $timeout) {
         let smallStateKeys = Object.keys(smallStates);//for testing 
         let stateKeys = Object.keys(states); 
         // console.log(smallStateKeys.length);
-        for(let i = 0; i < smallStateKeys.length; i++){
+        for(let i = 0; i < stateKeys.length; i++){
 
             // let state = states.stateKeys[i]; 
-            textSentimentApi(smallStates[smallStateKeys[i]], smallStateKeys[i]); 
+            textSentimentApi(states[stateKeys[i]], stateKeys[i]); 
 
         }
         }
