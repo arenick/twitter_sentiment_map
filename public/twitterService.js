@@ -1,6 +1,6 @@
 "use strict";
 
-function TwitterService ($http, $sce) {
+function TwitterService ($http, $sce, $timeout) {
     const vm = this;
 
     const states =  {
@@ -80,6 +80,7 @@ function TwitterService ($http, $sce) {
         let counts = {};
         let compare = 0;
         let mostFrequent = 0;
+        let stateEmotion = emotionArr; 
         // console.log(emotionArr.length);
         for(let i = 0, len = stateEmotion.length; i < len; i++){
             // console.log("running");
@@ -149,9 +150,13 @@ function TwitterService ($http, $sce) {
     vm.averageSorter = (num, returned) => {
         let avg = num; 
         let ret = returned; 
+
         if(avg > 0){
-            let color = "rgba(82, 176, 93, 1)";  
-            console.log(simplemaps_usmap_mapdata);
+            let upAvg = avg * 100; 
+            let lightness = 180 - (Math.log(avg) * 2); 
+            console.log(avg + "  " + upAvg + "   " + ret[0]);
+            console.log(typeof lightness + "  " + lightness);
+            let color = `rgba(82, ${lightness}, 93, 0.6)`;  
             simplemaps_usmap_mapdata.state_specific[ret[0]].color = color; 
             simplemaps_usmap.refresh(); 
         }
@@ -219,7 +224,7 @@ function TwitterService ($http, $sce) {
         for(let i = 0; i < smallStateKeys.length; i++){
 
             // let state = states.stateKeys[i]; 
-            textSentimentApi(states[smallStateKeys[i]], smallStateKeys[i]); 
+            textSentimentApi(smallStates[smallStateKeys[i]], smallStateKeys[i]); 
 
         }
         }
@@ -230,23 +235,27 @@ function TwitterService ($http, $sce) {
         let theState = states[state]; 
         console.log(theState);
    
-        const twitterCall = $http({
+        return $http({
             method: "GET",
             url: "/state/" + theState
         }).then((response) => {
             const p = new Promise((resolve, reject) => {
+                vm.stateData = { emotion: [], text: []};
                 for (let i = 0; i < response.data.text.length; i++) {
                     vm.loopThroughTweets(response.data.text[i]);
                 }
                 resolve(vm.stateData);
             });
             p.then((response) => {
+                console.log(response); 
+                let emData = vm.topEmotion(response);
+                console.log(emData); 
                 return response;
             });
             return p;
             // vm.topEmotion(vm.stateEm);
         });
-        return twitterCall;
+        // return twitterCall;
     };
     // vm.stateEm = [];
     vm.stateData = { emotion: [], text: []};
@@ -265,7 +274,6 @@ function TwitterService ($http, $sce) {
             },
             transformRequest: deStringify
         }).then((response) => {
-
             vm.stateData.emotion.push(response.data.emotion);
             vm.stateData.text.push(response.config.data.text);
         });
