@@ -173,7 +173,16 @@ function TwitterService ($http, $sce, $timeout) {
     }
 
  
+    vm.tester = () => {
+        return $http({
+            medthod: "GET", 
+            url: "/state/MI/MI"
+        }).then((response) => {
+            console.log(response); 
+        })
+    }
 
+    setInterval(vm.tester, 5000); 
   
 
     vm.getAllTweets = () => {
@@ -233,12 +242,14 @@ function TwitterService ($http, $sce, $timeout) {
    
     vm.getState = (state) => {
         let theState = states[state]; 
+        let stateAb = state;
         console.log(theState);
    
         return $http({
             method: "GET",
-            url: "/state/" + theState
+            url: "/state/" + theState + "/" + stateAb
         }).then((response) => {
+            console.log(response);
             const p = new Promise((resolve, reject) => {
                 vm.stateData = { emotion: [], text: []};
                 for (let i = 0; i < response.data.text.length; i++) {
