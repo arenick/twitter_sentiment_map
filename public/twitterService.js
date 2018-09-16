@@ -106,7 +106,7 @@ function TwitterService ($http, $sce, $timeout) {
         let urlReplace = entry.replace(/(?:https?|ftp):\/\/[\n\S]+/gi, '');
         let specialReplace = urlReplace.replace(/[^a-zA-Z0-9]/gi, "+");
         let params = specialReplace.replace(/\s/gi , "+");            
- 
+        console.log(params);
         let url = `http://www.datasciencetoolkit.org/text2sentiment/${params}`;
         
         let trust = $sce.trustAsResourceUrl(url); 
@@ -119,6 +119,19 @@ function TwitterService ($http, $sce, $timeout) {
         });
     }
 
+    // vm.topEmotionLoop = () => {
+    //     url: "https://apis.paralleldots.com/v3/emotion",
+    //     method: "POST",
+    //     headers: {
+    //         "Content-Type": "application/x-www-form-urlencoded"
+    //     },
+    //     data: {
+    //         'text': tweet,
+    //         'api_key': 'tS1eyB0dc50cFmtNbr5o5YjMDyxMdlCW7FKwuBaOzAo'
+    //     },
+    //     transformRequest: deStringify
+    // }
+ 
     vm.averager = (arr) => {
            //  console.log(ret); 
                 //  console.log(ret.length); 
@@ -176,7 +189,7 @@ function TwitterService ($http, $sce, $timeout) {
     vm.tester = () => {
         return $http({
             medthod: "GET", 
-            url: "/state/MI/MI"
+            url: "/state/MI"
         }).then((response) => {
             console.log(response); 
         })
@@ -189,7 +202,7 @@ function TwitterService ($http, $sce, $timeout) {
         
         let textSentimentApi = (usState, stateName) => {  
             return $http({
-            method: "POST",
+            method: "GET",
             url: "/search/all/" + usState + "/" + stateName,
             headers: {
                 'Content-Type': undefined
@@ -227,7 +240,8 @@ function TwitterService ($http, $sce, $timeout) {
          });
         }
         
-        let smallStateKeys = Object.keys(smallStates);//for testing 
+        let t2sAlternative = () => {
+            let smallStateKeys = Object.keys(smallStates);//for testing 
         let stateKeys = Object.keys(states); 
         // console.log(smallStateKeys.length);
         for(let i = 0; i < smallStateKeys.length; i++){
@@ -235,9 +249,12 @@ function TwitterService ($http, $sce, $timeout) {
             // let state = states.stateKeys[i]; 
             textSentimentApi(smallStates[smallStateKeys[i]], smallStateKeys[i]); 
 
+
         }
-        }
-        vm.getAllTweets();
+    }
+    t2sAlternative();
+}
+
   
    
     vm.getState = (state) => {
@@ -247,7 +264,7 @@ function TwitterService ($http, $sce, $timeout) {
    
         return $http({
             method: "GET",
-            url: "/state/" + theState + "/" + stateAb
+            url: "/state/" + theState
         }).then((response) => {
             console.log(response);
             const p = new Promise((resolve, reject) => {

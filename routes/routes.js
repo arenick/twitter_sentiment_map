@@ -139,12 +139,12 @@ var globalStore = {
         textArr.push(data.statuses[i].text); 
     }
     console.log(data.statuses[0].place.full_name);
-    console.log(globalStore[stateName]);
 
     globalStore[stateName].data = data; 
     globalStore[stateName].statuses = data.statuses;
     globalStore[stateName].text = textArr;
-    
+    console.log(globalStore[stateName]);
+
 });
  });
 
@@ -172,12 +172,21 @@ var tList = null;
 
 var sanFransico = [ '-122.75', '36.8', '-121.75', '37.8'];
 
-router.get("/state/:theState/:stateCode", (req, res) => {
+router.get("/state/:theState/", (req, res) => {
     // console.log(req); 
-        let currentState = req.params.theState;
-        let currentStateAb = req.params.stateCode; 
-        globalStore.selectedState = currentStateAb; 
-        res.send(globalStore); 
+    let code = req.params.theState
+    T.get('search/tweets', {q: `place:${code}`, count: 5, result_type: "popular"}, function(err, data, response) {
+        let textArr = []; 
+        let obj = {}; 
+        for(let i = 0; i < data.statuses.length; i++){
+            textArr.push(data.statuses[i].text); 
+        }
+
+        obj.data = data; 
+        obj.statuses = data.statuses;
+        obj.text = textArr; 
+        res.send(obj); 
+    });
         
     });
 
@@ -192,7 +201,7 @@ router.get("/state/:theState/:stateCode", (req, res) => {
 
 
 var houston = [ '-95.37', '29.7', '-94.37', '30.7']
-router.post("/search/all/:usState/:stateName", (req,res) => {
+router.get("/search/all/:usState/:stateName", (req,res) => {
     // T.get('geo/search', {query: "Midwest"}, (err, data, response) => {
     //     console.log(response);
     //     console.log(data);
@@ -235,3 +244,28 @@ T.get('search/tweets', { q: `place:${state}`, count: 10, result_type: "popular"}
 });
 
 module.exports = router;
+
+// const searchReddit = (subreddit) => {
+//     const sub = document.querySelector("#subreddit").value;
+//     const url = `https://www.reddit.com/r/${sub}.json`;
+//     getRequest(url).then((data) => {
+//       const jsonObj = JSON.parse(data);
+//       console.log(jsonObj);
+//     }).catch((error) => {
+//       console.log(error);
+//     })
+//   }
+  
+//   function getRequest(url) {
+//     return new Promise((resolve, reject) => {
+//       const xhr = new XMLHttpRequest();
+//       xhr.open("GET", url);
+//       xhr.onload = () => {
+//         resolve(xhr.responseText);
+//       };
+//       xhr.onerror = () => {
+//         reject(xhr.statusText);
+//       };
+//       xhr.send();
+//     });
+//   };
