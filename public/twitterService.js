@@ -296,7 +296,7 @@ function TwitterService ($http, $sce, $timeout) {
         //         console.log(response)
         //         return response
         //     });
-        // })
+        })
     }
 vm.embedTweets("MI");
 }
