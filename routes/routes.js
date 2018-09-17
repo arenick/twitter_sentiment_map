@@ -6,6 +6,7 @@ const request = require('request');
 const pd = require('paralleldots');
 
 const emotion = require('paralleldots/apis/emotion');
+const emotionBatch = require('paralleldots/apis/emotionBatch');
 
 var Twit = require("twit");
 
@@ -139,7 +140,7 @@ var globalStore = {
 
  let saveState =  ((key, stateName) => {
  return new Promise((resolve, reject) => {
-    T.get('search/tweets', {q: `place:${key}`, count: 10, result_type: "popular"}, function(err, data, response) {
+    T.get('search/tweets', {q: `place:${key}`, count: 5, result_type: "popular"}, function(err, data, response) {
         
         if(err){
             console.log(err); 
@@ -170,21 +171,18 @@ var globalStore = {
 
 let parrellDotsCall = (response, timer) => {
     //console.log(response);
-    setTimeout(function(){ let emotionArr = [] 
-    for(let i = 1; i < 6; i++){
-        let tweet = response[i];
-
-        emotion(tweet,"en", 'tS1eyB0dc50cFmtNbr5o5YjMDyxMdlCW7FKwuBaOzAo')
+    let stAb = response[0];
+    response.shift();
+    setTimeout(function(){ 
+        let JSONtweets = JSON.stringify(response);
+        emotionBatch(JSONtweets,'en', 'DZEgFpGj5tlOGYaIYZ2hQAjDy2ARxY98tLs2Gsepptw')
         .then((response) => {
             console.log(response);
-            emotionArr.push(response); 
-        })
-        .catch((error) => {
-            console.log(error);
-        }); 
-
-        globalStore[response[0]].emotions = emotionArr; 
-};
+            globalStore[stAb].emotions = response; 
+	}).catch((error) =>{
+		console.log(error);
+  }) 
+        console.log(timer);
     }, timer);
 }
 
@@ -211,9 +209,9 @@ let parrellDotsCall = (response, timer) => {
      }
     setInterval(inter, 60000);
 
-var tList = null;
-
-var sanFransico = [ '-122.75', '36.8', '-121.75', '37.8'];
+router.get('/test', (req, res) => {
+    res.send(globalStore);
+});
 
 router.get("/state/:theState/", (req, res) => {
     // console.log(req); 
@@ -233,31 +231,12 @@ router.get("/state/:theState/", (req, res) => {
         
     });
 
-
-
-// var houston = '-95.37 29.7';
-// T.get('search/tweets', {q: 'since:2017-04-04', geocode: '37.781157 -122.398720 1mi'},  (err, data, response) => {
-//     console.log(response + "  response");
-//     console.log(data + "   data");
-//     console.log(err + "  error");
-//   });
-
 router.get("/test", (req, res) => {
     res.send(globalStore);
 })
 
 var houston = [ '-95.37', '29.7', '-94.37', '30.7']
 router.get("/search/all/:usState/:stateName", (req,res) => {
-    // T.get('geo/search', {query: "Midwest"}, (err, data, response) => {
-    //     console.log(response);
-    //     console.log(data);
-    //     console.log(err);
-    //     res.send(data);
-    // }); 
-
-
-//    console.log(req.params.stateName + "  Pay Attention Pay");
-
 
     let state = req.params.usState; 
     let stateName = req.params.stateName;
@@ -277,13 +256,10 @@ T.get('search/tweets', { q: `place:${state}`, count: 10, result_type: "popular"}
 }
 }
 
-//   obj.current_state = req.params;
-  
   obj.stateName = stateName; 
   obj.data = data; 
   obj.statuses = data.statuses;
   obj.text = textArr; 
- // console.log(obj);
   res.send(obj); 
  });
 
