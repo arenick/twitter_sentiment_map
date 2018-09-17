@@ -8,7 +8,7 @@ const twitterMap = {
         const vm = this;
         vm.tweets=TwitterService.obj;
         // console.log(vm.tweets);
-
+        
         vm.getTweets = () => {
             TwitterService.getAllTweets().then((response) => {
                 console.log(response);
@@ -78,7 +78,7 @@ const twitterMap = {
                             break; 
                     }
                 }
-                $timeout(delayPull, 250);
+                $timeout(delayPull, 500);
                 vm.tweetStuff = response.text;
             });
         });

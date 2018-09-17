@@ -137,6 +137,26 @@ var globalStore = {
 
  let iterator = 0; 
 
+ let  averager = (arr) => {
+    let ret = arr; 
+    let avgCol = 0
+    let i = 1
+    let notZero = 0
+
+    for(i; i < ret.length; i++){
+        if(ret[i] === 0){
+
+        }
+        else{
+            avgCol  += ret[i];
+            notZero++
+           }
+        
+    }
+    let avg = avgCol / notZero; 
+    return avg; 
+}
+
  let saveState =  ((key, stateName) => {
  return new Promise((resolve, reject) => {
     T.get('search/tweets', {q: `place:${key}`, count: 10, result_type: "popular"}, function(err, data, response) {
@@ -189,34 +209,54 @@ let parrellDotsCall = (response, timer) => {
     }, timer);
 }
 
+let requester = (response, arr, iterator) => {
+    let i = iterator; 
+    let scoreCollector = arr; 
+    let entry = response[i]; 
+    let urlReplace = entry.replace(/(?:https?|ftp):\/\/[\n\S]+/gi, '');
+    let specialReplace = urlReplace.replace(/[^a-zA-Z0-9]/gi, "+");
+    let params = specialReplace.replace(/\s/gi , "+"); 
+    return new Promise(function(resolve, reject) {
+        request(`http://www.datasciencetoolkit.org/text2sentiment/${params}`, (err, res, body) => {
+            if(body == undefined){
+                let rwo = Math.random();
+                let theNum = Math.random() * 3;  
+                if(rwo < 0.5){
+                    theNum = theNum * -1
+                }
+                scoreCollector.push(theNum); 
+                console.log(scoreCollector);
+                resolve(scoreCollector); 
+            }
+            else {
+                let scoreJSON = JSON.parse(body);  
+                scoreCollector.push(scoreJSON.score); 
+                console.log(scoreCollector);
+                resolve(scoreCollector); 
+            }
+        });
+    });
+}
+
 let t2s = (response) => {
         let state = response[0];
         response.shift(); 
         let scoreArr = [state]; 
         globalStore[state].sentiment = [];
-        for(let i = 0; i < response.length; i++){
-            let entry = response[i]; 
-            let urlReplace = entry.replace(/(?:https?|ftp):\/\/[\n\S]+/gi, '');
-            let specialReplace = urlReplace.replace(/[^a-zA-Z0-9]/gi, "+");
-            let params = specialReplace.replace(/\s/gi , "+"); 
-            request(`http://www.datasciencetoolkit.org/text2sentiment/${params}`, (err, res, body) => {
-                if(body == undefined){
-                    let rwo = Math.random();
-                    let theNum = Math.random() * 3;  
-                    if(rwo < 0.5){
-                        theNum = theNum * -1
-                    }
-                    scoreArr.push(theNum); 
-                }
-                else{
-                let scoreJSON = JSON.parse(body);  
-                scoreArr.push(scoreJSON.score); 
-                console.log(scoreArr);
-                }
-                });
-            
+        let wait = new Promise((resolve, reject) => {
+            let retArr = []; 
+            for(let i = 0; i < response.length; i++){
+                console.log('loop');
+                requester(response, scoreArr, i).then((response) => {
+                    retArr.push(response);
+                }); 
             } 
-        
+            resolve(retArr[retArr.length - 1]);
+        });
+        console.log(wait);
+        // .then((ret) => {
+        //     console.log(ret); 
+        // })
         globalStore[state].sentiment.push(scoreArr); 
                        
 }
@@ -224,9 +264,9 @@ let t2s = (response) => {
  function intializeGetter() {
     let smallStateKeys = Object.keys(smallStates);//for testing 
     let stateKeys = Object.keys(states);
-    for(let i = 0; i < stateKeys.length; i++){
+    for(let i = 0; i < smallStateKeys.length; i++){
         let timer = 30000 * i;
-        saveState(states[stateKeys[i]], stateKeys[i]).then((response) => {
+        saveState(smallStates[smallStateKeys[i]], smallStateKeys[i]).then((response) => {
            t2s(response); 
         }); 
     }

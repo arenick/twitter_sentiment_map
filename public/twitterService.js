@@ -176,8 +176,13 @@ const states =  {
     vm.averageSorter = (num, state) => {
         let avg = num; 
         let ret = state; 
-
-        if(avg > 0){
+        
+        if(avg == null){
+            let color = "rgba(255, 210, 27, 1)";
+            simplemaps_usmap_mapdata.state_specific[ret].color = color; 
+            simplemaps_usmap.refresh(); 
+        }
+        else if(avg > 0){
             let upAvg = avg * 100; 
             let lightness = 180 - (Math.log(avg) * 2); 
             console.log(avg + "  " + upAvg + "   " + ret[0]);
@@ -220,7 +225,7 @@ const states =  {
 
             console.log(stateAverage);
             for(let i = 0; i < stateKeys.length; i++){
-                let indStateSentiment = response.data[stateKeys[i]].sentiment[0];
+                let indStateSentiment = response.data[smallStateKeys[i]].sentiment[0];
         
                 let state = indStateSentiment[0]
 
