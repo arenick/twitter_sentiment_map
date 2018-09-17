@@ -66,218 +66,218 @@ function TwitterService ($http, $sce, $timeout) {
     }
     
 
-    // let deStringify = function(obj) {
-    //     // console.log(obj);
-    //     var str = [];
-    //     for(var p in obj)
-    //     str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-    //     // console.log(p); 
-    //     return str.join("&");
-    // }
+    let deStringify = function(obj) {
+        // console.log(obj);
+        var str = [];
+        for(var p in obj)
+        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+        // console.log(p); 
+        return str.join("&");
+    }
 
 
-    // vm.topEmotion = (emotionArr) => {
-    //     let counts = {};
-    //     let compare = 0;
-    //     let mostFrequent = 0;
-    //     let stateEmotion = emotionArr; 
-    //     // console.log(emotionArr.length);
-    //     for(let i = 0, len = stateEmotion.length; i < len; i++){
-    //         // console.log("running");
-    //         let word = vm.stateEmotion[i];
-    //         if (counts[word] === undefined){
-    //             counts[word] = 1;
-    //         } else {
-    //             counts[word] = counts[word] + 1;
-    //         }
-    //         if (counts[word] > compare){
-    //             compare = counts[word];
-    //             mostFrequent =  stateEmotion[i];
-    //         }
-    //     }
-    //         // console.log(stateEmotion);
-    //         // console.log(mostFrequent);
-    //         return mostFrequent;
-    // }
+    vm.topEmotion = (emotionArr) => {
+        let counts = {};
+        let compare = 0;
+        let mostFrequent = 0;
+        let stateEmotion = emotionArr; 
+        // console.log(emotionArr.length);
+        for(let i = 0, len = stateEmotion.length; i < len; i++){
+            // console.log("running");
+            let word = vm.stateEmotion[i];
+            if (counts[word] === undefined){
+                counts[word] = 1;
+            } else {
+                counts[word] = counts[word] + 1;
+            }
+            if (counts[word] > compare){
+                compare = counts[word];
+                mostFrequent =  stateEmotion[i];
+            }
+        }
+            // console.log(stateEmotion);
+            // console.log(mostFrequent);
+            return mostFrequent;
+    }
 
-    // vm.loop = (entry, aggregator) => {
+    vm.loop = (entry, aggregator) => {
     
-    //     let sentimentCollector = aggregator;                   
-    //     let urlReplace = entry.replace(/(?:https?|ftp):\/\/[\n\S]+/gi, '');
-    //     let specialReplace = urlReplace.replace(/[^a-zA-Z0-9]/gi, "+");
-    //     let params = specialReplace.replace(/\s/gi , "+");            
+        let sentimentCollector = aggregator;                   
+        let urlReplace = entry.replace(/(?:https?|ftp):\/\/[\n\S]+/gi, '');
+        let specialReplace = urlReplace.replace(/[^a-zA-Z0-9]/gi, "+");
+        let params = specialReplace.replace(/\s/gi , "+");            
  
-    //     let url = `http://www.datasciencetoolkit.org/text2sentiment/${params}`;
+        let url = `http://www.datasciencetoolkit.org/text2sentiment/${params}`;
         
-    //     let trust = $sce.trustAsResourceUrl(url); 
-    //     return $http.jsonp(trust, {params : params}).then((rep) => {
-    //        //console.log(rep); 
-    //        sentimentCollector.push(rep.data.score);
-    //        //console.log(sentimentCollector);
-    //        return sentimentCollector;
+        let trust = $sce.trustAsResourceUrl(url); 
+        return $http.jsonp(trust, {params : params}).then((rep) => {
+           //console.log(rep); 
+           sentimentCollector.push(rep.data.score);
+           //console.log(sentimentCollector);
+           return sentimentCollector;
        
-    //     });
-    // }
+        });
+    }
 
-    // vm.averager = (arr) => {
-    //        //  console.log(ret); 
-    //             //  console.log(ret.length); 
-    //             let ret = arr; 
-    //             let avgCol = 0
-    //             let i = 1
-    //             let notZero = 0
+    vm.averager = (arr) => {
+           //  console.log(ret); 
+                //  console.log(ret.length); 
+                let ret = arr; 
+                let avgCol = 0
+                let i = 1
+                let notZero = 0
 
-    //             for(i; i < ret.length; i++){
-    //                //  console.log(i + "   i");
-    //                //  console.log(ret[i] + "  ret[i]");
-    //                //  console.log(avgCol + "   avgCol"); 
-    //                 if(ret[i] === 0){
+                for(i; i < ret.length; i++){
+                   //  console.log(i + "   i");
+                   //  console.log(ret[i] + "  ret[i]");
+                   //  console.log(avgCol + "   avgCol"); 
+                    if(ret[i] === 0){
 
-    //                 }
-    //                 else{
-    //                     avgCol  += ret[i];
-    //                     notZero++
-    //                    }
+                    }
+                    else{
+                        avgCol  += ret[i];
+                        notZero++
+                       }
                     
-    //             }
-    //            //  console.log(avgCol);
-    //            //  console.log(notZero); 
-    //             let avg = avgCol / notZero; 
-    //             return avg; 
-    //            //  console.log(avg + "   average"); 
-    // }
+                }
+               //  console.log(avgCol);
+               //  console.log(notZero); 
+                let avg = avgCol / notZero; 
+                return avg; 
+               //  console.log(avg + "   average"); 
+    }
 
-    // vm.averageSorter = (num, returned) => {
-    //     let avg = num; 
-    //     let ret = returned; 
+    vm.averageSorter = (num, returned) => {
+        let avg = num; 
+        let ret = returned; 
 
-    //     if(avg > 0){
-    //         let upAvg = avg * 100; 
-    //         let lightness = 180 - (Math.log(avg) * 2); 
-    //         // console.log(avg + "  " + upAvg + "   " + ret[0]);
-    //         // console.log(typeof lightness + "  " + lightness);
-    //         let color = `rgba(82, ${lightness}, 93, 0.6)`;  
-    //         simplemaps_usmap_mapdata.state_specific[ret[0]].color = color; 
-    //         simplemaps_usmap.refresh(); 
-    //     }
-    //      else if(avg < 0){
-    //         let color = "rgba(255, 51, 81, 1)";
-    //         simplemaps_usmap_mapdata.state_specific[ret[0]].color = color; 
-    //         simplemaps_usmap.refresh(); 
-    //      }
-    //      else if(avg === 0){
-    //          let color = "rgba(255, 210, 27, 1)";
-    //          simplemaps_usmap_mapdata.state_specific[ret[0]].color = color; 
-    //          simplemaps_usmap.refresh(); 
-    //      }
-    // }
+        if(avg > 0){
+            let upAvg = avg * 100; 
+            let lightness = 180 - (Math.log(avg) * 2); 
+            // console.log(avg + "  " + upAvg + "   " + ret[0]);
+            // console.log(typeof lightness + "  " + lightness);
+            let color = `rgba(82, ${lightness}, 93, 0.6)`;  
+            simplemaps_usmap_mapdata.state_specific[ret[0]].color = color; 
+            simplemaps_usmap.refresh(); 
+        }
+         else if(avg < 0){
+            let color = "rgba(255, 51, 81, 1)";
+            simplemaps_usmap_mapdata.state_specific[ret[0]].color = color; 
+            simplemaps_usmap.refresh(); 
+         }
+         else if(avg === 0){
+             let color = "rgba(255, 210, 27, 1)";
+             simplemaps_usmap_mapdata.state_specific[ret[0]].color = color; 
+             simplemaps_usmap.refresh(); 
+         }
+    }
 
  
 
   
 
-    // vm.getAllTweets = () => {
+    vm.getAllTweets = () => {
         
-    //     let textSentimentApi = (usState, stateName) => {  
-    //         return $http({
-    //         method: "POST",
-    //         url: "/search/all/" + usState + "/" + stateName,
-    //         headers: {
-    //             'Content-Type': undefined
-    //           }, 
-    //         data: {'test': stateName}
-    //      }).then((response) => {
+        let textSentimentApi = (usState, stateName) => {  
+            return $http({
+            method: "POST",
+            url: "/search/all/" + usState + "/" + stateName,
+            headers: {
+                'Content-Type': undefined
+              }, 
+            data: {'test': stateName}
+         }).then((response) => {
 
-    //         //  console.log(response.data);
+            //  console.log(response.data);
              
-    //          let sentimentCollector = [response.data.stateName];
+             let sentimentCollector = [response.data.stateName];
        
-    //          let averageArr = [];
+             let averageArr = [];
              
-    //          let promise = new Promise((resolve, reject) => {
-    //          for(let i = 0; i < response.data.text.length; i++){
-    //            averageArr = vm.loop(response.data.text[i], sentimentCollector);  
-    //          }
+             let promise = new Promise((resolve, reject) => {
+             for(let i = 0; i < response.data.text.length; i++){
+               averageArr = vm.loop(response.data.text[i], sentimentCollector);  
+             }
 
-    //         // console.log(response);
+            // console.log(response);
 
-    //          //console.log(averageArr); 
-    //          resolve(averageArr);  
-    //          }).then((ret) => {
-    //             let avg = vm.averager(ret); 
-    //             vm.averageSorter(avg, ret);
+             //console.log(averageArr); 
+             resolve(averageArr);  
+             }).then((ret) => {
+                let avg = vm.averager(ret); 
+                vm.averageSorter(avg, ret);
 
-    //          }).catch((error) => {
-    //              console.log(error); 
-    //             throw error; 
-    //          });
+             }).catch((error) => {
+                 console.log(error); 
+                throw error; 
+             });
 
-    //         // console.log(promise);
-    //         return vm.tweets = response;                
+            // console.log(promise);
+            return vm.tweets = response;                
 
-    //      });
-    //     }
+         });
+        }
         
-    //     let smallStateKeys = Object.keys(smallStates);//for testing 
-    //     let stateKeys = Object.keys(states); 
-    //     // console.log(smallStateKeys.length);
-    //     for(let i = 0; i < stateKeys.length; i++){
+        let smallStateKeys = Object.keys(smallStates);//for testing 
+        let stateKeys = Object.keys(states); 
+        // console.log(smallStateKeys.length);
+        for(let i = 0; i < stateKeys.length; i++){
 
-    //         // let state = states.stateKeys[i]; 
-    //         textSentimentApi(smallStates[smallStateKeys[i]], smallStateKeys[i]); 
+            // let state = states.stateKeys[i]; 
+            textSentimentApi(smallStates[smallStateKeys[i]], smallStateKeys[i]); 
 
-    //     }
-    //     }
-    //     vm.getAllTweets();
+        }
+        }
+        vm.getAllTweets();
   
    
-    // vm.getState = (state) => {
-    //     let theState = states[state]; 
-    //     console.log(theState);
+    vm.getState = (state) => {
+        let theState = states[state]; 
+        console.log(theState);
    
-    //     return $http({
-    //         method: "GET",
-    //         url: "/state/" + theState
-    //     }).then((response) => {
-    //         const p = new Promise((resolve, reject) => {
-    //             vm.stateData = { emotion: [], text: []};
-    //             for (let i = 0; i < response.data.text.length; i++) {
-    //                 vm.loopThroughTweets(response.data.text[i]);
-    //             }
-    //             resolve(vm.stateData);
-    //         });
-    //         p.then((response) => {
-    //             console.log(response); 
-    //             let emData = vm.topEmotion(response);
-    //             console.log(emData); 
-    //             return response;
-    //         });
-    //         return p;
-    //         // vm.topEmotion(vm.stateEm);
-    //     });
-    //     // return twitterCall;
-    // };
-    // // vm.stateEm = [];
-    // vm.stateData = { emotion: [], text: []};
-    // vm.loopThroughTweets = (tweet) => {
-    //     return $http({
-    //         // "async": true,
-    //         // "crossDomain": true,
-    //         url: "https://apis.paralleldots.com/v3/emotion",
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/x-www-form-urlencoded"
-    //         },
-    //         data: {
-    //             'text': tweet,
-    //             'api_key': 'tS1eyB0dc50cFmtNbr5o5YjMDyxMdlCW7FKwuBaOzAo'
-    //         },
-    //         transformRequest: deStringify
-    //     }).then((response) => {
-    //         vm.stateData.emotion.push(response.data.emotion);
-    //         vm.stateData.text.push(response.config.data.text);
-    //     });
-    // };
+        return $http({
+            method: "GET",
+            url: "/state/" + theState
+        }).then((response) => {
+            const p = new Promise((resolve, reject) => {
+                vm.stateData = { emotion: [], text: []};
+                for (let i = 0; i < response.data.text.length; i++) {
+                    vm.loopThroughTweets(response.data.text[i]);
+                }
+                resolve(vm.stateData);
+            });
+            p.then((response) => {
+                console.log(response); 
+                let emData = vm.topEmotion(response);
+                console.log(emData); 
+                return response;
+            });
+            return p;
+            // vm.topEmotion(vm.stateEm);
+        });
+        // return twitterCall;
+    };
+    // vm.stateEm = [];
+    vm.stateData = { emotion: [], text: []};
+    vm.loopThroughTweets = (tweet) => {
+        return $http({
+            // "async": true,
+            // "crossDomain": true,
+            url: "https://apis.paralleldots.com/v3/emotion",
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            data: {
+                'text': tweet,
+                'api_key': 'tS1eyB0dc50cFmtNbr5o5YjMDyxMdlCW7FKwuBaOzAo'
+            },
+            transformRequest: deStringify
+        }).then((response) => {
+            vm.stateData.emotion.push(response.data.emotion);
+            vm.stateData.text.push(response.config.data.text);
+        });
+    };
 
     // vm.topEmotion = (emotionArr) => {
     //     let counts = {};
