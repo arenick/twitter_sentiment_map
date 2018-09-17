@@ -1,8 +1,6 @@
 "use strict";
 const express = require("express");
-const router = express.Router();
-const https = require('https');
-const request = require('request'); 
+const router = express.Router(); 
 const pd = require('paralleldots');
 
 const emotion = require('paralleldots/apis/emotion');
@@ -152,13 +150,9 @@ var globalStore = {
             for(let i = 0; i < data.statuses.length; i++){
                 textArr.push(data.statuses[i].text); 
             }
-            //console.log(textArr);
-            //console.log(data.statuses[0].place.full_name);
-        
             globalStore[stateName].data = data; 
             globalStore[stateName].statuses = data.statuses;
             globalStore[stateName].text = textArr;
-            //console.log(globalStore[stateName]);
             resolve(textArr);
             return data; 
         }
@@ -169,7 +163,6 @@ var globalStore = {
  });
 
 let parrellDotsCall = (response, timer) => {
-    //console.log(response);
     setTimeout(function(){ let emotionArr = [] 
     for(let i = 1; i < 6; i++){
         let tweet = response[i];
@@ -211,12 +204,7 @@ let parrellDotsCall = (response, timer) => {
      }
     setInterval(inter, 60000);
 
-var tList = null;
-
-var sanFransico = [ '-122.75', '36.8', '-121.75', '37.8'];
-
 router.get("/state/:theState/", (req, res) => {
-    // console.log(req); 
     let code = req.params.theState
     T.get('search/tweets', {q: `place:${code}`, count: 5, result_type: "popular"}, function(err, data, response) {
         let textArr = []; 
@@ -234,56 +222,30 @@ router.get("/state/:theState/", (req, res) => {
     });
 
 
-
-// var houston = '-95.37 29.7';
-// T.get('search/tweets', {q: 'since:2017-04-04', geocode: '37.781157 -122.398720 1mi'},  (err, data, response) => {
-//     console.log(response + "  response");
-//     console.log(data + "   data");
-//     console.log(err + "  error");
-//   });
-
 router.get("/test", (req, res) => {
     res.send(globalStore);
 })
 
-var houston = [ '-95.37', '29.7', '-94.37', '30.7']
 router.get("/search/all/:usState/:stateName", (req,res) => {
-    // T.get('geo/search', {query: "Midwest"}, (err, data, response) => {
-    //     console.log(response);
-    //     console.log(data);
-    //     console.log(err);
-    //     res.send(data);
-    // }); 
-
-
-//    console.log(req.params.stateName + "  Pay Attention Pay");
-
 
     let state = req.params.usState; 
     let stateName = req.params.stateName;
 
 T.get('search/tweets', { q: `place:${state}`, count: 10, result_type: "popular"}, function(err, data, response) {
-   //console.log(data);
-//    console.log(stateName);
   let textArr = [];
   let obj = {};
   if(!data){
-    // console.log("error:      " + data)
   }
   else{
     for(let i = 0; i < data.statuses.length; i++){
         textArr.push(data.statuses[i].text);
     
 }
-}
-
-//   obj.current_state = req.params;
-  
+}  
   obj.stateName = stateName; 
   obj.data = data; 
   obj.statuses = data.statuses;
   obj.text = textArr; 
- // console.log(obj);
   res.send(obj); 
  });
 
@@ -291,27 +253,5 @@ T.get('search/tweets', { q: `place:${state}`, count: 10, result_type: "popular"}
 
 module.exports = router;
 
-// const searchReddit = (subreddit) => {
-//     const sub = document.querySelector("#subreddit").value;
-//     const url = `https://www.reddit.com/r/${sub}.json`;
-//     getRequest(url).then((data) => {
-//       const jsonObj = JSON.parse(data);
-//       console.log(jsonObj);
-//     }).catch((error) => {
-//       console.log(error);
-//     })
-//   }
+
   
-//   function getRequest(url) {
-//     return new Promise((resolve, reject) => {
-//       const xhr = new XMLHttpRequest();
-//       xhr.open("GET", url);
-//       xhr.onload = () => {
-//         resolve(xhr.responseText);
-//       };
-//       xhr.onerror = () => {
-//         reject(xhr.statusText);
-//       };
-//       xhr.send();
-//     });
-//   };
