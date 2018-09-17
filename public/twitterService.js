@@ -154,8 +154,8 @@ function TwitterService ($http, $sce, $timeout) {
         if(avg > 0){
             let upAvg = avg * 100; 
             let lightness = 180 - (Math.log(avg) * 2); 
-            console.log(avg + "  " + upAvg + "   " + ret[0]);
-            console.log(typeof lightness + "  " + lightness);
+            // console.log(avg + "  " + upAvg + "   " + ret[0]);
+            // console.log(typeof lightness + "  " + lightness);
             let color = `rgba(82, ${lightness}, 93, 0.6)`;  
             simplemaps_usmap_mapdata.state_specific[ret[0]].color = color; 
             simplemaps_usmap.refresh(); 
@@ -199,7 +199,7 @@ function TwitterService ($http, $sce, $timeout) {
                averageArr = vm.loop(response.data.text[i], sentimentCollector);  
              }
 
-            console.log(response);
+            // console.log(response);
 
              //console.log(averageArr); 
              resolve(averageArr);  
@@ -224,7 +224,7 @@ function TwitterService ($http, $sce, $timeout) {
         for(let i = 0; i < stateKeys.length; i++){
 
             // let state = states.stateKeys[i]; 
-            textSentimentApi(states[stateKeys[i]], stateKeys[i]); 
+            textSentimentApi(smallStates[smallStateKeys[i]], smallStateKeys[i]); 
 
         }
         }
