@@ -2,7 +2,7 @@
 
 const landing = {
     templateUrl:"landing.html",
-    controller: ["$location", function($location) {
+    controller: ["TwitterService", "$location", function(TwitterService, $location, ) {
         const vm = this;
         vm.redirect = () => {
         $location.path("/twitter-map");

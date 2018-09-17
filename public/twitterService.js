@@ -3,7 +3,8 @@
 function TwitterService ($http, $sce, $timeout) {
     const vm = this;
 
-    const states =  {
+    
+const states =  {
         "AL": "288de3df481163e8", 
         "AK": "07179f4fe0500a32",
         "AZ": "a612c69b44b2e5da",
@@ -56,6 +57,60 @@ function TwitterService ($http, $sce, $timeout) {
         "WY": "5669366953047e51"
     }
 
+    const avgStore =  {
+        "AL": null, 
+        "AK": null,
+        "AZ": null,
+        "AR": null,
+        "CA": null,
+        "CO": null,
+        "CT": null,
+        "DE": null,
+        "FL": null,
+        "GA": null,
+        "HI": null,
+        "ID": null,
+        "IL": null,
+        "IN": null,
+        "IA": null,
+        "KS": null,
+        "KY": null,
+        "LA": null,
+        "ME": null,
+        "MD": null,
+        "MA": null,
+        "MI": null,
+        "MN": null,
+        "MS": null,
+        "MO": null,
+        "MT": null,
+        "NE": null,
+        "NV": null,
+        "NH": null,
+        "NJ": null, 
+        "NM": null,
+        "NY": null,
+        "NC": null,
+        "ND": null,
+        "OH": null,
+        "OK": null,
+        "OR": null,
+        "PA": null,
+        "RI": null,
+        "SC": null,
+        "SD": null,
+        "TN": null,
+        "TX": null,
+        "UT": null,
+        "VT": null,
+        "VA": null,
+        "WA": null,
+        "WV": null,
+        "WI": null,
+        "WY": null
+    }
+
+
     const smallStates = {
         "AL": "288de3df481163e8", 
         "AZ": "a612c69b44b2e5da",
@@ -95,55 +150,16 @@ function TwitterService ($http, $sce, $timeout) {
                 mostFrequent =  stateEmotion[i];
             }
         }
-            // console.log(stateEmotion);
-            // console.log(mostFrequent);
             return mostFrequent;
     }
-
-    vm.loop = (entry, aggregator) => {
-    
-        let sentimentCollector = aggregator;                   
-        let urlReplace = entry.replace(/(?:https?|ftp):\/\/[\n\S]+/gi, '');
-        let specialReplace = urlReplace.replace(/[^a-zA-Z0-9]/gi, "+");
-        let params = specialReplace.replace(/\s/gi , "+");            
-        console.log(params);
-        let url = `http://www.datasciencetoolkit.org/text2sentiment/${params}`;
-        
-        let trust = $sce.trustAsResourceUrl(url); 
-        return $http.jsonp(trust, {params : params}).then((rep) => {
-           //console.log(rep); 
-           sentimentCollector.push(rep.data.score);
-           //console.log(sentimentCollector);
-           return sentimentCollector;
-       
-        });
-    }
-
-    // vm.topEmotionLoop = () => {
-    //     url: "https://apis.paralleldots.com/v3/emotion",
-    //     method: "POST",
-    //     headers: {
-    //         "Content-Type": "application/x-www-form-urlencoded"
-    //     },
-    //     data: {
-    //         'text': tweet,
-    //         'api_key': 'tS1eyB0dc50cFmtNbr5o5YjMDyxMdlCW7FKwuBaOzAo'
-    //     },
-    //     transformRequest: deStringify
-    // }
  
     vm.averager = (arr) => {
-           //  console.log(ret); 
-                //  console.log(ret.length); 
                 let ret = arr; 
                 let avgCol = 0
                 let i = 1
                 let notZero = 0
 
                 for(i; i < ret.length; i++){
-                   //  console.log(i + "   i");
-                   //  console.log(ret[i] + "  ret[i]");
-                   //  console.log(avgCol + "   avgCol"); 
                     if(ret[i] === 0){
 
                     }
@@ -153,16 +169,13 @@ function TwitterService ($http, $sce, $timeout) {
                        }
                     
                 }
-               //  console.log(avgCol);
-               //  console.log(notZero); 
                 let avg = avgCol / notZero; 
                 return avg; 
-               //  console.log(avg + "   average"); 
     }
 
-    vm.averageSorter = (num, returned) => {
+    vm.averageSorter = (num, state) => {
         let avg = num; 
-        let ret = returned; 
+        let ret = state; 
 
         if(avg > 0){
             let upAvg = avg * 100; 
@@ -170,22 +183,21 @@ function TwitterService ($http, $sce, $timeout) {
             console.log(avg + "  " + upAvg + "   " + ret[0]);
             console.log(typeof lightness + "  " + lightness);
             let color = `rgba(82, ${lightness}, 93, 0.6)`;  
-            simplemaps_usmap_mapdata.state_specific[ret[0]].color = color; 
+            simplemaps_usmap_mapdata.state_specific[ret].color = color; 
             simplemaps_usmap.refresh(); 
         }
          else if(avg < 0){
             let color = "rgba(255, 51, 81, 1)";
-            simplemaps_usmap_mapdata.state_specific[ret[0]].color = color; 
+            simplemaps_usmap_mapdata.state_specific[ret].color = color; 
             simplemaps_usmap.refresh(); 
          }
          else if(avg === 0){
              let color = "rgba(255, 210, 27, 1)";
-             simplemaps_usmap_mapdata.state_specific[ret[0]].color = color; 
+             simplemaps_usmap_mapdata.state_specific[ret].color = color; 
              simplemaps_usmap.refresh(); 
          }
     }
 
- 
     vm.tester = () => {
         return $http({
             medthod: "GET", 
@@ -197,63 +209,30 @@ function TwitterService ($http, $sce, $timeout) {
 
     setInterval(vm.tester, 5000); 
   
-
-    vm.getAllTweets = () => {
-        
-        let textSentimentApi = (usState, stateName) => {  
+    vm.getAllTweets = () => {  
             return $http({
             method: "GET",
-            url: "/search/all/" + usState + "/" + stateName,
-            headers: {
-                'Content-Type': undefined
-              }, 
-            data: {'test': stateName}
+            url: "/search/all/"
          }).then((response) => {
+            let stateKeys = Object.keys(states); 
+            let smallStateKeys = Object.keys(smallStates);
+            let stateAverage = 0; 
 
-            //  console.log(response.data);
-             
-             let sentimentCollector = [response.data.stateName];
-       
-             let averageArr = [];
-             
-             let promise = new Promise((resolve, reject) => {
-             for(let i = 0; i < response.data.text.length; i++){
-               averageArr = vm.loop(response.data.text[i], sentimentCollector);  
-             }
+            console.log(stateAverage);
+            for(let i = 0; i < stateKeys.length; i++){
+                let indStateSentiment = response.data[stateKeys[i]].sentiment[0];
+        
+                let state = indStateSentiment[0]
 
-            console.log(response);
-
-             //console.log(averageArr); 
-             resolve(averageArr);  
-             }).then((ret) => {
-                let avg = vm.averager(ret); 
-                vm.averageSorter(avg, ret);
-
-             }).catch((error) => {
-                 console.log(error); 
-                throw error; 
-             });
-
-            // console.log(promise);
-            return vm.tweets = response;                
+                indStateSentiment.shift();
+                stateAverage = vm.averager(indStateSentiment); 
+                console.log(stateAverage);
+                vm.averageSorter(stateAverage, state);  
+            }
 
          });
         }
-        
-        let t2sAlternative = () => {
-            let smallStateKeys = Object.keys(smallStates);//for testing 
-        let stateKeys = Object.keys(states); 
-        // console.log(smallStateKeys.length);
-        for(let i = 0; i < smallStateKeys.length; i++){
-
-            // let state = states.stateKeys[i]; 
-            textSentimentApi(smallStates[smallStateKeys[i]], smallStateKeys[i]); 
-
-
-        }
-    }
-    t2sAlternative();
-}
+    vm.getAllTweets();
 
   
    
@@ -307,24 +286,6 @@ function TwitterService ($http, $sce, $timeout) {
         });
     };
 
-    // vm.topEmotion = (emotionArr) => {
-    //     let counts = {};
-    //     let compare = 0;
-    //     let mostFrequent = 0;
-    //     for (let i = 0, len = stateEmotion.length; i < len; i++) {
-    //         let word = vm.stateEmotion[i];
-    //         if (counts[word] === undefined) {
-    //             counts[word] = 1;
-    //         } else {
-    //             counts[word] = counts[word] + 1;
-    //         }
-    //         if (counts[word] > compare) {
-    //             compare = counts[word];
-    //             mostFrequent = stateEmotion[i];
-    //         }
-    //     }
-    //     return mostFrequent;
-    // }
 }
     angular
         .module("App")

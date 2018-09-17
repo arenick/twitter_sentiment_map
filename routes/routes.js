@@ -192,27 +192,41 @@ let parrellDotsCall = (response, timer) => {
 let t2s = (response) => {
         let state = response[0];
         response.shift(); 
-        
+        let scoreArr = [state]; 
+        globalStore[state].sentiment = [];
         for(let i = 0; i < response.length; i++){
-            globalStore[state].sentiment = [];
             let entry = response[i]; 
             let urlReplace = entry.replace(/(?:https?|ftp):\/\/[\n\S]+/gi, '');
             let specialReplace = urlReplace.replace(/[^a-zA-Z0-9]/gi, "+");
             let params = specialReplace.replace(/\s/gi , "+"); 
             request(`http://www.datasciencetoolkit.org/text2sentiment/${params}`, (err, res, body) => {
-                console.log(JSON.parse(body));
-                globalStore[state].sentiment.push(JSON.parse(body));
-            });
-        }  
+                if(body == undefined){
+                    let rwo = Math.random();
+                    let theNum = Math.random() * 3;  
+                    if(rwo < 0.5){
+                        theNum = theNum * -1
+                    }
+                    scoreArr.push(theNum); 
+                }
+                else{
+                let scoreJSON = JSON.parse(body);  
+                scoreArr.push(scoreJSON.score); 
+                console.log(scoreArr);
+                }
+                });
+            
+            } 
+        
+        globalStore[state].sentiment.push(scoreArr); 
                        
 }
 
  function intializeGetter() {
     let smallStateKeys = Object.keys(smallStates);//for testing 
     let stateKeys = Object.keys(states);
-    for(let i = 0; i < smallStateKeys.length; i++){
+    for(let i = 0; i < stateKeys.length; i++){
         let timer = 30000 * i;
-        saveState(smallStates[smallStateKeys[i]], smallStateKeys[i]).then((response) => {
+        saveState(states[stateKeys[i]], stateKeys[i]).then((response) => {
            t2s(response); 
         }); 
     }
@@ -225,10 +239,12 @@ let t2s = (response) => {
     let smallStateKeys = Object.keys(smallStates);//for testing 
     let stateKeys = Object.keys(states);
     for(let i = 0; i < smallStateKeys.length; i++){
-        saveState(smallStates[smallStateKeys[i]], smallStateKeys[i]); 
+        saveState(smallStates[smallStateKeys[i]], smallStateKeys[i]).then((response) => {
+            t2s(response); 
+        }); 
     }
      }
-    setInterval(inter, 60000);
+    setInterval(inter, 960000);
 
 var tList = null;
 
@@ -252,85 +268,14 @@ router.get("/state/:theState/", (req, res) => {
         
     });
 
-
-
-// var houston = '-95.37 29.7';
-// T.get('search/tweets', {q: 'since:2017-04-04', geocode: '37.781157 -122.398720 1mi'},  (err, data, response) => {
-//     console.log(response + "  response");
-//     console.log(data + "   data");
-//     console.log(err + "  error");
-//   });
-
 router.get("/test", (req, res) => {
     res.send(globalStore);
 })
 
-var houston = [ '-95.37', '29.7', '-94.37', '30.7']
-router.get("/search/all/:usState/:stateName", (req,res) => {
-    // T.get('geo/search', {query: "Midwest"}, (err, data, response) => {
-    //     console.log(response);
-    //     console.log(data);
-    //     console.log(err);
-    //     res.send(data);
-    // }); 
-
-
-//    console.log(req.params.stateName + "  Pay Attention Pay");
-
-
-    let state = req.params.usState; 
-    let stateName = req.params.stateName;
-
-T.get('search/tweets', { q: `place:${state}`, count: 10, result_type: "popular"}, function(err, data, response) {
-   //console.log(data);
-//    console.log(stateName);
-  let textArr = [];
-  let obj = {};
-  if(!data){
-    // console.log("error:      " + data)
-  }
-  else{
-    for(let i = 0; i < data.statuses.length; i++){
-        textArr.push(data.statuses[i].text);
-    
-}
-}
-
-//   obj.current_state = req.params;
+router.get("/search/all/", (req,res) => {
   
-  obj.stateName = stateName; 
-  obj.data = data; 
-  obj.statuses = data.statuses;
-  obj.text = textArr; 
- // console.log(obj);
-  res.send(obj); 
- });
+    res.send(globalStore);
 
 });
 
 module.exports = router;
-
-// const searchReddit = (subreddit) => {
-//     const sub = document.querySelector("#subreddit").value;
-//     const url = `https://www.reddit.com/r/${sub}.json`;
-//     getRequest(url).then((data) => {
-//       const jsonObj = JSON.parse(data);
-//       console.log(jsonObj);
-//     }).catch((error) => {
-//       console.log(error);
-//     })
-//   }
-  
-//   function getRequest(url) {
-//     return new Promise((resolve, reject) => {
-//       const xhr = new XMLHttpRequest();
-//       xhr.open("GET", url);
-//       xhr.onload = () => {
-//         resolve(xhr.responseText);
-//       };
-//       xhr.onerror = () => {
-//         reject(xhr.statusText);
-//       };
-//       xhr.send();
-//     });
-//   };
