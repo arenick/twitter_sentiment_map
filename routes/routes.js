@@ -170,11 +170,12 @@ var globalStore = {
 
 let parrellDotsCall = (response, timer) => {
     //console.log(response);
-    setTimeout(function(){ let emotionArr = [] 
-    for(let i = 1; i < 6; i++){
-        let tweet = response[i];
+    setTimeout(function(){ 
+        let emotionArr = [] 
+        for(let i = 1; i < 6; i++){
+         let tweet = response[i];
 
-        emotion(tweet,"en", 'tS1eyB0dc50cFmtNbr5o5YjMDyxMdlCW7FKwuBaOzAo')
+            emotion(tweet,"en", 'tS1eyB0dc50cFmtNbr5o5YjMDyxMdlCW7FKwuBaOzAo')
         .then((response) => {
             console.log(response);
             emotionArr.push(response); 
@@ -188,13 +189,31 @@ let parrellDotsCall = (response, timer) => {
     }, timer);
 }
 
+let t2s = (response) => {
+        let state = response[0];
+        response.shift(); 
+        
+        for(let i = 0; i < response.length; i++){
+            globalStore[state].sentiment = [];
+            let entry = response[i]; 
+            let urlReplace = entry.replace(/(?:https?|ftp):\/\/[\n\S]+/gi, '');
+            let specialReplace = urlReplace.replace(/[^a-zA-Z0-9]/gi, "+");
+            let params = specialReplace.replace(/\s/gi , "+"); 
+            request(`http://www.datasciencetoolkit.org/text2sentiment/${params}`, (err, res, body) => {
+                console.log(JSON.parse(body));
+                globalStore[state].sentiment.push(JSON.parse(body));
+            });
+        }  
+                       
+}
+
  function intializeGetter() {
     let smallStateKeys = Object.keys(smallStates);//for testing 
     let stateKeys = Object.keys(states);
     for(let i = 0; i < smallStateKeys.length; i++){
         let timer = 30000 * i;
         saveState(smallStates[smallStateKeys[i]], smallStateKeys[i]).then((response) => {
-           parrellDotsCall(response, timer); 
+           t2s(response); 
         }); 
     }
  }
