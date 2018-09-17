@@ -6,7 +6,7 @@ const twitterMap = {
     controller: ["TwitterService", "$location", "$timeout", function(TwitterService, $location, $timeout) {
         simplemaps_usmap.load();
         const vm = this;
-        vm.tweets=TwitterService.obj;
+        // vm.tweets=TwitterService.obj;
         // console.log(vm.tweets);
 
         vm.getTweets = () => {
@@ -22,7 +22,6 @@ const twitterMap = {
             if(!stateName){
                 return; 
             }
-            // simplemaps_usmap_mapdata.state_specific[stateName].color = "yellow";
             simplemaps_usmap.refresh();
             TwitterService.getState(stateName).then((response) => {
                 let delayPull = function(){
