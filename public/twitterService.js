@@ -279,25 +279,28 @@ function TwitterService ($http, $sce, $timeout) {
         });
     };
 
-    // vm.topEmotion = (emotionArr) => {
-    //     let counts = {};
-    //     let compare = 0;
-    //     let mostFrequent = 0;
-    //     for (let i = 0, len = stateEmotion.length; i < len; i++) {
-    //         let word = vm.stateEmotion[i];
-    //         if (counts[word] === undefined) {
-    //             counts[word] = 1;
-    //         } else {
-    //             counts[word] = counts[word] + 1;
-    //         }
-    //         if (counts[word] > compare) {
-    //             compare = counts[word];
-    //             mostFrequent = stateEmotion[i];
-    //         }
-    //     }
-    //     return mostFrequent;
-    // }
+// To Embed Tweets- Still Being Worked Out
+
+    vm.embedTweets = (state) => {
+        let theState = states[state];
+        return $http({
+            method: "GET",
+            url: "/state/" + theState
+        }).then((response) => {
+            console.log(response.data.statuses[0].entities.urls[0].expanded_url)
+        //     let tweetUrl = response.data.statuses[0].entities.urls.expanded_url
+        //     return $http({
+        //         method: "GET",
+        //         url: `https://publish.twitter.com/oembed?url=${tweetUrl}`
+        //     }).then((response) => {
+        //         console.log(response)
+        //         return response
+        //     });
+        // })
+    }
+vm.embedTweets("MI");
 }
+
     angular
         .module("App")
         .service("TwitterService", TwitterService)
