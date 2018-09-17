@@ -89,14 +89,15 @@ body {
 /* This is the Styling for the Landing Page */
 .landingContainer {
     background-color: #1DA1F2;
+    display: flex;
     /* position: fixed;
     top: 50%;
     left: 50%;
     margin-left: -50px;
     margin-top: -100px; */
     /* position: relative; */
-    /* display: flex;
-    align-items: center; */
+    /* /* display: flex; */
+    /* align-items: center; */
     /* height: 100vh; */
     /* margin: 0 auto; */
     /* position: relative; */
@@ -107,13 +108,14 @@ body {
     left: 16%;
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-direction: column;
     text-align: center;
     background-color: white;
     border-radius: 50%;
     height: 250px;
     width: 250px;
-    margin: auto;
+    margin: 0 auto;
     border: 2px solid #1DA1F2;
     z-index: 999999;
 }
@@ -142,6 +144,12 @@ body {
     background-color: #fff;
     color: #1DA1F2;
     border: 2px #1DA1F2 solid;
+}
+
+.circlesContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .circle {
@@ -243,28 +251,28 @@ to {
 @media only screen and (min-width: 768px) {
 
     .whiteCircle {
-        position: absolute;
+        /* position: absolute;
         top: 23%;
-        left: 15%;
+        left: 15%; */
         height: 400px;
         width: 400px;
         border: 2px solid #1DA1F2;
-        margin: auto;
+        margin: 0 auto;
         z-index: 999999;
     }
 
     .circle {
         width: 400px;
         height: 400px;
-        position: absolute;
+        /* position: absolute;
         top: 23%;
-        left: 15%;
+        left: 15%; */
     }
 
     .landingBtn {
-        position: absolute;
+        /* position: absolute;
         top: 80%;
-        left: 20%;
+        left: 20%; */
         border-radius: 80px;
         height: 85px;
         width: 60%;
