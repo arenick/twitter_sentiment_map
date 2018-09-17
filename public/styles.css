@@ -208,6 +208,44 @@ body {
     border-radius:50%;
 }
 
+/* ng-view transitions */
+
+.view-animate {
+    /* background: linear-gradient(45deg, #3e3e3e, black 90%); */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    min-height: 100%;
+    opacity: 1;
+}
+
+.view-animate.ng-enter,
+.view-animate.ng-leave {
+    transition: all 4s ease-out;
+}
+.view-animate.ng-enter {
+    opacity: 0;
+    animation: 3s linear normal slide;
+}
+.view-animate.ng-enter-active {
+    opacity: 1;
+}
+/* .view-animate.ng-leave {
+    opacity: 1;
+    /* animation: 3s linear normal bounce; */
+/* } */
+.view-animate.ng-leave-active {
+    opacity: 0;
+} 
+@keyframes slide {
+0% {top: 100%;}
+20% {top: 80%;}
+40% {top: 60%;}
+60% {top: 40%;}
+80% {top: 20%;}
+100% {top: 0%;}
+}
 @media only screen and (min-width: 769px) {
 
 }
