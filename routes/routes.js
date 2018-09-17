@@ -1,6 +1,11 @@
 "use strict";
 const express = require("express");
 const router = express.Router();
+const https = require('https');
+const request = require('request'); 
+const pd = require('paralleldots');
+
+const emotion = require('paralleldots/apis/emotion');
 
 var Twit = require("twit");
 
@@ -133,26 +138,64 @@ var globalStore = {
  let iterator = 0; 
 
  let saveState =  ((key, stateName) => {
- T.get('search/tweets', {q: `place:${key}`, count: 10, result_type: "popular"}, function(err, data, response) {
-    let textArr = []; 
-    for(let i = 0; i < data.statuses.length; i++){
-        textArr.push(data.statuses[i].text); 
-    }
-    console.log(data.statuses[0].place.full_name);
-
-    globalStore[stateName].data = data; 
-    globalStore[stateName].statuses = data.statuses;
-    globalStore[stateName].text = textArr;
-    console.log(globalStore[stateName]);
+ return new Promise((resolve, reject) => {
+    T.get('search/tweets', {q: `place:${key}`, count: 10, result_type: "popular"}, function(err, data, response) {
+        
+        if(err){
+            console.log(err); 
+            reject(err); 
+            throw(err);
+        }
+        else{
+            //console.log(data);
+            let textArr = [stateName];
+            for(let i = 0; i < data.statuses.length; i++){
+                textArr.push(data.statuses[i].text); 
+            }
+            //console.log(textArr);
+            //console.log(data.statuses[0].place.full_name);
+        
+            globalStore[stateName].data = data; 
+            globalStore[stateName].statuses = data.statuses;
+            globalStore[stateName].text = textArr;
+            //console.log(globalStore[stateName]);
+            resolve(textArr);
+            return data; 
+        }
 
 });
+
  });
+ });
+
+let parrellDotsCall = (response, timer) => {
+    //console.log(response);
+    setTimeout(function(){ let emotionArr = [] 
+    for(let i = 1; i < 6; i++){
+        let tweet = response[i];
+
+        emotion(tweet,"en", 'tS1eyB0dc50cFmtNbr5o5YjMDyxMdlCW7FKwuBaOzAo')
+        .then((response) => {
+            console.log(response);
+            emotionArr.push(response); 
+        })
+        .catch((error) => {
+            console.log(error);
+        }); 
+
+        globalStore[response[0]].emotions = emotionArr; 
+};
+    }, timer);
+}
 
  function intializeGetter() {
     let smallStateKeys = Object.keys(smallStates);//for testing 
     let stateKeys = Object.keys(states);
     for(let i = 0; i < smallStateKeys.length; i++){
-        saveState(smallStates[smallStateKeys[i]], smallStateKeys[i]); 
+        let timer = 30000 * i;
+        saveState(smallStates[smallStateKeys[i]], smallStateKeys[i]).then((response) => {
+           parrellDotsCall(response, timer); 
+        }); 
     }
  }
  intializeGetter(); 
@@ -199,6 +242,9 @@ router.get("/state/:theState/", (req, res) => {
 //     console.log(err + "  error");
 //   });
 
+router.get("/test", (req, res) => {
+    res.send(globalStore);
+})
 
 var houston = [ '-95.37', '29.7', '-94.37', '30.7']
 router.get("/search/all/:usState/:stateName", (req,res) => {

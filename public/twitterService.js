@@ -189,7 +189,7 @@ function TwitterService ($http, $sce, $timeout) {
     vm.tester = () => {
         return $http({
             medthod: "GET", 
-            url: "/state/MI"
+            url: "/test"
         }).then((response) => {
             console.log(response); 
         })
