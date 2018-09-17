@@ -225,9 +225,9 @@ const states =  {
                 let state = indStateSentiment[0]
 
                 indStateSentiment.shift();
-                stateAverage = vm.averager(indStateSentiment); 
+                //stateAverage = vm.averager(indStateSentiment); 
                 console.log(stateAverage);
-                vm.averageSorter(stateAverage, state);  
+                //vm.averageSorter(stateAverage, state);  
             }
 
          });

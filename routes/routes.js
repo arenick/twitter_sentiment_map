@@ -135,6 +135,29 @@ var globalStore = {
     "selectedState": {}
 }
 
+let averager = (arr) => {
+
+    let ret = arr; 
+    let averagedState = ret[0];
+    ret.shift();
+    let avgCol = 0
+    let i = 1
+    let notZero = 0
+
+    for(i; i < ret.length; i++){
+        if(ret[i] === 0){
+
+        }
+        else{
+            avgCol  += ret[i];
+            notZero++
+           }
+        
+    }
+    let avg = avgCol / notZero; 
+    globalStore[averagedState].avg = avg; 
+}
+
  let iterator = 0; 
 
  let saveState =  ((key, stateName) => {
@@ -194,6 +217,7 @@ let t2s = (response) => {
         response.shift(); 
         let scoreArr = [state]; 
         globalStore[state].sentiment = [];
+        
         for(let i = 0; i < response.length; i++){
             let entry = response[i]; 
             let urlReplace = entry.replace(/(?:https?|ftp):\/\/[\n\S]+/gi, '');
@@ -217,16 +241,19 @@ let t2s = (response) => {
             
             } 
         
-        globalStore[state].sentiment.push(scoreArr); 
-                       
+        globalStore[state].sentiment = scoreArr; 
+        setTimeout(function(){
+            console.log(globalStore[state].sentiment)
+            averager(scoreArr);
+        }, 20000);       
 }
 
  function intializeGetter() {
     let smallStateKeys = Object.keys(smallStates);//for testing 
     let stateKeys = Object.keys(states);
-    for(let i = 0; i < stateKeys.length; i++){
+    for(let i = 0; i < smallStateKeys.length; i++){
         let timer = 30000 * i;
-        saveState(states[stateKeys[i]], stateKeys[i]).then((response) => {
+        saveState(smallStates[smallStateKeys[i]], smallStateKeys[i]).then((response) => {
            t2s(response); 
         }); 
     }
@@ -245,10 +272,6 @@ let t2s = (response) => {
     }
      }
     setInterval(inter, 960000);
-
-var tList = null;
-
-var sanFransico = [ '-122.75', '36.8', '-121.75', '37.8'];
 
 router.get("/state/:theState/", (req, res) => {
     // console.log(req); 
