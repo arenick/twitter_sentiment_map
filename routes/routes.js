@@ -260,7 +260,7 @@ let t2s = (response) => {
         }); 
     }
  }
- intializeGetter(); 
+ //intializeGetter(); 
 
  function inter() { 
      iterator++; 
@@ -273,7 +273,7 @@ let t2s = (response) => {
         }); 
     }
      }
-    setInterval(inter, 960000);
+   // setInterval(inter, 960000);
 
 router.get("/state/:theState/", (req, res) => {
     // console.log(req); 
