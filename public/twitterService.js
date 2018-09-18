@@ -152,26 +152,6 @@ const states =  {
         }
             return mostFrequent;
     }
- 
-    vm.averager = (arr) => {
-                let ret = arr; 
-                let avgCol = 0
-                let i = 1
-                let notZero = 0
-
-                for(i; i < ret.length; i++){
-                    if(ret[i] === 0){
-
-                    }
-                    else{
-                        avgCol  += ret[i];
-                        notZero++
-                       }
-                    
-                }
-                let avg = avgCol / notZero; 
-                return avg; 
-    }
 
     vm.averageSorter = (num, state) => {
         let avg = num; 
