@@ -1,6 +1,10 @@
 #map_inner > div:nth-child(2), #map_inner > div:nth-child(3), #map_inner > div:nth-child(4) {
     visibility: hidden !important;
 }
+
+html{
+    height: 100%; 
+}
 /* tspan{
     display: none;
 } */
@@ -8,11 +12,18 @@ body {
     margin: 0;
     padding: 0;
     font-family: Helvetica Neue,Helvetica,Arial,sans-serif; 
+    height: 100%; 
 }
 .twitterPage{
     background: #1DA1F2;
     height: 100vh;
 }
+
+.mapContainer {
+    display: flex;
+    flex-direction: column;
+}
+
 .us_map {
     justify-content: center;
 }
@@ -88,24 +99,16 @@ body {
 
 /* This is the Styling for the Landing Page */
 .landingContainer {
-    background-color: #1DA1F2;
-    display: flex;
-    /* position: fixed;
-    top: 50%;
-    left: 50%;
-    margin-left: -50px;
-    margin-top: -100px; */
-    /* position: relative; */
-    /* /* display: flex; */
-    /* align-items: center; */
-    /* height: 100vh; */
-    /* margin: 0 auto; */
-    /* position: relative; */
+    /* display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; */
+    position: relative;
+    height: 100%; 
 }
+
 .whiteCircle {
     position: absolute;
-    top: 31%;
-    left: 16%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -118,13 +121,18 @@ body {
     margin: 0 auto;
     border: 2px solid #1DA1F2;
     z-index: 999999;
+    top: 50%;
+    left: 50%;
+    transform: translate(-48%, -50%);
 }
+
 .landingH {
     font-size: 20px;
     font-weight: 400;
     color: black;
     margin: 0px;
 }
+
 .landingP {
     font-size: 20px;
     font-weight: 200;
@@ -133,9 +141,9 @@ body {
 }
 
 .landingBtn {
-    position: absolute;
+    /* position: absolute;
     top: 80%;
-    left: 20%;
+    left: 20%; */
     border-radius: 52px;
     height: 66px;
     width: 60%;
@@ -158,8 +166,8 @@ body {
     width: 300px;
     height: 300px;
     position: absolute;
-    top: 27%;
-    left: 10%;
+    /* top: 27%;
+    left: 10%; */
     opacity: 0;
     animation: scaleIn 4s infinite cubic-bezier(.36, .11, .89, .32);
 }
@@ -175,7 +183,9 @@ to {
 }
 }
 
-.colorSize{
+/* Color Key */
+
+.colorSize {
     /* border-radius:50%; */
     /* display: flex; */
     /* margin: 0 auto; */
@@ -189,12 +199,14 @@ to {
     opacity: .65;
     z-index: -99;
 }
+  
 .landingRed {
     background-color:  #ff3351;
     width: 90%;
     height: 150px;
     border-radius:50%;
 }
+  
 .landingRedOrange {
     background-color:  #ff471b;
     transform: rotate(25.7deg);
@@ -202,6 +214,7 @@ to {
     height: 150px;
     border-radius:50%;
 }
+  
 .landingOrange {
     background-color:  #ff951a;
     transform: rotate(51.4deg);
@@ -209,6 +222,7 @@ to {
     height: 150px;
     border-radius:50%;
 }
+  
 .landingYellow {
     background-color:  #ffd21b;
     transform: rotate(77.1deg);
@@ -216,6 +230,7 @@ to {
     height: 150px;
     border-radius:50%;
 }
+  
 .landingGreen{
     background-color:  #52b05d;
     transform: rotate(102.8deg);
@@ -223,6 +238,7 @@ to {
     height: 150px;
     border-radius:50%;
 }
+  
 .landingAqua {
     background-color:  #52e0bb;
     transform: rotate(128.5deg);
@@ -230,6 +246,7 @@ to {
     height: 150px;
     border-radius:50%;
 }
+  
 .landingBlue {
     background-color: #5d91e3;
     transform: rotate(154.2deg);
@@ -278,6 +295,37 @@ to {
 100% {top: 0%;}
 }
 
+/* iPhone 5/SE */
+@media only screen and (min-width: 320px) {
+    .circle {
+        top: 23%;
+        left: 3%;
+    }
+    .landingP {
+        font-size: 17px;
+    }
+    .landingBtn {
+        top: 77%;
+        position: absolute;
+    }
+}
+
+/* Galexy S5 */
+@media only screen and (min-width: 360px) {
+    .circle {
+        top: 27%;
+        left: 10%;
+    }
+}
+
+/* iPhone 6/7/8 */
+@media only screen and (min-width: 375px) {
+    .circle {
+        top: 27%;
+        left: 10%;
+  }
+
+/* iPad */
 @media only screen and (min-width: 768px) {
 
     .whiteCircle {
@@ -290,36 +338,79 @@ to {
         margin: 0 auto;
         z-index: 999999;
     }
-
     .circle {
-        width: 400px;
-        height: 400px;
-        /* position: absolute;
-        top: 23%;
-        left: 15%; */
+        top: 33%;
+        left: 27%;
+        width: 350px;
+        height: 350px;
     }
-
     .landingBtn {
-        /* position: absolute;
-        top: 80%;
-        left: 20%; */
         border-radius: 80px;
         height: 85px;
-        width: 60%;
-        justify-content: center;
-        font-size: 30px;
-        background-color: #fff;
-        color: #1DA1F2;
-        border: 2px #1DA1F2 solid;
+        font-size: 33px;
+        top: 78%;
+        position: absolute;
     }
-
-@media only screen and (min-width: 769px) {
-
     .landingP {
-        font-size: 27px;
-        font-weight: 200;
-        color: #1DA1F2;
-        padding: 10px;
+        font-size: 28px;
     }
 }
+
+/* Pixel 2 XL */
+@media only screen and (min-width: 411px) {
+    .circle {
+        top: 30%;
+        left: 14%;
+    }
+}
+  
+@media only screen and (min-width: 769px) {
+    .landingP {
+        font-size: 34px;
+    }
+    .circle {
+        top: 32%;
+        left: 26%;
+        width: 500px;
+        height: 500px;
+    }
+    .whiteCircle {
+        width: 500px;
+        height: 500px;
+    }
+    .landingBtn {
+        border-radius: 88px;
+        height: 96px;
+        font-size: 37px;
+        top: 82%;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    #mapContainer {
+        display: flex;
+        flex-direction: column;
+        width: 60%;
+    }
+    #map_inner {
+        padding: 20% 5% 5% 5%;
+    }
+} 
+
+/* iPad Pro */
+@media only screen and (min-width: 1023px) {
+  }
+
+/* small laptop */
+@media only screen and (min-width: 1440px) {
+    .circle {
+        top: 20%;
+        left: 32.5%;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
 }
