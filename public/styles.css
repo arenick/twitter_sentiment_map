@@ -46,7 +46,8 @@ body {
     align-items: center;
     margin: 2%;
     text-align: center;
-    font-size: 10px;
+    font-size: 30px;
+    font-weight: 200;
     color: white;
     text-align: center;
 }
@@ -69,8 +70,8 @@ body {
 
 .emotion-circles{
     display: flex;
-    width: 15px;
-    height: 15px;
+    width: 40px;
+    height: 40px;
     flex-direction: column;
     border-radius: 50%;
 }
@@ -264,6 +265,7 @@ to {
     right: 0;
     min-height: 100%;
     opacity: 1;
+    height: 100%;
 }
 
 .view-animate.ng-enter,
@@ -334,9 +336,6 @@ to {
         left: 15%; */
         height: 400px;
         width: 400px;
-        border: 2px solid #1DA1F2;
-        margin: 0 auto;
-        z-index: 999999;
     }
     .circle {
         top: 33%;
@@ -363,28 +362,6 @@ to {
         left: 14%;
     }
 }
-  
-@media only screen and (min-width: 769px) {
-    .landingP {
-        font-size: 34px;
-    }
-    .circle {
-        top: 32%;
-        left: 26%;
-        width: 500px;
-        height: 500px;
-    }
-    .whiteCircle {
-        width: 500px;
-        height: 500px;
-    }
-    .landingBtn {
-        border-radius: 88px;
-        height: 96px;
-        font-size: 37px;
-        top: 82%;
-    }
-}
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
@@ -405,8 +382,8 @@ to {
 /* small laptop */
 @media only screen and (min-width: 1440px) {
     .circle {
-        top: 20%;
-        left: 32.5%;
+        top: 33%;
+        left: 39.5%;
     }
 }
 
