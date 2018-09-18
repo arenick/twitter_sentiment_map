@@ -93,7 +93,7 @@ const twitterMap = {
                             break; 
                     }
                 }
-                $timeout(delayPull, 500);
+                $timeout(delayPull, 1500);
                 // vm.tweetStuff = response.text;
             });
         });
