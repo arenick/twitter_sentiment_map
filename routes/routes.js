@@ -10,12 +10,13 @@ const emotion = require('paralleldots/apis/emotion');
 var Twit = require("twit");
 
   var T = new Twit({
-    consumer_key: 'B1Hr40cLZwaiw7p0diXCPJGX6',
-    consumer_secret: "gpDA2znGh6lHUaYNb3zDOb5xbkDCTCOCNWAf2GMwEmGQxYMU6I",
-    access_token: "1038061974414942209-wTSKFGLAb0fbQK95Ep4pMmbLTUPOUD",
-    access_token_secret: "PHnyYbziaTvWGaR2NP6cRcjgEcZwa83USrJ8M286sZ8xg",
-     strictSSL: true,
+    consumer_key: process.env.consumer_key,
+    consumer_secret: process.env.consumer_secret,
+    access_token: process.env.access_token,
+    access_token_secret: process.env.access_token_secret,
+    strictSSL: true,
  });
+
 
  const states =  {
     "AL": "288de3df481163e8", 
