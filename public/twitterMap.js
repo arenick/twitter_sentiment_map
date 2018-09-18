@@ -6,6 +6,15 @@ const twitterMap = {
     controller: ["TwitterService", "$location", "$timeout", function(TwitterService, $location, $timeout) {
         simplemaps_usmap.load();
         const vm = this;
+
+        twttr.ready(function (twttr) {
+            TwitterService.embedTweets("MI").then((response) => {
+               for (let tweetId of response.data.statuses) {
+                twttr.widgets.createTweet(tweetId.id_str, document.getElementById('container'), { theme: 'dark' });
+               } 
+            });
+        });
+        
         // vm.tweets=TwitterService.obj;
         // console.log(vm.tweets);
 
