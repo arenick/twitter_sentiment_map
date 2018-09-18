@@ -308,9 +308,6 @@ to {
         top: 77%;
         position: absolute;
     }
-    .whiteCircle {
-        transform: translate(-50%, -50%);
-    }
 }
 
 /* Galexy S5 */
