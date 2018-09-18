@@ -179,6 +179,17 @@ const states =  {
     }
 //  this function populates the colors on the map upon loading
 
+    vm.tester = () => {
+        return $http({
+            medthod: "GET", 
+            url: "/search/all"
+        }).then((response) => {
+            console.log(response); 
+        })
+    }
+
+    setInterval(vm.tester, 5000); 
+  
     vm.getAllTweets = () => {  
             return $http({
             method: "GET",
