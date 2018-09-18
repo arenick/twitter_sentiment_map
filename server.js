@@ -1,7 +1,7 @@
 "use strict";
-require("dotenv").config();
 const express = require("express");
 const app = express();
+require("dotenv").config();
 const twit = require("./routes/routes");
 
 app.use(express.static("./public"));

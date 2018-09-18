@@ -1,15 +1,23 @@
 <div class="landingContainer">
-            <div class ="whiteCircle">
-                    <p class="landingH">Twitter Emotions</p>
-                    <p class="landingP">Have you ever wondered what people are feeling?</p>
-                    <p class="landingP">Twitter provides an interesting view into emotions. Our map displays primary emotions in each state.</p>
-                    <button class="landingBtn" ng-click="$ctrl.redirect();">Search</button>
-                </div>
-        <div class="landingRed colorSize"></div>
+    <div class ="whiteCircle">
+        <p class="landingP">How do Americans feel right now based on the trending Tweets in each state?</p>
+        <button class="landingBtn" ng-click="$ctrl.redirect();">Search</button>
+    </div>
+    <div id="outerContainer" class="circlesContainer">
+        <div id="container">
+            <div class="circle" style="animation-delay: -3s"></div>
+            <div class="circle" style="animation-delay: -2s"></div>
+            <div class="circle" style="animation-delay: -1s"></div>
+            <div class="circle" style="animation-delay: 0s"></div>   
+        </div>
+    </div>
+</div>
+                
+        <!-- <div class="landingRed colorSize"></div>
         <div class="landingRedOrange colorSize"></div>
         <div class="landingOrange colorSize"></div>
         <div class="landingYellow colorSize"></div>
         <div class="landingGreen colorSize"></div>
         <div class="landingAqua colorSize"></div>
-        <div class="landingBlue colorSize"></div>
-    </div>
+        <div class="landingBlue colorSize"></div> -->
+    <!-- </div> -->

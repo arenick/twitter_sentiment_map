@@ -31,12 +31,11 @@ var globalStore = {}
         console.log(globalStore);   
     })
      }
-    setInterval(intervalFunc,1500);
+    //setInterval(intervalFunc,1500);
 
 var tList = null;
 
 var sanFransico = [ '-122.75', '36.8', '-121.75', '37.8'];
-
 
 // const states =  {
 //     "Alabama": "288de3df481163e8", 
@@ -113,27 +112,7 @@ router.get("/state/:theState", (req, res) => {
     })
 });
 
-
-// var houston = '-95.37 29.7';
-// T.get('search/tweets', {q: 'since:2017-04-04', geocode: '37.781157 -122.398720 1mi'},  (err, data, response) => {
-//     console.log(response + "  response");
-//     console.log(data + "   data");
-//     console.log(err + "  error");
-//   });
-
-
-var houston = [ '-95.37', '29.7', '-94.37', '30.7']
 router.post("/search/all/:usState/:stateName", (req,res) => {
-    // T.get('geo/search', {query: "Midwest"}, (err, data, response) => {
-    //     console.log(response);
-    //     console.log(data);
-    //     console.log(err);
-    //     res.send(data);
-    // }); 
-
-
-//    console.log(req.params.stateName + "  Pay Attention Pay");
-
 
     let state = req.params.usState; 
     let stateName = req.params.stateName;
@@ -152,8 +131,6 @@ T.get('search/tweets', { q: `place:${state}`, count: 10, result_type: "popular"}
     
 }
 }
-
-//   obj.current_state = req.params;
   
   obj.stateName = stateName; 
   obj.data = data; 

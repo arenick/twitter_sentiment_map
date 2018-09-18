@@ -10,8 +10,15 @@ body {
     font-family: Helvetica Neue,Helvetica,Arial,sans-serif; 
 }
 .twitterPage{
-    background: #6940ef;
+    background: #1DA1F2;
     height: 100vh;
+}
+.us_map {
+    justify-content: center;
+}
+
+#map_inner {
+    padding: 15px 0px 0px 0px;
 }
 
 .colorGuide{
@@ -33,10 +40,9 @@ body {
     text-align: center;
 }
 
-.tweets, .ng-scope{
+.tweets{
     color: white;
     font-size: 15px;
-    padding: 0px 20px 20px 20px;
 }
 
 .discover{
@@ -82,67 +88,91 @@ body {
 
 /* This is the Styling for the Landing Page */
 .landingContainer {
+    background-color: #1DA1F2;
+    display: flex;
     /* position: fixed;
     top: 50%;
     left: 50%;
     margin-left: -50px;
     margin-top: -100px; */
     /* position: relative; */
-    /* display: flex;
-    align-items: center; */
+    /* /* display: flex; */
+    /* align-items: center; */
     /* height: 100vh; */
     /* margin: 0 auto; */
     /* position: relative; */
 }
 .whiteCircle {
-    position: fixed;
-    top: 33%;
-    left: 17%;
+    position: absolute;
+    top: 31%;
+    left: 16%;
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-direction: column;
     text-align: center;
     background-color: white;
     border-radius: 50%;
     height: 250px;
     width: 250px;
-    margin: auto;
+    margin: 0 auto;
+    border: 2px solid #1DA1F2;
     z-index: 999999;
 }
 .landingH {
     font-size: 20px;
-    font-weight: 800;
+    font-weight: 400;
     color: black;
+    margin: 0px;
 }
 .landingP {
-    font-size: 12px;
-    color: black;
-}
-.landingBtn{
-    position: absolute;
-    top: 89%;
-    left: 20%;
-    margin: 0 auto;
-    border-radius: 10px;
-    height: 30px;
-    width: 60%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    background-color: blue;
-    color: white;
-    border-style: none;
+    font-size: 20px;
+    font-weight: 200;
+    color: #1DA1F2;
+    padding: 10px;
 }
 
-.colorWheel {
-    /* position: relative;
-    height: 100vh; */
-    /* top: 50%;
-    left: 50%; */
-    /* position: fixed; */
-    /* top: 50%;
-    left: 50%; */
+.landingBtn {
+    position: absolute;
+    top: 80%;
+    left: 20%;
+    border-radius: 52px;
+    height: 66px;
+    width: 60%;
+    justify-content: center;
+    font-size: 18px;
+    background-color: #fff;
+    color: #1DA1F2;
+    border: 2px #1DA1F2 solid;
+}
+
+.circlesContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.circle {
+    border-radius: 50%;
+    background-color: deepskyblue;
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    top: 27%;
+    left: 10%;
+    opacity: 0;
+    animation: scaleIn 4s infinite cubic-bezier(.36, .11, .89, .32);
+}
+
+@keyframes scaleIn {
+from {
+    transform: scale(.5, .5);
+    opacity: .5;
+}
+to {
+    transform: scale(2.5, 2.5);
+    opacity: 0;
+}
 }
 
 .colorSize{
@@ -208,6 +238,88 @@ body {
     border-radius:50%;
 }
 
+/* ng-view Transitions */
+
+.view-animate {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    min-height: 100%;
+    opacity: 1;
+}
+
+.view-animate.ng-enter,
+.view-animate.ng-leave {
+    transition: all 6s ease-out;
+}
+.view-animate.ng-enter {
+    opacity: 0;
+    animation: 6s linear normal slide;
+}
+.view-animate.ng-enter-active {
+    opacity: 1;
+}
+.view-animate.ng-leave-active {
+    opacity: 0;
+} 
+
+@keyframes slide {
+0% {top: 100%;}
+10% {top: 90%;}
+20% {top: 80%;}
+30% {top: 70%;}
+40% {top: 60%;}
+50% {top: 50%;}
+60% {top: 40%;}
+70% {top: 30%;}
+80% {top: 20%;}
+90% {top: 10%;}
+100% {top: 0%;}
+}
+
+@media only screen and (min-width: 768px) {
+
+    .whiteCircle {
+        /* position: absolute;
+        top: 23%;
+        left: 15%; */
+        height: 400px;
+        width: 400px;
+        border: 2px solid #1DA1F2;
+        margin: 0 auto;
+        z-index: 999999;
+    }
+
+    .circle {
+        width: 400px;
+        height: 400px;
+        /* position: absolute;
+        top: 23%;
+        left: 15%; */
+    }
+
+    .landingBtn {
+        /* position: absolute;
+        top: 80%;
+        left: 20%; */
+        border-radius: 80px;
+        height: 85px;
+        width: 60%;
+        justify-content: center;
+        font-size: 30px;
+        background-color: #fff;
+        color: #1DA1F2;
+        border: 2px #1DA1F2 solid;
+    }
+
 @media only screen and (min-width: 769px) {
 
+    .landingP {
+        font-size: 27px;
+        font-weight: 200;
+        color: #1DA1F2;
+        padding: 10px;
+    }
+}
 }
