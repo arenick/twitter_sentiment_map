@@ -16,6 +16,8 @@ body {
 }
 .twitterPage{
     background: #1DA1F2;
+    color: white;
+    text-align: center;
     /* height: 100vh; */
 }
 
@@ -66,6 +68,8 @@ body {
 
 .discover_text {
     font-size: 18px;
+    margin: 10px 5px 0px 5px;
+    border-bottom: 3px solid white;
 }
 
 .emotion-circles{
@@ -106,6 +110,9 @@ body {
 
 .landingContainer {
     position: relative;
+ 
+    background-color: white;
+
     height: 250px;
     width: 250px;
     transform: translate(-50%, -50%);
@@ -276,6 +283,7 @@ to {
     min-height: 100%;
     opacity: 1;
     height: 100%;
+    background: #1DA1F2;
 }
 
 .view-animate.ng-enter,
@@ -284,7 +292,9 @@ to {
 }
 .view-animate.ng-enter {
     opacity: 0;
+
     animation: 2s linear normal slide;
+
 }
 .view-animate.ng-enter-active {
     opacity: 1;
@@ -397,5 +407,6 @@ to {
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
+    
 
 }
