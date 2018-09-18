@@ -17,7 +17,6 @@ var Twit = require("twit");
      strictSSL: true,
  });
 
-
  const states =  {
     "AL": "288de3df481163e8", 
     "AK": "07179f4fe0500a32",
