@@ -16,7 +16,7 @@ body {
 }
 .twitterPage{
     background: #1DA1F2;
-    height: 100vh;
+    /* height: 100vh; */
 }
 
 .mapContainer {
@@ -296,7 +296,13 @@ to {
 90% {top: 10%;}
 100% {top: 0%;}
 }
-
+#container {
+    display: flex;
+    width: 90%;
+    flex-direction: column;
+    margin: 0 auto;
+    align-items: center;
+}
 /* iPhone 5/SE */
 @media only screen and (min-width: 320px) {
     .circle {
