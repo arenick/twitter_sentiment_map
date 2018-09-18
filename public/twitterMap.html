@@ -1,10 +1,24 @@
 <section class="twitterPage">
-        <p class="discover_text">Click on state to see various trending Tweets</p>
     <section id="mapContainer">
+        <p class="discover_text">Click on state to see various trending Tweets</p>
         <div class="us_map" id="map"></div>
+        <div class="colorGuide">
+                <div class="guideItem">
+                        <div class="emotion-circles" id="bored"></div>
+                    <p class="guideText">Positive</p>
+                </div>    
+                <div class="guideItem">
+                        <div class="emotion-circles" id="happy"></div>
+                    <p class="guideText">Neutral</p>
+                </div>
+                <div class="guideItem">
+                        <div class="emotion-circles" id="angry"></div>
+                    <p class="guideText">Negative</p>
+                </div>
+        </div>
         <div id="container"></div>
     </section>
-        <div class="colorGuide">
+        <!-- <div class="colorGuide"> -->
             <!-- <div class="guideItem">
                     <div class="emotion-circles" id="sad"></div>
                 <p>Sad</p>
@@ -15,7 +29,7 @@
                 <p>Fear</p>
             </div> -->
 
-            <div class="guideItem">
+            <!-- <div class="guideItem">
                     <div class="emotion-circles" id="bored"></div>
                 <p class="guideText">Positive</p>
             </div>
@@ -23,7 +37,7 @@
             <div class="guideItem">
                     <div class="emotion-circles" id="happy"></div>
                 <p class="guideText">Neutral</p>
-            </div>
+            </div> -->
 
             <!-- <div class="guideItem">
                     <div class="emotion-circles" id="excited"></div>
@@ -35,11 +49,11 @@
                 <p>Sarcasm</p>
             </div> -->
 
-            <div class="guideItem">
-                    <div class="emotion-circles" id="angry"></div>
-                <p class="guideText">Negative</p>
-            </div>
-        </div>
+            <!-- <div class="guideItem"> -->
+                    <!-- <div class="emotion-circles" id="angry"></div> -->
+                <!-- <p class="guideText">Negative</p> -->
+            <!-- </div> -->
+        <!-- </div> -->
     <!-- <section class="incomingTweets"> -->
             <!-- <div id="container"></div> -->
         <!-- <p class="tweets" ng-repeat="tweets in $ctrl.tweetStuff">{{tweets}}</p> -->

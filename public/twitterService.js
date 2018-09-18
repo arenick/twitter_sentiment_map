@@ -177,18 +177,8 @@ const states =  {
              simplemaps_usmap.refresh_state(ret)
          }
     }
+//  this function populates the colors on the map upon loading
 
-    vm.tester = () => {
-        return $http({
-            medthod: "GET", 
-            url: "/test"
-        }).then((response) => {
-            // console.log(response); 
-        })
-    }
-
-    setInterval(vm.tester, 5000); 
-  
     vm.getAllTweets = () => {  
             return $http({
             method: "GET",
@@ -196,7 +186,6 @@ const states =  {
          }).then((response) => {
             let stateKeys = Object.keys(states); 
             let smallStateKeys = Object.keys(smallStates);
-
            
             for(let i = 0; i < smallStateKeys.length; i++){
                 let stateAvg = response.data[smallStateKeys[i]].avg; 
@@ -204,7 +193,6 @@ const states =  {
                 //stateAverage = vm.averager(indStateSentiment); 
                 vm.averageSorter(stateAvg, state);  
             }
-
          });
         }
     vm.getAllTweets();
@@ -235,16 +223,12 @@ const states =  {
                 return response;
             });
             return p;
-            // vm.topEmotion(vm.stateEm);
         });
-        // return twitterCall;
     };
-    // vm.stateEm = [];
+    // loopThroughTweets is accessing the text-to-sentiment api
     vm.stateData = { emotion: [], text: []};
     vm.loopThroughTweets = (tweet) => {
         return $http({
-            // "async": true,
-            // "crossDomain": true,
             url: "https://apis.paralleldots.com/v3/emotion",
             method: "POST",
             headers: {
@@ -270,19 +254,8 @@ const states =  {
         }).then((response) => {
             console.log(response);
             return response;
-            // console.log(response.data.statuses[0].entities.urls[0].expanded_url)
-            // let tweetUrl = response.data.statuses[0].entities.urls[0].expanded_url
-            // return $http({
-            //     method: "GET",
-            //     url: `https://publish.twitter.com/oembed?url=${tweetUrl}`
-            // }).then((response) => {
-            //     console.log(response)
-            //     return response
-            // });
-        
         })
     }
-// vm.embedTweets("MI");
 }
 
     angular
