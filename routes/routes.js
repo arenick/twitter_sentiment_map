@@ -255,8 +255,7 @@ let t2s = (response) => {
         }); 
     }
  }
- //intializeGetter(); -uncomment out in production
-
+ intializeGetter(); 
  function inter() { 
      iterator++; 
     let smallStateKeys = Object.keys(smallStates);//for testing 
@@ -267,7 +266,7 @@ let t2s = (response) => {
         }); 
     }
      }
-   // setInterval(inter, 960000); -uncomment out in production
+   setInterval(inter, 960000); 
 
 router.get("/state/:theState/", (req, res) => {
     let code = req.params.theState

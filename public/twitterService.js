@@ -179,7 +179,6 @@ const states =  {
     }
 //  this function populates the colors on the map upon loading
 
-<<<<<<< HEAD
     vm.tester = () => {
         return $http({
             medthod: "GET", 
@@ -191,8 +190,6 @@ const states =  {
 
     setInterval(vm.tester, 5000); 
   
-=======
->>>>>>> ec68b7cc71575b3f2717faef8d9387b4b6d52960
     vm.getAllTweets = () => {  
             return $http({
             method: "GET",
