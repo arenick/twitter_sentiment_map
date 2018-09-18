@@ -80,7 +80,7 @@ const smallStates = {
     "MI": "67d92742f1ebf307",
 }
 
-
+// these objects store all the tweets for each state. refreshes every 16 minutes
 var globalStore = {
     "AL": {}, 
     "AK": {},
@@ -135,6 +135,8 @@ var globalStore = {
     "selectedState": {}
 }
 
+// averages the scores for all 5 tweets and returns an overall score for each state
+
 let averager = (arr) => {
 
     let ret = arr; 
@@ -152,12 +154,9 @@ let averager = (arr) => {
             avgCol  += ret[i];
             notZero++
            }
-        
-    }
-    
+        }
     let avg = avgCol / notZero; 
     globalStore[averagedState].avg = avg; 
-    console.log(averagedState + "  " + avg); 
 }
 
  let iterator = 0; 
@@ -172,18 +171,14 @@ let averager = (arr) => {
             // throw(err);
         }
         else{
-            //console.log(data);
             let textArr = [stateName];
             for(let i = 0; i < data.statuses.length; i++){
                 textArr.push(data.statuses[i].text); 
             }
-            //console.log(textArr);
-            //console.log(data.statuses[0].place.full_name);
         
             globalStore[stateName].data = data; 
             globalStore[stateName].statuses = data.statuses;
             globalStore[stateName].text = textArr;
-            //console.log(globalStore[stateName]);
             resolve(textArr);
             return data; 
         }
@@ -260,11 +255,10 @@ let t2s = (response) => {
         }); 
     }
  }
- //intializeGetter(); 
+ //intializeGetter(); -uncomment out in production
 
  function inter() { 
      iterator++; 
-    console.log(`Hello!!!!   ${iterator}`);
     let smallStateKeys = Object.keys(smallStates);//for testing 
     let stateKeys = Object.keys(states);
     for(let i = 0; i < smallStateKeys.length; i++){
@@ -273,10 +267,9 @@ let t2s = (response) => {
         }); 
     }
      }
-   // setInterval(inter, 960000);
+   // setInterval(inter, 960000); -uncomment out in production
 
 router.get("/state/:theState/", (req, res) => {
-    // console.log(req); 
     let code = req.params.theState
     T.get('search/tweets', {q: `place:${code}`, count: 5, result_type: "popular"}, function(err, data, response) {
         let textArr = []; 
@@ -298,8 +291,7 @@ router.get("/test", (req, res) => {
 })
 
 router.get("/search/all/", (req,res) => {
-  
-    res.send(globalStore);
+      res.send(globalStore);
 
 });
 

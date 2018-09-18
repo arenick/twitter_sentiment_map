@@ -7,17 +7,6 @@ const twitterMap = {
         simplemaps_usmap.load();
         const vm = this;
 
-        // twttr.ready(function (twttr) {
-        //     TwitterService.embedTweets("MI").then((response) => {
-        //        for (let tweetId of response.data.statuses) {
-        //         twttr.widgets.createTweet(tweetId.id_str, document.getElementById('container'), { theme: 'dark' });
-        //        } 
-        //     });
-        // });
-        
-        // vm.tweets=TwitterService.obj;
-        // console.log(vm.tweets);
-
         vm.getTweets = () => {
             TwitterService.getAllTweets().then((response) => {
                 console.log(response);
