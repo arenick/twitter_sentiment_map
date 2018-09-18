@@ -160,8 +160,8 @@ const states =  {
         if(avg > 0){
             let upAvg = avg * 100; 
             let lightness = 180 - (Math.log(avg) * 2); 
-            console.log(avg + "  " + upAvg + "   " + ret);
-            console.log(typeof lightness + "  " + lightness);
+            // console.log(avg + "  " + upAvg + "   " + ret);
+            // console.log(typeof lightness + "  " + lightness);
             let color = `rgba(82, ${lightness}, 93, 0.6)`;  
             simplemaps_usmap_mapdata.state_specific[ret].color = color; 
             simplemaps_usmap.refresh_state(ret)
@@ -177,7 +177,9 @@ const states =  {
              simplemaps_usmap.refresh_state(ret)
          }
     }
+//  this function populates the colors on the map upon loading
 
+<<<<<<< HEAD
     vm.tester = () => {
         return $http({
             medthod: "GET", 
@@ -189,6 +191,8 @@ const states =  {
 
     setInterval(vm.tester, 5000); 
   
+=======
+>>>>>>> ec68b7cc71575b3f2717faef8d9387b4b6d52960
     vm.getAllTweets = () => {  
             return $http({
             method: "GET",
@@ -196,7 +200,6 @@ const states =  {
          }).then((response) => {
             let stateKeys = Object.keys(states); 
             let smallStateKeys = Object.keys(smallStates);
-
            
             for(let i = 0; i < smallStateKeys.length; i++){
                 let stateAvg = response.data[smallStateKeys[i]].avg; 
@@ -204,7 +207,6 @@ const states =  {
                 //stateAverage = vm.averager(indStateSentiment); 
                 vm.averageSorter(stateAvg, state);  
             }
-
          });
         }
     vm.getAllTweets();
@@ -235,16 +237,12 @@ const states =  {
                 return response;
             });
             return p;
-            // vm.topEmotion(vm.stateEm);
         });
-        // return twitterCall;
     };
-    // vm.stateEm = [];
+    // loopThroughTweets is accessing the text-to-sentiment api
     vm.stateData = { emotion: [], text: []};
     vm.loopThroughTweets = (tweet) => {
         return $http({
-            // "async": true,
-            // "crossDomain": true,
             url: "https://apis.paralleldots.com/v3/emotion",
             method: "POST",
             headers: {
@@ -261,26 +259,17 @@ const states =  {
         });
     };
 
-// To Embed Tweets- Still Being Worked Out
-
+// To Embed Tweets
     vm.embedTweets = (state) => {
         let theState = states[state];
         return $http({
             method: "GET",
             url: "/state/" + theState
         }).then((response) => {
-            console.log(response.data.statuses[0].entities.urls[0].expanded_url)
-        //     let tweetUrl = response.data.statuses[0].entities.urls.expanded_url
-        //     return $http({
-        //         method: "GET",
-        //         url: `https://publish.twitter.com/oembed?url=${tweetUrl}`
-        //     }).then((response) => {
-        //         console.log(response)
-        //         return response
-        //     });
+            console.log(response);
+            return response;
         })
     }
-vm.embedTweets("MI");
 }
 
     angular
