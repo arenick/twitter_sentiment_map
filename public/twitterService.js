@@ -287,18 +287,21 @@ function TwitterService ($http, $sce, $timeout) {
             method: "GET",
             url: "/state/" + theState
         }).then((response) => {
-            console.log(response.data.statuses[0].entities.urls[0].expanded_url)
-        //     let tweetUrl = response.data.statuses[0].entities.urls.expanded_url
-        //     return $http({
-        //         method: "GET",
-        //         url: `https://publish.twitter.com/oembed?url=${tweetUrl}`
-        //     }).then((response) => {
-        //         console.log(response)
-        //         return response
-        //     });
+            console.log(response);
+            return response;
+            // console.log(response.data.statuses[0].entities.urls[0].expanded_url)
+            // let tweetUrl = response.data.statuses[0].entities.urls[0].expanded_url
+            // return $http({
+            //     method: "GET",
+            //     url: `https://publish.twitter.com/oembed?url=${tweetUrl}`
+            // }).then((response) => {
+            //     console.log(response)
+            //     return response
+            // });
+        
         })
     }
-vm.embedTweets("MI");
+// vm.embedTweets("MI");
 }
 
     angular
