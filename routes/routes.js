@@ -169,7 +169,7 @@ let averager = (arr) => {
         if(err){
             console.log(err); 
             reject(err); 
-            throw(err);
+            // throw(err);
         }
         else{
             //console.log(data);
