@@ -78,7 +78,7 @@ const twitterMap = {
                             break; 
                     }
                 }
-                $timeout(delayPull, 250);
+                $timeout(delayPull, 500);
                 vm.tweetStuff = response.text;
             });
         });

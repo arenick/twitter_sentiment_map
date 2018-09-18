@@ -180,21 +180,21 @@ const states =  {
         if(avg > 0){
             let upAvg = avg * 100; 
             let lightness = 180 - (Math.log(avg) * 2); 
-            console.log(avg + "  " + upAvg + "   " + ret[0]);
+            console.log(avg + "  " + upAvg + "   " + ret);
             console.log(typeof lightness + "  " + lightness);
             let color = `rgba(82, ${lightness}, 93, 0.6)`;  
             simplemaps_usmap_mapdata.state_specific[ret].color = color; 
-            simplemaps_usmap.refresh(); 
+            simplemaps_usmap.refresh_state(ret)
         }
          else if(avg < 0){
             let color = "rgba(255, 51, 81, 1)";
             simplemaps_usmap_mapdata.state_specific[ret].color = color; 
-            simplemaps_usmap.refresh(); 
+            simplemaps_usmap.refresh_state(ret)
          }
          else if(avg === 0){
              let color = "rgba(255, 210, 27, 1)";
              simplemaps_usmap_mapdata.state_specific[ret].color = color; 
-             simplemaps_usmap.refresh(); 
+             simplemaps_usmap.refresh_state(ret)
          }
     }
 
@@ -216,18 +216,13 @@ const states =  {
          }).then((response) => {
             let stateKeys = Object.keys(states); 
             let smallStateKeys = Object.keys(smallStates);
-            let stateAverage = 0; 
 
-            console.log(stateAverage);
+           
             for(let i = 0; i < stateKeys.length; i++){
-                let indStateSentiment = response.data[stateKeys[i]].sentiment[0];
-        
-                let state = indStateSentiment[0]
-
-                indStateSentiment.shift();
+                let stateAvg = response.data[stateKeys[i]].avg; 
+                let state = stateKeys[i]; 
                 //stateAverage = vm.averager(indStateSentiment); 
-                console.log(stateAverage);
-                //vm.averageSorter(stateAverage, state);  
+                vm.averageSorter(stateAvg, state);  
             }
 
          });

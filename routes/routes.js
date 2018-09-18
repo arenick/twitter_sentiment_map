@@ -154,8 +154,10 @@ let averager = (arr) => {
            }
         
     }
+    
     let avg = avgCol / notZero; 
     globalStore[averagedState].avg = avg; 
+    console.log(averagedState + "  " + avg); 
 }
 
  let iterator = 0; 
@@ -245,15 +247,15 @@ let t2s = (response) => {
         setTimeout(function(){
             console.log(globalStore[state].sentiment)
             averager(scoreArr);
-        }, 20000);       
+        }, 10000);       
 }
 
  function intializeGetter() {
     let smallStateKeys = Object.keys(smallStates);//for testing 
     let stateKeys = Object.keys(states);
-    for(let i = 0; i < smallStateKeys.length; i++){
+    for(let i = 0; i < stateKeys.length; i++){
         let timer = 30000 * i;
-        saveState(smallStates[smallStateKeys[i]], smallStateKeys[i]).then((response) => {
+        saveState(states[stateKeys[i]], stateKeys[i]).then((response) => {
            t2s(response); 
         }); 
     }
