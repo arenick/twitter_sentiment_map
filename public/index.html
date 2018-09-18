@@ -10,12 +10,11 @@
 <body>
     <!-- <a href="#!/landing">Landing</a>
     <a href="#!/twitter-map">Tweets</a> -->
-    <!-- <div class="us_map" id="map"></div> -->
-    <ng-view></ng-view>
-    <!-- <button ng-click="most()">Click here</button> -->
 
-    <!-- <div class="us_map" id="map"></div> -->
+    <ng-view class="view-animate"></ng-view>
+
     <script src="https://code.angularjs.org/1.6.5/angular.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular-animate.js"></script>
     <script src="https://code.angularjs.org/1.6.5/angular-route.min.js"></script>
     <script src="module.js"></script>
     <script src="config.js"></script>
@@ -24,8 +23,6 @@
     <script src="map/mapdata.js"></script>
     <script src="map/usmap.js"></script>
     <script src="landing.js"></script>
-    <!-- <script type="text/javascript" src="http://yoursite.com/mapdata.js"></script>
-    <script type="text/javascript" src="http://yoursite.com/worldmap.js"></script> -->
 
 </body>
 </html>

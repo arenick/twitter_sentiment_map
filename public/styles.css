@@ -106,6 +106,7 @@ body {
     position: relative;
     height: 100%; 
 }
+
 .whiteCircle {
     position: absolute;
     display: flex;
@@ -131,6 +132,7 @@ body {
     color: black;
     margin: 0px;
 }
+
 .landingP {
     font-size: 20px;
     font-weight: 200;
@@ -181,6 +183,118 @@ to {
 }
 }
 
+/* Color Key */
+
+.colorSize {
+    /* border-radius:50%; */
+    /* display: flex; */
+    /* margin: 0 auto; */
+    /* justify-content: center; */
+    /* width: 90%;
+    height: 150px; */
+    position: fixed;
+    /* transform: translate(-50%, -50%); */
+    left: 5%;
+    top: 40%;
+    opacity: .65;
+    z-index: -99;
+}
+  
+.landingRed {
+    background-color:  #ff3351;
+    width: 90%;
+    height: 150px;
+    border-radius:50%;
+}
+  
+.landingRedOrange {
+    background-color:  #ff471b;
+    transform: rotate(25.7deg);
+    width: 90%;
+    height: 150px;
+    border-radius:50%;
+}
+  
+.landingOrange {
+    background-color:  #ff951a;
+    transform: rotate(51.4deg);
+    width: 90%;
+    height: 150px;
+    border-radius:50%;
+}
+  
+.landingYellow {
+    background-color:  #ffd21b;
+    transform: rotate(77.1deg);
+    width: 90%;
+    height: 150px;
+    border-radius:50%;
+}
+  
+.landingGreen{
+    background-color:  #52b05d;
+    transform: rotate(102.8deg);
+    width: 90%;
+    height: 150px;
+    border-radius:50%;
+}
+  
+.landingAqua {
+    background-color:  #52e0bb;
+    transform: rotate(128.5deg);
+    width: 90%;
+    height: 150px;
+    border-radius:50%;
+}
+  
+.landingBlue {
+    background-color: #5d91e3;
+    transform: rotate(154.2deg);
+    width: 90%;
+    height: 150px;
+    border-radius:50%;
+}
+
+/* ng-view Transitions */
+
+.view-animate {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    min-height: 100%;
+    opacity: 1;
+}
+
+.view-animate.ng-enter,
+.view-animate.ng-leave {
+    transition: all 6s ease-out;
+}
+.view-animate.ng-enter {
+    opacity: 0;
+    animation: 6s linear normal slide;
+}
+.view-animate.ng-enter-active {
+    opacity: 1;
+}
+.view-animate.ng-leave-active {
+    opacity: 0;
+} 
+
+@keyframes slide {
+0% {top: 100%;}
+10% {top: 90%;}
+20% {top: 80%;}
+30% {top: 70%;}
+40% {top: 60%;}
+50% {top: 50%;}
+60% {top: 40%;}
+70% {top: 30%;}
+80% {top: 20%;}
+90% {top: 10%;}
+100% {top: 0%;}
+}
+
 /* iPhone 5/SE */
 @media only screen and (min-width: 320px) {
     .circle {
@@ -212,22 +326,20 @@ to {
     .circle {
         top: 27%;
         left: 10%;
-    }
-}
-
-/* Pixel 2 XL */
-@media only screen and (min-width: 411px) {
-    .circle {
-        top: 30%;
-        left: 14%;
-    }
-}
+  }
 
 /* iPad */
 @media only screen and (min-width: 768px) {
+
     .whiteCircle {
-        height: 380px;
-        width: 380px;
+        /* position: absolute;
+        top: 23%;
+        left: 15%; */
+        height: 400px;
+        width: 400px;
+        border: 2px solid #1DA1F2;
+        margin: 0 auto;
+        z-index: 999999;
     }
     .circle {
         top: 33%;
@@ -247,20 +359,15 @@ to {
     }
 }
 
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
-    #mapContainer {
-        display: flex;
-        flex-direction: column;
-        width: 60%;
+/* Pixel 2 XL */
+@media only screen and (min-width: 411px) {
+    .circle {
+        top: 30%;
+        left: 14%;
     }
-    #map_inner {
-        padding: 20% 5% 5% 5%;
-    }
-} 
-
-/* iPad Pro */
-@media only screen and (min-width: 1023px) {
+}
+  
+@media only screen and (min-width: 769px) {
     .landingP {
         font-size: 34px;
     }
@@ -281,6 +388,22 @@ to {
         top: 82%;
     }
 }
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    #mapContainer {
+        display: flex;
+        flex-direction: column;
+        width: 60%;
+    }
+    #map_inner {
+        padding: 20% 5% 5% 5%;
+    }
+} 
+
+/* iPad Pro */
+@media only screen and (min-width: 1023px) {
+  }
 
 /* small laptop */
 @media only screen and (min-width: 1440px) {
