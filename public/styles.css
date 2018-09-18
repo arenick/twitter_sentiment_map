@@ -99,6 +99,11 @@ body {
 }
 
 /* This is the Styling for the Landing Page */
+.landingHold {
+    height: 100%; 
+    display: block; 
+}
+
 .landingContainer {
     /* display: flex;
     align-items: center;
@@ -274,7 +279,7 @@ to {
 }
 .view-animate.ng-enter {
     opacity: 0;
-    animation: 6s linear normal slide;
+    animation: 2s linear normal slide;
 }
 .view-animate.ng-enter-active {
     opacity: 1;

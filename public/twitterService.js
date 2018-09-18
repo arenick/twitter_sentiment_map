@@ -181,7 +181,7 @@ const states =  {
     vm.tester = () => {
         return $http({
             medthod: "GET", 
-            url: "/test"
+            url: "/search/all"
         }).then((response) => {
             console.log(response); 
         })
