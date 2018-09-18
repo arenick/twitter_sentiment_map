@@ -166,7 +166,10 @@ body {
     background-color: deepskyblue;
     width: 300px;
     height: 300px;
-    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    /* position: absolute; */
     /* top: 27%;
     left: 10%; */
     opacity: 0;
