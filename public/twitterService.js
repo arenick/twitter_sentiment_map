@@ -196,11 +196,11 @@ const states =  {
             url: "/search/all/"
          }).then((response) => {
             let stateKeys = Object.keys(states); 
-            let smallStateKeys = Object.keys(smallStates);
+            let smallStateKeys = Object.keys(states);
            
-            for(let i = 0; i < smallStateKeys.length; i++){
-                let stateAvg = response.data[smallStateKeys[i]].avg; 
-                let state = smallStateKeys[i]; 
+            for(let i = 0; i < stateKeys.length; i++){
+                let stateAvg = response.data[stateKeys[i]].avg; 
+                let state = stateKeys[i]; 
                 //stateAverage = vm.averager(indStateSentiment); 
                 vm.averageSorter(stateAvg, state);  
             }
