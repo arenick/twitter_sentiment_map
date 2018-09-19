@@ -58,7 +58,11 @@ body {
     flex-direction: row;
     justify-content: center;
     margin-top: -20px;
-    /* align-content: space-between; */
+    background-color: white;
+    border-radius: 5px;
+    align-items: center;
+    margin: 0% 5%;
+    color: black;
 }
 
 .guideItem{
@@ -101,25 +105,25 @@ body {
 }
 
 #sad{
-    background: #5d91e3;
+    background: #F9CDAC;
 }
 #fear{
-    background: #52e0bb;
+    background: #F3ACA2;
 }
 #bored{
-   background:  #52b05d;
+   background:  #EE8B98;
 }
 #happy{
-    background: #ffd21b;
+    background: #E96A8D;
 }
 #excited{
-    background: #ff951a;
+    background: #B8428C;
 }
 #sarcasm{
-    background: #ff471b;
+    background: #973490;
 }
 #angry{
-    background: #ff3351;
+    background: #742796;
 }
 
 /* This is the Styling for the Landing Page */
@@ -157,7 +161,7 @@ body {
     z-index: 999999;
     top: 50%;
     left: 50%;
-    transform: translate(-48%, -50%);
+    transform: translate(-50%, -50%);
 }
 
 .landingH {
