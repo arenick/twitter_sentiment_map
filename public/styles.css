@@ -429,7 +429,7 @@ to {
     margin: 0 auto;
     align-items: center;
     height: 100vh;
-    overflow: scroll;
+    overflow-y: auto;
     padding: 70px; 
 }
 /* iPhone 5/SE */
