@@ -462,7 +462,7 @@ to {
 
 .view-animate.ng-enter,
 .view-animate.ng-leave {
-    transition: all 6s ease-out;
+    transition: all 0.5s ease-out;
 }
 .view-animate.ng-enter {
     opacity: 0;
