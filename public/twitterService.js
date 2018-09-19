@@ -210,38 +210,38 @@ const states =  {
         let avg = num; 
         let ret = state; 
 
-        if(avg > 3){
+        if(avg > 2.5){
             let upAvg = avg * 100; 
             let lightness = 180 - (Math.log(avg) * 2); 
             // console.log(avg + "  " + upAvg + "   " + ret);
             // console.log(typeof lightness + "  " + lightness);
-            let color = `#5d91e3`;  
+            let color = `#742796`;  
             simplemaps_usmap_mapdata.state_specific[ret].color = color; 
             simplemaps_usmap.refresh_state(ret)
         }
-         else if(avg > 2){
-            let color = "#52e0bb";
+         else if(avg > 1.5){
+            let color = "#973490";
             simplemaps_usmap_mapdata.state_specific[ret].color = color; 
             simplemaps_usmap.refresh_state(ret)
          }
-         else if(avg > 1){
-             let color = "#52b05d";
+         else if(avg > .5){
+             let color = "#B8428C";
              simplemaps_usmap_mapdata.state_specific[ret].color = color; 
              simplemaps_usmap.refresh_state(ret)
-         } else if(avg > -1){
-            let color = "#ffd21b";
+         } else if(avg > -.5){
+            let color = "#E96A8D";
             simplemaps_usmap_mapdata.state_specific[ret].color = color; 
             simplemaps_usmap.refresh_state(ret)
-        } else if(avg > -2){
-            let color = "#ff951a";
+        } else if(avg > -1.5){
+            let color = "#EE8B98";
             simplemaps_usmap_mapdata.state_specific[ret].color = color; 
             simplemaps_usmap.refresh_state(ret)
-        } else if(avg > -3){
-            let color = "#ff471b";
+        } else if(avg > -2.5){
+            let color = "#F3ACA2";
             simplemaps_usmap_mapdata.state_specific[ret].color = color; 
             simplemaps_usmap.refresh_state(ret)
         } else if(avg >= -5){
-            let color = "#ff3351";
+            let color = "#F9CDAC";
             simplemaps_usmap_mapdata.state_specific[ret].color = color; 
             simplemaps_usmap.refresh_state(ret)
         }
