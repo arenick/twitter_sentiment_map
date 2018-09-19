@@ -15,7 +15,9 @@ body {
 
 .hide{
     display: none; 
-.statetext {
+}
+
+.statetext{
     background-color: white;
     border-radius: 5px;
     color: black;
