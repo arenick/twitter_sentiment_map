@@ -257,6 +257,38 @@ body {
     
 }
 
+.xMover{
+    position: absolute;
+    transform: translate(-50%, -50%); 
+    top: 50%; 
+    left: 50%; 
+    animation-name: xtrans; 
+    animation-delay: 6s; 
+    animation-timing-function: cubic-bezier(0.3, 0.27, 0.07, 1.64); 
+    animation-duration: 3s; 
+    animation-play-state: paused;
+    animation-fill-mode: forwards; 
+}
+
+.bigbird{
+    animation-name: bigfly; 
+    animation-delay: 6s; 
+    animation-timing-function: cubic-bezier(0.3, 0.27, 0.07, 1.64); 
+    animation-duration: 3s; 
+    animation-play-state: paused; 
+    animation-fill-mode: forwards; 
+}
+
+@keyframes bigfly{
+    from {transform: translateY(-50%)}
+    to {transform: translateY(-700%)}
+}
+
+@keyframes xtrans{
+    from {transform: translateX(-50%)}
+    to {transform: translateX(250%)}
+}
+
 @keyframes fly {
     0% {transform: translate(-50%, -50%)}
     50% {transform: translate(1750%, -1200%)}
@@ -423,6 +455,7 @@ to {
 90% {top: 10%;}
 100% {top: 0%;}
 }
+
 #container {
     display: flex;
     flex-direction: column;

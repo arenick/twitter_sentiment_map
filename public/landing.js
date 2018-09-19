@@ -6,10 +6,14 @@ const landing = {
         const vm = this;
         vm.runBirds = () => {
             let larry = document.querySelectorAll('.bird'); 
+            let bigBird = document.getElementById('bigbird'); 
+            let xMover = document.getElementById('xMover');
             for(let i = 0; i < larry.length; i++){
                 console.log(larry[i]);
                 larry[i].style  = 'animation-play-state: running'; 
             }
+            bigBird.style = 'animation-play-state: running';
+            xMover.style = 'animation-play-state: running';
         }
         vm.redirect = () => {
         let fadeOut = (el, step) => {
@@ -29,9 +33,9 @@ const landing = {
         let whiteCircle = document.getElementById('whiteCircle');
         fadeOut(whiteCircle, 100);
         let changeWait = () => {
-            $location.path("/twitter-map");
+            //$location.path("/twitter-map");
         }
-        $timeout(changeWait, 3000);    
+        $timeout(changeWait, 9000);    
         
     }
 
