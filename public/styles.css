@@ -428,6 +428,9 @@ to {
     flex-direction: column;
     margin: 0 auto;
     align-items: center;
+    height: 100vh;
+    overflow: scroll;
+    padding: 70px; 
 }
 /* iPhone 5/SE */
 @media only screen and (min-width: 320px) {
