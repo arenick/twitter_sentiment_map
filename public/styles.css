@@ -191,6 +191,49 @@ body {
     animation: scaleIn 4s infinite cubic-bezier(.36, .11, .89, .32);
 }
 
+.birds{
+    position: absolute;
+    transform: translate(-50%, -50%); 
+    top: 50%; 
+    left: 50%; 
+    height: 100%; 
+    width: 100vw; 
+}
+
+.bird{
+    position: absolute; 
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+}
+
+#bird1{
+    animation: fly 1.5s linear 2s;
+}
+#bird2{
+    animation: fly 1.5s linear 0.5s;
+}
+#bird3{
+    animation: fly 1.5s linear 1.5s;
+}
+#bird4{
+    animation: fly 1.5s linear 1s;
+}
+#bird5{
+
+}
+#bird6{
+
+}
+
+
+@keyframes fly {
+    0% {transform: translate(-50%, -50%)}
+    50% {transform: translate(-1800%, -1200%)}
+    75% {transform: translate(-2400%, -2000%)}
+    100% {transform: translate(-2800%, -2200%)}
+}
+
 @keyframes scaleIn {
 from {
     transform: scale(.5, .5);
