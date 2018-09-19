@@ -6,8 +6,6 @@ const twitterMap = {
     controller: ["TwitterService", "$location", "$timeout", function(TwitterService, $location, $timeout) {
         simplemaps_usmap.load();
         const vm = this;
-        // vm.tweets=TwitterService.obj;
-        // console.log(vm.tweets);
 
         vm.getTweets = () => {
             TwitterService.getAllTweets().then((response) => {
@@ -22,6 +20,14 @@ const twitterMap = {
                 return; 
             }
             simplemaps_usmap.refresh();
+            document.getElementById("container").innerHTML = "";
+            twttr.ready(function (twttr) {
+                TwitterService.embedTweets(stateName).then((response) => {
+                   for (let tweetId of response.data.statuses) {
+                    twttr.widgets.createTweet(tweetId.id_str, document.getElementById('container'), {cards: 'hidden'});
+                   } 
+                });
+            });
             TwitterService.getState(stateName).then((response) => {
                 let delayPull = function(){
                     console.log(response.emotion[0].emotion)
@@ -76,8 +82,8 @@ const twitterMap = {
                             break; 
                     }
                 }
-                $timeout(delayPull, 250);
-                vm.tweetStuff = response.text;
+                $timeout(delayPull, 1500);
+                // vm.tweetStuff = response.text;
             });
         });
     }] 

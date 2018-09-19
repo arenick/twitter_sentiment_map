@@ -16,7 +16,9 @@ body {
 }
 .twitterPage{
     background: #1DA1F2;
-    height: 100vh;
+    color: white;
+    text-align: center;
+    display: flex;
 }
 
 .mapContainer {
@@ -66,6 +68,8 @@ body {
 
 .discover_text {
     font-size: 18px;
+    margin: 10px 5px 0px 5px;
+    /* border-bottom: 3px solid white; */
 }
 
 .emotion-circles{
@@ -99,13 +103,22 @@ body {
 }
 
 /* This is the Styling for the Landing Page */
-.landingContainer {
-    /* display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column; */
-    position: relative;
+.landingHold {
     height: 100%; 
+    display: block; 
+    background-color: white;
+}
+
+.landingContainer {
+    position: relative;
+ 
+    background-color: white;
+
+    height: 250px;
+    width: 250px;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%; 
 }
 
 .whiteCircle {
@@ -161,15 +174,17 @@ body {
     align-items: center;
 }
 
+.move{
+    height: 100%;
+    width: 250px;
+}
+
 .circle {
     border-radius: 50%;
     background-color: deepskyblue;
-    width: 300px;
-    height: 300px;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    /* position: absolute; */
+    width: 250px;
+    height: 250px;
+    position: absolute;
     /* top: 27%;
     left: 10%; */
     opacity: 0;
@@ -269,6 +284,7 @@ to {
     min-height: 100%;
     opacity: 1;
     height: 100%;
+    background: #1DA1F2;
 }
 
 .view-animate.ng-enter,
@@ -277,7 +293,9 @@ to {
 }
 .view-animate.ng-enter {
     opacity: 0;
-    animation: 6s linear normal slide;
+
+    animation: 2s linear normal slide;
+
 }
 .view-animate.ng-enter-active {
     opacity: 1;
@@ -299,13 +317,14 @@ to {
 90% {top: 10%;}
 100% {top: 0%;}
 }
-
+#container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    align-items: center;
+}
 /* iPhone 5/SE */
 @media only screen and (min-width: 320px) {
-    .circle {
-        top: 23%;
-        left: 3%;
-    }
     .landingP {
         font-size: 17px;
     }
@@ -317,18 +336,12 @@ to {
 
 /* Galexy S5 */
 @media only screen and (min-width: 360px) {
-    .circle {
-        top: 27%;
-        left: 10%;
-    }
+
 }
 
 /* iPhone 6/7/8 */
 @media only screen and (min-width: 375px) {
-    .circle {
-        top: 27%;
-        left: 10%;
-  }
+
 
 /* iPad */
 @media only screen and (min-width: 768px) {
@@ -340,11 +353,13 @@ to {
         height: 400px;
         width: 400px;
     }
+    .move{
+        height: 100%;
+        width: 400px;
+    }
     .circle {
-        top: 33%;
-        left: 27%;
-        width: 350px;
-        height: 350px;
+        width: 400px;
+        height: 400px;
     }
     .landingBtn {
         border-radius: 80px;
@@ -356,14 +371,19 @@ to {
     .landingP {
         font-size: 28px;
     }
+    .landingContainer{
+        position: relative;
+        height: 400px;
+        width: 400px;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+    }
 }
 
 /* Pixel 2 XL */
 @media only screen and (min-width: 411px) {
-    .circle {
-        top: 30%;
-        left: 14%;
-    }
+
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
@@ -374,7 +394,7 @@ to {
         width: 60%;
     }
     #map_inner {
-        padding: 20% 5% 5% 5%;
+        padding: 5% 5% 5% 5%;
     }
 } 
 
@@ -384,13 +404,10 @@ to {
 
 /* small laptop */
 @media only screen and (min-width: 1440px) {
-    .circle {
-        top: 33%;
-        left: 39.5%;
-    }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
+    
 
 }

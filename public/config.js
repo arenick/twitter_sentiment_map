@@ -6,7 +6,7 @@ angular
                 template: `<twitter-map></twitter-map>`
             })
             .when("/landing", {
-                template: `<landing></landing>`
+                template: `<landing class="landingHold"></landing>`
             })
             .otherwise({redirectTo: "/landing"});
     }
