@@ -162,33 +162,33 @@ const states =  {
             let lightness = 180 - (Math.log(avg) * 2); 
             // console.log(avg + "  " + upAvg + "   " + ret);
             // console.log(typeof lightness + "  " + lightness);
-            let color = `#5d91e3`;  
+            let color = `#FE9D8F`;  
             simplemaps_usmap_mapdata.state_specific[ret].color = color; 
             simplemaps_usmap.refresh_state(ret)
         }
          else if(avg > 2){
-            let color = "#52e0bb";
+            let color = "#FE707F";
             simplemaps_usmap_mapdata.state_specific[ret].color = color; 
             simplemaps_usmap.refresh_state(ret)
          }
          else if(avg > 1){
-             let color = "#52b05d";
+             let color = "#E93367";
              simplemaps_usmap_mapdata.state_specific[ret].color = color; 
              simplemaps_usmap.refresh_state(ret)
          } else if(avg > -1){
-            let color = "#ffd21b";
+            let color = "#A5296C";
             simplemaps_usmap_mapdata.state_specific[ret].color = color; 
             simplemaps_usmap.refresh_state(ret)
         } else if(avg > -2){
-            let color = "#ff951a";
+            let color = "#762777";
             simplemaps_usmap_mapdata.state_specific[ret].color = color; 
             simplemaps_usmap.refresh_state(ret)
         } else if(avg > -3){
-            let color = "#ff471b";
+            let color = "#47267D";
             simplemaps_usmap_mapdata.state_specific[ret].color = color; 
             simplemaps_usmap.refresh_state(ret)
         } else if(avg >= -5){
-            let color = "#ff3351";
+            let color = "#00216A";
             simplemaps_usmap_mapdata.state_specific[ret].color = color; 
             simplemaps_usmap.refresh_state(ret)
         }
