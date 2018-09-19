@@ -7,12 +7,6 @@ const twitterMap = {
         simplemaps_usmap.load();
         const vm = this;
 
-        vm.getTweets = () => {
-            TwitterService.getAllTweets().then((response) => {
-                console.log(response);
-                // console.log(tweet);
-            }); 
-        }
         document.getElementById("map").addEventListener("click", (e) => {
             let stateName = e.target.className.animVal.charAt(9) + e.target.className.animVal.charAt(10);
             console.log(stateName);
@@ -30,13 +24,18 @@ const twitterMap = {
             });
             TwitterService.getState(stateName).then((response) => {
                 let delayPull = function(){
+                    let stateText = document.getElementById('statetext');
                     let specState = document.getElementById('specificState');
                     let specEmotion = document.getElementById('itsEmotion'); 
                     let stateFullName = TwitterService.fullName[stateName]; 
+                    
+                    stateText.classList.remove('hide');
                     specState.innerHTML = stateFullName; 
+                    
                     if(!response.emotion[0].emotion){
                         return; 
                     }
+
                     switch(response.emotion[0].emotion){
                         case 'Angry': 
                             console.log(stateName); 
@@ -71,7 +70,7 @@ const twitterMap = {
                         case 'Sarcasm': 
                             console.log(stateName); 
                             console.log("switch sarcasm"); 
-                            specEmotion.innerHTML = "Being Sarcastic"
+                            specEmotion.innerHTML = "Sarcastic"
                             break; 
                         default: 
                             console.log(stateName); 

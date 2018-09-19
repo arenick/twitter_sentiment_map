@@ -13,7 +13,11 @@ body {
     height: 100%; 
 }
 
-.statetext {
+.hide{
+    display: none; 
+}
+
+.statetext{
     background-color: white;
     border-radius: 5px;
     color: black;
@@ -26,6 +30,7 @@ body {
     color: white;
     text-align: center;
     display: flex;
+    flex-direction: column;
 }
 
 .mapContainer {
@@ -562,6 +567,11 @@ to {
     }
     #map_inner {
         padding: 5% 5% 5% 5%;
+    }
+    .twitterPage{
+        text-align: center;
+        display: flex;
+        flex-direction: row; 
     }
 } 
 
