@@ -30,59 +30,57 @@ const twitterMap = {
             });
             TwitterService.getState(stateName).then((response) => {
                 let delayPull = function(){
-                    console.log(response.emotion[0].emotion)
+                    let specState = document.getElementById('specificState');
+                    let specEmotion = document.getElementById('itsEmotion'); 
+                    let stateFullName = TwitterService.fullName[stateName]; 
+                    specState.innerHTML = stateFullName; 
+                    if(!response.emotion[0].emotion){
+                        return; 
+                    }
                     switch(response.emotion[0].emotion){
                         case 'Angry': 
                             console.log(stateName); 
                             console.log("switch angry"); 
-                            simplemaps_usmap_mapdata.state_specific[stateName].color = 'rgba(255,51,81,1)';
-                            simplemaps_usmap.refresh();  
+                            specEmotion.innerHTML = "Angry"
                             break;
                         case 'Bored': 
                             console.log(stateName); 
                             console.log("switch bored"); 
-                            simplemaps_usmap_mapdata.state_specific[stateName].color = 'rgba(82,176,93,1)';
-                            simplemaps_usmap.refresh(); 
+                            specEmotion.innerHTML = "Bored"
                             break; 
                         case 'Excited': 
                             console.log(stateName); 
                             console.log("switch excited"); 
-                            simplemaps_usmap_mapdata.state_specific[stateName].color = 'rgba(255,149,26,1)';
-                            simplemaps_usmap.refresh(); 
+                            specEmotion.innerHTML = "Excited"
                             break;
                         case 'Fear': 
                             console.log(stateName); 
                             console.log("switch fear"); 
-                            simplemaps_usmap_mapdata.state_specific[stateName].color = 'rgba(82,224,187,1)';
-                            simplemaps_usmap.refresh(); 
+                            specEmotion.innerHTML = "Fearful"
                             break;
                         case 'Happy': 
                             console.log(stateName); 
                             console.log("switch happy");    
-                            simplemaps_usmap_mapdata.state_specific[stateName].color = 'rgba(255,210,27,1)';
-                            simplemaps_usmap.refresh(); 
+                            specEmotion.innerHTML = "Happy"
                             break; 
                         case 'Sad': 
                             console.log(stateName); 
                             console.log("switch sad"); 
-                            simplemaps_usmap_mapdata.state_specific[stateName].color = 'rgba(93,145,227,1)';
-                            simplemaps_usmap.refresh(); 
+                            specEmotion.innerHTML = "Sad"
                             break; 
                         case 'Sarcasm': 
                             console.log(stateName); 
                             console.log("switch sarcasm"); 
-                            simplemaps_usmap_mapdata.state_specific[stateName].color =  'rgba(255,71,27,1)';
-                            simplemaps_usmap.refresh(); 
+                            specEmotion.innerHTML = "Being Sarcastic"
                             break; 
                         default: 
                             console.log(stateName); 
                             console.log("switch defualt error"); 
-                            simplemaps_usmap_mapdata.state_specific[stateName].color = 'rgba(0,0,0,1)';
-                            simplemaps_usmap.refresh(); 
+                            specEmotion.innerHTML = "Happy"
                             break; 
                     }
                 }
-                $timeout(delayPull, 1500);
+                $timeout(delayPull, 1000);
                 // vm.tweetStuff = response.text;
             });
         });
