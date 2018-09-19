@@ -208,31 +208,87 @@ body {
 }
 
 #bird1{
-    animation: fly 1.5s linear 2s;
+    animation-name: fly;
+    animation-delay: 1.5s;
+    animation-timing-function: linear; 
+    animation-duration: 1.5s; 
+    animation-play-state: paused;
 }
 #bird2{
-    animation: fly 1.5s linear 0.5s;
+    animation-name: fly2;
+    animation-delay: 0.5s;
+    animation-timing-function: linear; 
+    animation-duration: 1.5s; 
+    animation-play-state: paused;
 }
 #bird3{
-    animation: fly 1.5s linear 1.5s;
+    animation-name: fly3;
+    animation-delay: 0.5s;
+    animation-timing-function: linear; 
+    animation-duration: 1.5s; 
+    animation-play-state: paused;
 }
 #bird4{
-    animation: fly 1.5s linear 1s;
+    animation-name: fly4;
+    animation-delay: 1s;
+    animation-timing-function: linear; 
+    animation-duration: 1.5s; 
+    animation-play-state: paused;
 }
 #bird5{
-
+    animation-name: fly5;
+    animation-delay: 1s;
+    animation-timing-function: ease-out; 
+    animation-duration: 2s; 
+    animation-play-state: paused;
 }
 #bird6{
-
+    animation-name: fly6;
+    animation-delay: 1s;
+    animation-timing-function: ease-out; 
+    animation-duration: 2s; 
+    animation-play-state: paused;
 }
 
-
 @keyframes fly {
+    0% {transform: translate(-50%, -50%)}
+    50% {transform: translate(1750%, -1200%)}
+    75% {transform: translate(2350%, -2000%)}
+    100% {transform: translate(2750%, -2200%)}
+}
+
+@keyframes fly2 {
     0% {transform: translate(-50%, -50%)}
     50% {transform: translate(-1800%, -1200%)}
     75% {transform: translate(-2400%, -2000%)}
     100% {transform: translate(-2800%, -2200%)}
 }
+
+@keyframes fly3 {
+    0% {transform: translate(-50%, -50%)}
+    50% {transform: translate(1750%, -1200%)}
+    75% {transform: translate(2350%, -2000%)}
+    100% {transform: translate(2750%, -2200%)}
+}
+
+@keyframes fly4 {
+    0% {transform: translate(-50%, -50%)}
+    50% {transform: translate(-1800%, -1200%)}
+    75% {transform: translate(-2400%, -2000%)}
+    100% {transform: translate(-2800%, -2200%)}
+}
+
+@keyframes fly5 {
+    from {transform: translate(-50%, -50%)}
+    to {transform: translate(-3000%, -50%)}
+    
+}
+
+@keyframes fly6 {
+    from {transform: translate(-50%, -50%)}
+    to {transform: translate(2950%, -50%)}
+}
+
 
 @keyframes scaleIn {
 from {
