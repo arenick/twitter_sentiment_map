@@ -205,49 +205,56 @@ body {
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
+    color: #5d91e3;
 }
 
 #bird1{
     animation-name: fly;
-    animation-delay: 1.5s;
+    animation-delay: 0.5s;
     animation-timing-function: linear; 
-    animation-duration: 1.5s; 
+    animation-duration: 3s; 
     animation-play-state: paused;
+    animation-fill-mode: forwards;
 }
 #bird2{
     animation-name: fly2;
-    animation-delay: 0.5s;
+    animation-delay: 3s;
     animation-timing-function: linear; 
-    animation-duration: 1.5s; 
+    animation-duration: 3s; 
     animation-play-state: paused;
+    animation-fill-mode: forwards;
 }
 #bird3{
     animation-name: fly3;
-    animation-delay: 0.5s;
+    animation-delay: 1.5s;
     animation-timing-function: linear; 
-    animation-duration: 1.5s; 
+    animation-duration: 3s; 
     animation-play-state: paused;
+    animation-fill-mode: forwards;
 }
 #bird4{
     animation-name: fly4;
     animation-delay: 1s;
     animation-timing-function: linear; 
-    animation-duration: 1.5s; 
+    animation-duration: 3s; 
     animation-play-state: paused;
+    animation-fill-mode: forwards;
 }
 #bird5{
     animation-name: fly5;
-    animation-delay: 1s;
+    animation-delay: 2s;
     animation-timing-function: ease-out; 
-    animation-duration: 2s; 
+    animation-duration: 3s; 
     animation-play-state: paused;
+    
 }
 #bird6{
     animation-name: fly6;
-    animation-delay: 1s;
+    animation-delay: 2.5s;
     animation-timing-function: ease-out; 
-    animation-duration: 2s; 
+    animation-duration: 3s; 
     animation-play-state: paused;
+    
 }
 
 @keyframes fly {
@@ -293,7 +300,7 @@ body {
 @keyframes scaleIn {
 from {
     transform: scale(.5, .5);
-    opacity: .5;
+    opacity: .75;
 }
 to {
     transform: scale(2.5, 2.5);
@@ -428,7 +435,7 @@ to {
         font-size: 17px;
     }
     .landingBtn {
-        top: 77%;
+        top: 80%;
         position: absolute;
     }
 }
@@ -464,7 +471,7 @@ to {
         border-radius: 80px;
         height: 85px;
         font-size: 33px;
-        top: 78%;
+        top: 80%;
         position: absolute;
     }
     .landingP {
