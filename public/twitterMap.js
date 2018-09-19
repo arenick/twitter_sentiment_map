@@ -80,7 +80,7 @@ const twitterMap = {
                             break; 
                     }
                 }
-                $timeout(delayPull, 1500);
+                $timeout(delayPull, 1000);
                 // vm.tweetStuff = response.text;
             });
         });
