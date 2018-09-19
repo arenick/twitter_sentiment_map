@@ -47,7 +47,6 @@ body {
 }
 
 #map_inner {
-    padding: 15px 15px 15px 15px;
     align-items: center;
     justify-content: center;
     margin: 0 auto;
@@ -77,6 +76,7 @@ body {
 .tweets{
     color: white;
     font-size: 15px;
+    margin: 5%;
 }
 
 .discover{
@@ -565,13 +565,13 @@ to {
         flex-direction: column;
         width: 60%;
     }
-    #map_inner {
-        padding: 5% 5% 5% 5%;
-    }
     .twitterPage{
         text-align: center;
         display: flex;
         flex-direction: row; 
+    }
+    .tweets{
+        margin: 1.5% 2% 0% 0%;
     }
 } 
 
