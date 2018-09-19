@@ -31,7 +31,7 @@ const landing = {
         let changeWait = () => {
             $location.path("/twitter-map");
         }
-        $timeout(changeWait, 4000);    
+        $timeout(changeWait, 3000);    
         
     }
 
