@@ -119,6 +119,59 @@ const states =  {
         "CA": "fbd6d2f5a4e4a15e",
         "MI": "67d92742f1ebf307",
     }
+
+    vm.fullName = {
+        "AL": "Alabama", 
+        "AK": "Alaska",
+        "AZ": "Arizona",
+        "AR": "Arizona",
+        "CA": "Califonia",
+        "CO": "Colorado",
+        "CT": "Connecticut",
+        "DE": "Delaware",
+        "FL": "Florida",
+        "GA": "Georgia",
+        "HI": "Hawaii",
+        "ID": "Idaho",
+        "IL": "Illinois",
+        "IN": "Indiana",
+        "IA": "Iowa",
+        "KS": "Kansas",
+        "KY": "Kentucy",
+        "LA": "Louisiana",
+        "ME": "Maine",
+        "MD": "Montana",
+        "MA": "Maryland",
+        "MI": "Michigan",
+        "MN": "Minnesota",
+        "MS": "Mississippi",
+        "MO": "Misouri",
+        "MT": "Montana",
+        "NE": "Nebraska",
+        "NV": "Nevada",
+        "NH": "New Hampshire",
+        "NJ": "New Jersey", 
+        "NM": "New Mexico",
+        "NY": "New York",
+        "NC": "North Carolina",
+        "ND": "North Dakota",
+        "OH": "Ohio",
+        "OK": "Oklamhoma",
+        "OR": "Oregon",
+        "PA": "Pennsylvania",
+        "RI": "Rhode Island",
+        "SC": "South Carolina",
+        "SD": "South Dakota",
+        "TN": "Tennessee",
+        "TX": "Texas",
+        "UT": "Utah",
+        "VT": "Vermont",
+        "VA": "Virginia",
+        "WA": "Washington",
+        "WV": "West Virginia",
+        "WI": "Wisconsin",
+        "WY": "Wyoming"
+    }
     
 
     let deStringify = function(obj) {
@@ -157,25 +210,41 @@ const states =  {
         let avg = num; 
         let ret = state; 
 
-        if(avg > 0){
+        if(avg > 2.5){
             let upAvg = avg * 100; 
             let lightness = 180 - (Math.log(avg) * 2); 
             // console.log(avg + "  " + upAvg + "   " + ret);
             // console.log(typeof lightness + "  " + lightness);
-            let color = `rgba(82, ${lightness}, 93, 0.6)`;  
+            let color = `#742796`;  
             simplemaps_usmap_mapdata.state_specific[ret].color = color; 
             simplemaps_usmap.refresh_state(ret)
         }
-         else if(avg < 0){
-            let color = "rgba(255, 51, 81, 1)";
+         else if(avg > 1.5){
+            let color = "#973490";
             simplemaps_usmap_mapdata.state_specific[ret].color = color; 
             simplemaps_usmap.refresh_state(ret)
          }
-         else if(avg === 0){
-             let color = "rgba(255, 210, 27, 1)";
+         else if(avg > .5){
+             let color = "#B8428C";
              simplemaps_usmap_mapdata.state_specific[ret].color = color; 
              simplemaps_usmap.refresh_state(ret)
-         }
+         } else if(avg > -.5){
+            let color = "#E96A8D";
+            simplemaps_usmap_mapdata.state_specific[ret].color = color; 
+            simplemaps_usmap.refresh_state(ret)
+        } else if(avg > -1.5){
+            let color = "#EE8B98";
+            simplemaps_usmap_mapdata.state_specific[ret].color = color; 
+            simplemaps_usmap.refresh_state(ret)
+        } else if(avg > -2.5){
+            let color = "#F3ACA2";
+            simplemaps_usmap_mapdata.state_specific[ret].color = color; 
+            simplemaps_usmap.refresh_state(ret)
+        } else if(avg >= -5){
+            let color = "#F9CDAC";
+            simplemaps_usmap_mapdata.state_specific[ret].color = color; 
+            simplemaps_usmap.refresh_state(ret)
+        }
     }
 //  this function populates the colors on the map upon loading
 

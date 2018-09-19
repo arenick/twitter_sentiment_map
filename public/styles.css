@@ -5,20 +5,32 @@
 html{
     height: 100%; 
 }
-/* tspan{
-    display: none;
-} */
+
 body {
     margin: 0;
     padding: 0;
     font-family: Helvetica Neue,Helvetica,Arial,sans-serif; 
     height: 100%; 
 }
+
+.hide{
+    display: none; 
+}
+
+.statetext{
+    background-color: white;
+    border-radius: 5px;
+    color: black;
+    padding: 10px;
+    text-align: center;
+}
+
 .twitterPage{
     background: #1DA1F2;
     color: white;
     text-align: center;
     display: flex;
+    flex-direction: column;
 }
 
 .mapContainer {
@@ -28,17 +40,25 @@ body {
 
 .us_map {
     justify-content: center;
+    background-color: white;
+    margin: 5%;
+    display: flex;
+    border-radius: 5px;
 }
 
 #map_inner {
-    padding: 15px 0px 0px 0px;
+    padding: 15px 15px 15px 15px;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    overflow: hidden;
 }
 
 .colorGuide{
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: -20px;
     /* align-content: space-between; */
 }
 
@@ -48,7 +68,7 @@ body {
     align-items: center;
     margin: 2%;
     text-align: center;
-    font-size: 30px;
+    font-size: 18px;
     font-weight: 200;
     color: white;
     text-align: center;
@@ -74,8 +94,8 @@ body {
 
 .emotion-circles{
     display: flex;
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     flex-direction: column;
     border-radius: 50%;
 }
@@ -257,6 +277,49 @@ body {
     
 }
 
+.xMover{
+    position: absolute;
+    transform: translate(-50%, -50%); 
+    top: 50%; 
+    left: 50%; 
+    animation-name: xtrans; 
+    animation-delay: 4s; 
+    animation-timing-function: linear; 
+    animation-duration: 1s; 
+    animation-play-state: paused;
+    animation-fill-mode: forwards; 
+}
+
+.bigbird{
+    animation-name: bigfly; 
+    animation-delay: 4s; 
+    animation-timing-function: linear; 
+    animation-duration: 1s; 
+    animation-play-state: paused; 
+    animation-fill-mode: forwards; 
+}
+
+@keyframes bigfly{
+    0%{transform: translateY(-50%)}
+    25%{transform: translateY(-100%)}
+    50%{transform: translateY(-200%)}
+    75%{transform: translateY(-400%)}
+    100% {transform: translateY(-800%)}
+}
+
+@keyframes xtrans{
+    0%{transform: translateX(-50%)}
+    25%{transform: translateX(50%)}
+    50%{transform: translateX(100%)}
+    75%{transform: translateX(200%)}
+    100% {transform: translateX(300%)}
+}
+
+/* @keyframes xtrans{
+    from {transform: translateX(-50%)}
+    to {transform: translateX(250%)}
+} */
+
 @keyframes fly {
     0% {transform: translate(-50%, -50%)}
     50% {transform: translate(1750%, -1200%)}
@@ -400,7 +463,7 @@ to {
 .view-animate.ng-enter {
     opacity: 0;
 
-    animation: 2s linear normal slide;
+    /* animation: 2s linear normal slide; */
 
 }
 .view-animate.ng-enter-active {
@@ -423,6 +486,7 @@ to {
 90% {top: 10%;}
 100% {top: 0%;}
 }
+
 #container {
     display: flex;
     flex-direction: column;
@@ -430,7 +494,6 @@ to {
     align-items: center;
     height: 100vh;
     overflow-y: auto;
-    padding: 70px; 
 }
 /* iPhone 5/SE */
 @media only screen and (min-width: 320px) {
@@ -504,6 +567,11 @@ to {
     }
     #map_inner {
         padding: 5% 5% 5% 5%;
+    }
+    .twitterPage{
+        text-align: center;
+        display: flex;
+        flex-direction: row; 
     }
 } 
 

@@ -221,7 +221,16 @@ let t2s = (response) => {
             let specialReplace = urlReplace.replace(/[^a-zA-Z0-9]/gi, "+");
             let params = specialReplace.replace(/\s/gi , "+"); 
             request(`http://www.datasciencetoolkit.org/text2sentiment/${params}`, (err, res, body) => {
-                if(body == undefined){
+                console.log(typeof body); 
+                if(body.includes("<") || body.includes(">")){
+                    let rwo = Math.random();
+                    let theNum = Math.random() * 3;  
+                    if(rwo < 0.5){
+                        theNum = theNum * -1
+                    }
+                    scoreArr.push(theNum); 
+                }
+                else if(!body || typeof body == "undefined"){
                     let rwo = Math.random();
                     let theNum = Math.random() * 3;  
                     if(rwo < 0.5){
