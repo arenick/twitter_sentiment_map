@@ -49,7 +49,7 @@ var simplemaps_usmap_mapdata={
     region_hover_opacity: 0.6,
     zoom_out_incrementally: "yes",
     zoom_percentage: 0.99,
-    zoom_time: 0.5,
+    zoom_time: 1,
     
     //Popup settings
     popup_color: "white",
