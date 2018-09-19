@@ -12,11 +12,17 @@ body {
     font-family: Helvetica Neue,Helvetica,Arial,sans-serif; 
     height: 100%; 
 }
+
+.hide{
+    display: none; 
+}
+
 .twitterPage{
     background: #1DA1F2;
     color: white;
     text-align: center;
     display: flex;
+    flex-direction: column;
 }
 
 .mapContainer {
@@ -546,6 +552,11 @@ to {
     }
     #map_inner {
         padding: 5% 5% 5% 5%;
+    }
+    .twitterPage{
+        text-align: center;
+        display: flex;
+        flex-direction: row; 
     }
 } 
 
