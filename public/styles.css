@@ -398,7 +398,7 @@ to {
 .view-animate.ng-enter {
     opacity: 0;
 
-    animation: 2s linear normal slide;
+    /* animation: 2s linear normal slide; */
 
 }
 .view-animate.ng-enter-active {
