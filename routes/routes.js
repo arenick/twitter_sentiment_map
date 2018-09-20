@@ -222,7 +222,7 @@ let t2s = (response) => {
             let params = specialReplace.replace(/\s/gi , "+"); 
             request(`http://www.datasciencetoolkit.org/text2sentiment/${params}`, (err, res, body) => {
                 console.log(typeof body); 
-                if(body.includes("<") || body.includes(">")){
+                if(!body || typeof body == "undefined"){
                     let rwo = Math.random();
                     let theNum = Math.random() * 3;  
                     if(rwo < 0.5){
@@ -230,7 +230,7 @@ let t2s = (response) => {
                     }
                     scoreArr.push(theNum); 
                 }
-                else if(!body || typeof body == "undefined"){
+                else if(body.includes("<") || body.includes(">")){
                     let rwo = Math.random();
                     let theNum = Math.random() * 3;  
                     if(rwo < 0.5){
@@ -261,6 +261,8 @@ let t2s = (response) => {
         let timer = 30000 * i;
         saveState(states[stateKeys[i]], stateKeys[i]).then((response) => {
            t2s(response); 
+        }).catch((err) => {
+            console.log(err);
         }); 
     }
  }
@@ -272,6 +274,8 @@ let t2s = (response) => {
     for(let i = 0; i < stateKeys.length; i++){
         saveState(states[stateKeys[i]], stateKeys[i]).then((response) => {
             t2s(response); 
+        }).catch((err) => {
+            console.log(err);
         }); 
     }
      }

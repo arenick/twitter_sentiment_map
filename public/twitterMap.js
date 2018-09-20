@@ -40,42 +40,42 @@ const twitterMap = {
                         case 'Angry': 
                             console.log(stateName); 
                             console.log("switch angry"); 
-                            specEmotion.innerHTML = "Angry"
+                            specEmotion.innerHTML = "Angry &#x1F624;"
                             break;
                         case 'Bored': 
                             console.log(stateName); 
                             console.log("switch bored"); 
-                            specEmotion.innerHTML = "Bored"
+                            specEmotion.innerHTML = "Bored &#x1F611;"
                             break; 
                         case 'Excited': 
                             console.log(stateName); 
                             console.log("switch excited"); 
-                            specEmotion.innerHTML = "Excited"
+                            specEmotion.innerHTML = "Excited &#x1F920;"
                             break;
                         case 'Fear': 
                             console.log(stateName); 
                             console.log("switch fear"); 
-                            specEmotion.innerHTML = "Fearful"
+                            specEmotion.innerHTML = "Fearful &#x1F631;"
                             break;
                         case 'Happy': 
                             console.log(stateName); 
                             console.log("switch happy");    
-                            specEmotion.innerHTML = "Happy"
+                            specEmotion.innerHTML = "Happy &#x1F603;"
                             break; 
                         case 'Sad': 
                             console.log(stateName); 
                             console.log("switch sad"); 
-                            specEmotion.innerHTML = "Sad"
+                            specEmotion.innerHTML = "Sad &#x1F622;"
                             break; 
                         case 'Sarcasm': 
                             console.log(stateName); 
                             console.log("switch sarcasm"); 
-                            specEmotion.innerHTML = "Sarcastic"
+                            specEmotion.innerHTML = "Sarcastic &#x1F60E;"
                             break; 
                         default: 
                             console.log(stateName); 
                             console.log("switch defualt error"); 
-                            specEmotion.innerHTML = "Happy"
+                            specEmotion.innerHTML = "Happy &#x1F603;"
                             break; 
                     }
                 }

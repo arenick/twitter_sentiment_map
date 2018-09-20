@@ -308,15 +308,15 @@ body {
     25%{transform: translateY(-100%)}
     50%{transform: translateY(-200%)}
     75%{transform: translateY(-400%)}
-    100% {transform: translateY(-800%)}
+    100% {transform: translateY(-700%)}
 }
 
 @keyframes xtrans{
     0%{transform: translateX(-50%)}
     25%{transform: translateX(50%)}
-    50%{transform: translateX(100%)}
-    75%{transform: translateX(200%)}
-    100% {transform: translateX(300%)}
+    50%{transform: translateX(150%)}
+    75%{transform: translateX(250%)}
+    100% {transform: translateX(350%)}
 }
 
 /* @keyframes xtrans{
