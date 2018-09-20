@@ -51,7 +51,7 @@ const twitterMap = {
                         case 'Excited': 
                             console.log(stateName); 
                             console.log("switch excited"); 
-                            specEmotion.innerHTML = "Excited &#x1F606	;"
+                            specEmotion.innerHTML = "Excited &#x1F606;"
                             break;
                         case 'Fear': 
                             console.log(stateName); 
