@@ -33,6 +33,7 @@ const twitterMap = {
                     specState.innerHTML = stateFullName; 
                     
                     if(!response.emotion[0].emotion){
+                        specEmotion.innerHTML = "Great &#x1F60A;"
                         return; 
                     }
 
