@@ -236,7 +236,7 @@ body {
     animation-name: fly;
     animation-delay: 0.5s;
     animation-timing-function: linear; 
-    animation-duration: 3s; 
+    animation-duration: 2s; 
     animation-play-state: paused;
     animation-fill-mode: forwards;
 }
@@ -326,9 +326,9 @@ body {
 
 @keyframes fly {
     0% {transform: translate(-50%, -50%)}
-    50% {transform: translate(1750%, -1200%)}
-    75% {transform: translate(2350%, -2000%)}
-    100% {transform: translate(2750%, -2200%)}
+    50% {transform: translate(750%, -200%)}
+    75% {transform: translate(1050%, -200%)}
+    100% {transform: translate(2750%, -220%)}
 }
 
 @keyframes fly2 {

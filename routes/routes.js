@@ -166,9 +166,8 @@ let averager = (arr) => {
     T.get('search/tweets', {q: `place:${key}`, count: 10, result_type: "popular"}, function(err, data, response) {
         
         if(err){
-            console.log(err); 
+            console.log(typeof err); 
             reject(err); 
-            // throw(err);
         }
         else{
             let textArr = [stateName];
@@ -210,6 +209,11 @@ let parrellDotsCall = (response, timer) => {
 }
 
 let t2s = (response) => {
+        console.log(response);
+        console.log(globalStore);
+        if(response == null){
+            return;
+        }
         let state = response[0];
         response.shift(); 
         let scoreArr = [state]; 
@@ -238,6 +242,7 @@ let t2s = (response) => {
                     }
                     scoreArr.push(theNum); 
                 }
+              
                 else{
                 let scoreJSON = JSON.parse(body);  
                 scoreArr.push(scoreJSON.score); 
@@ -262,8 +267,8 @@ let t2s = (response) => {
         saveState(states[stateKeys[i]], stateKeys[i]).then((response) => {
            t2s(response); 
         }).catch((err) => {
-            console.log(err);
-        }); 
+            console.log(err + "!!!!!!!!!!!");
+        });     
     }
  }
  intializeGetter(); 
@@ -275,7 +280,7 @@ let t2s = (response) => {
         saveState(states[stateKeys[i]], stateKeys[i]).then((response) => {
             t2s(response); 
         }).catch((err) => {
-            console.log(err);
+            console.log(err + "!!!!!!!!!!!");
         }); 
     }
      }

@@ -33,7 +33,7 @@ const landing = {
         let whiteCircle = document.getElementById('whiteCircle');
         fadeOut(whiteCircle, 100);
         let changeWait = () => {
-            $location.path("/twitter-map");
+           // $location.path("/twitter-map");
         }
         $timeout(changeWait, 6000);    
         
