@@ -166,9 +166,8 @@ let averager = (arr) => {
     T.get('search/tweets', {q: `place:${key}`, count: 10, result_type: "popular"}, function(err, data, response) {
         
         if(err){
-            console.log(err); 
+            console.log(typeof err); 
             reject(err); 
-            // throw(err);
         }
         else{
             let textArr = [stateName];
@@ -210,6 +209,11 @@ let parrellDotsCall = (response, timer) => {
 }
 
 let t2s = (response) => {
+        console.log(response);
+        console.log(globalStore);
+        if(response == null){
+            return;
+        }
         let state = response[0];
         response.shift(); 
         let scoreArr = [state]; 
@@ -222,7 +226,7 @@ let t2s = (response) => {
             let params = specialReplace.replace(/\s/gi , "+"); 
             request(`http://www.datasciencetoolkit.org/text2sentiment/${params}`, (err, res, body) => {
                 console.log(typeof body); 
-                if(body.includes("<") || body.includes(">")){
+                if(!body || typeof body == "undefined"){
                     let rwo = Math.random();
                     let theNum = Math.random() * 3;  
                     if(rwo < 0.5){
@@ -230,7 +234,7 @@ let t2s = (response) => {
                     }
                     scoreArr.push(theNum); 
                 }
-                else if(!body || typeof body == "undefined"){
+                else if(body.includes("<") || body.includes(">")){
                     let rwo = Math.random();
                     let theNum = Math.random() * 3;  
                     if(rwo < 0.5){
@@ -238,6 +242,7 @@ let t2s = (response) => {
                     }
                     scoreArr.push(theNum); 
                 }
+              
                 else{
                 let scoreJSON = JSON.parse(body);  
                 scoreArr.push(scoreJSON.score); 
@@ -261,7 +266,9 @@ let t2s = (response) => {
         let timer = 30000 * i;
         saveState(states[stateKeys[i]], stateKeys[i]).then((response) => {
            t2s(response); 
-        }); 
+        }).catch((err) => {
+            console.log(err + "!!!!!!!!!!!");
+        });     
     }
  }
  intializeGetter(); 
@@ -272,6 +279,8 @@ let t2s = (response) => {
     for(let i = 0; i < stateKeys.length; i++){
         saveState(states[stateKeys[i]], stateKeys[i]).then((response) => {
             t2s(response); 
+        }).catch((err) => {
+            console.log(err + "!!!!!!!!!!!");
         }); 
     }
      }
