@@ -289,6 +289,11 @@ let t2s = (response) => {
 router.get("/state/:theState/", (req, res) => {
     let code = req.params.theState
     T.get('search/tweets', {q: `place:${code}`, count: 5, result_type: "popular"}, function(err, data, response) {
+        if(err){
+            console.log(typeof err); 
+            reject(err); 
+        }
+        else{
         let textArr = []; 
         let obj = {}; 
         for(let i = 0; i < data.statuses.length; i++){
@@ -299,6 +304,9 @@ router.get("/state/:theState/", (req, res) => {
         obj.statuses = data.statuses;
         obj.text = textArr; 
         res.send(obj); 
+    }
+    }).catch((err) => {
+        console.log(response);
     });
         
     });
